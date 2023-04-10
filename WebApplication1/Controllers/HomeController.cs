@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using IntexWinter.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebApplication1.Models;
@@ -12,11 +13,15 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
+
+        private IIntexWinterRepository repo;
+
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IIntexWinterRepository temp)
         {
             _logger = logger;
+            repo = temp;
         }
         [Authorize(AuthenticationSchemes = "Identity.Application")]
         public IActionResult Index()
@@ -24,14 +29,10 @@ namespace WebApplication1.Controllers
             return View();
         }
         [Authorize(AuthenticationSchemes = "Identity.Application")]
-        public IActionResult Burial_Summary()
-        {
-            return View();
-        }
-        [Authorize(AuthenticationSchemes = "Identity.Application")]
         public IActionResult Burial_Records()
         {
-            return View();
+            var burials = repo.Burialmains.ToList();
+            return View(burials);
         }
         [Authorize(AuthenticationSchemes = "Identity.Application")]
         public IActionResult Sex_Analysis()

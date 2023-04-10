@@ -14,17 +14,19 @@ using FileContextCore;
 using IdentityManagerUI.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using IntexWinter.Models;
+
 
 namespace WebApplication1
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        public IConfiguration Configuration { get; set; }
 
-        public IConfiguration Configuration { get; }
+        public Startup(IConfiguration temp)
+        {
+            Configuration = temp;
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -32,6 +34,12 @@ namespace WebApplication1
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(
                     Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDbContext<intexContext>(options =>
+                options.UseNpgsql(
+                    Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<IIntexWinterRepository, EFIntexWinterRepository>();
 
             services.AddDefaultIdentity<ApplicationUser>()
                 .AddRoles<ApplicationRole>()
