@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using IntexWinter.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebApplication1.Models;
@@ -11,25 +12,25 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
+
+        private IIntexWinterRepository repo;
+
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IIntexWinterRepository temp)
         {
             _logger = logger;
+            repo = temp;
         }
 
         public IActionResult Index()
         {
             return View();
         }
-
-        public IActionResult Burial_Summary()
-        {
-            return View();
-        }
         public IActionResult Burial_Records()
         {
-            return View();
+            var burials = repo.Burialmains.ToList();
+            return View(burials);
         }
         public IActionResult Sex_Analysis()
         {

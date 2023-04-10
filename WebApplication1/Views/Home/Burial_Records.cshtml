@@ -1,7 +1,16 @@
 ﻿@{
     ViewData["Title"] = "Burial Records";
 }
+@model List<IntexWinter.Models.Burialmain>
 
-<div>
-    <h1>Burial Records</h1>
-</div>
+@foreach (IntexWinter.Models.Burialmain b in Model)
+{
+    <h3>Burial Entry @b.Id</h3>
+    <ul>
+        <li>Depth: @b.Depth</li>
+        <li>Length: @b.Length</li>
+        <li>Adult or child: @b.Adultsubadult</li>
+        <li>Age at death: @b.Ageatdeath</li>
+    </ul>
+    <br />
+}
