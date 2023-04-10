@@ -23,6 +23,26 @@ namespace IntexWinter.Controllers
             return View();
         }
 
+        public IActionResult Burial_Summary()
+        {
+            return View();
+        }
+
+        public IActionResult Burial_Records()
+        {
+            return View();
+        }
+
+        public IActionResult Sex_Analysis()
+        {
+            return View();
+        }
+
+        public IActionResult Unsupervised()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
