@@ -16,6 +16,7 @@ namespace IdentityManagerUI.Areas.IdentityManager.Controllers
 {
     [Area("IdentityManager")]
     [Authorize(Roles = "Admin")]
+    [Authorize(AuthenticationSchemes = "Identity.Application")]
     public class HomeController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -34,14 +35,12 @@ namespace IdentityManagerUI.Areas.IdentityManager.Controllers
             var fldInfo = typeof(ClaimTypes).GetFields(BindingFlags.Static | BindingFlags.Public);
             _claimTypes = fldInfo.ToDictionary(i => i.Name, i => (string)i.GetValue(null));
         }
-
         public IActionResult Users()
         {
             ViewBag.Roles = _roles;
             ViewBag.ClaimTypes = _claimTypes.Keys.OrderBy(s => s);
             return View();
         }
-
         public IActionResult Roles()
         {
             ViewBag.ClaimTypes = _claimTypes.Keys.OrderBy(s => s);

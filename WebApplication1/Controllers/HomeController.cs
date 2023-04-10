@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebApplication1.Models;
@@ -17,24 +18,27 @@ namespace WebApplication1.Controllers
         {
             _logger = logger;
         }
-
+        [Authorize(AuthenticationSchemes = "Identity.Application")]
         public IActionResult Index()
         {
             return View();
         }
-
+        [Authorize(AuthenticationSchemes = "Identity.Application")]
         public IActionResult Burial_Summary()
         {
             return View();
         }
+        [Authorize(AuthenticationSchemes = "Identity.Application")]
         public IActionResult Burial_Records()
         {
             return View();
         }
+        [Authorize(AuthenticationSchemes = "Identity.Application")]
         public IActionResult Sex_Analysis()
         {
             return View();
         }
+        [Authorize(AuthenticationSchemes = "Identity.Application")]
         public IActionResult Unsupervised()
         {
             return View();
