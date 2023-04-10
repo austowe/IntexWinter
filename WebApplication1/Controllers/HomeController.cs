@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using IntexWinter.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -22,20 +23,23 @@ namespace WebApplication1.Controllers
             _logger = logger;
             repo = temp;
         }
-
+        [Authorize(AuthenticationSchemes = "Identity.Application")]
         public IActionResult Index()
         {
             return View();
         }
+        [Authorize(AuthenticationSchemes = "Identity.Application")]
         public IActionResult Burial_Records()
         {
             var burials = repo.Burialmains.ToList();
             return View(burials);
         }
+        [Authorize(AuthenticationSchemes = "Identity.Application")]
         public IActionResult Sex_Analysis()
         {
             return View();
         }
+        [Authorize(AuthenticationSchemes = "Identity.Application")]
         public IActionResult Unsupervised()
         {
             return View();

@@ -13,7 +13,9 @@ using Microsoft.Extensions.Hosting;
 using FileContextCore;
 using IdentityManagerUI.Models;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using IntexWinter.Models;
+
 
 namespace WebApplication1
 {
@@ -44,6 +46,7 @@ namespace WebApplication1
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddControllersWithViews();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,7 +77,7 @@ namespace WebApplication1
                 context.User = new ClaimsPrincipal(userIdentity);
                 await next.Invoke();
             });
-            //app.UseAuthentication();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
