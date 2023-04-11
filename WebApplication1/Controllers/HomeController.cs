@@ -29,9 +29,10 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
+
+        [Authorize(AuthenticationSchemes = "Identity.Application")]
         public IActionResult Burial_Records(int pageNum = 1)
         {
-
             int pageSize = 10;
 
             var x = new BurialsViewModel
@@ -53,11 +54,13 @@ namespace WebApplication1.Controllers
             };
             return View(x);
         }
+
         [Authorize(AuthenticationSchemes = "Identity.Application")]
         public IActionResult Sex_Analysis()
         {
             return View();
         }
+
         [Authorize(AuthenticationSchemes = "Identity.Application")]
         public IActionResult Unsupervised()
         {
