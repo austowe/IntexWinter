@@ -15,7 +15,9 @@ using IdentityManagerUI.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using IntexWinter.Models;
-
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Identity;
 
 namespace WebApplication1
 {
@@ -47,6 +49,28 @@ namespace WebApplication1
 
             services.AddControllersWithViews();
 
+            services.AddRazorPages();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Default Password settings.
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 11;
+                options.Password.RequiredUniqueChars = 5;
+            });
+
+            services.AddDistributedMemoryCache();
+
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential 
+                // cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,6 +92,8 @@ namespace WebApplication1
 
             app.UseRouting();
 
+            app.UseCookiePolicy();
+
             //Temporary middleware for testing, don't use in production!
             app.Use(async (context, next) =>
             {
@@ -77,8 +103,15 @@ namespace WebApplication1
                 context.User = new ClaimsPrincipal(userIdentity);
                 await next.Invoke();
             });
+
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.Use(async (context, next) => {
+                context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; script-src 'sha256-m1igTNlg9PL5o60ru2HIIK6OPQet2z9UgiEAhCyg/RU='; style-src 'self' sha256-aqNNdDLnnrDOnTNdkJpYlAxKVJtLt9CtFLklmInuUAE=; font-src 'self'; img-src 'self'; frame-src 'self'");
+
+                await next();
+            });
 
             app.UseEndpoints(endpoints =>
             {

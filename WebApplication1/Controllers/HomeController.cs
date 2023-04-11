@@ -24,13 +24,11 @@ namespace WebApplication1.Controllers
             _logger = logger;
             repo = temp;
         }
-        [Authorize(AuthenticationSchemes = "Identity.Application")]
         public IActionResult Index()
         {
             return View();
         }
 
-        [Authorize(AuthenticationSchemes = "Identity.Application")]
         public IActionResult Burial_Records(int pageNum = 1)
         {
             int pageSize = 10;
@@ -55,13 +53,12 @@ namespace WebApplication1.Controllers
             return View(x);
         }
 
-        [Authorize(AuthenticationSchemes = "Identity.Application")]
+
         public IActionResult Sex_Analysis()
         {
             return View();
         }
 
-        [Authorize(AuthenticationSchemes = "Identity.Application")]
         public IActionResult Unsupervised()
         {
             return View();
