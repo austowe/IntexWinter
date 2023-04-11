@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using IntexWinter.Models;
+using IntexWinter.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebApplication1.Models;
@@ -28,11 +29,29 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
-        [Authorize(AuthenticationSchemes = "Identity.Application")]
-        public IActionResult Burial_Records()
+        public IActionResult Burial_Records(int pageNum = 1)
         {
-            var burials = repo.Burialmains.ToList();
-            return View(burials);
+
+            int pageSize = 10;
+
+            var x = new BurialsViewModel
+            {
+                Burialmains = repo.Burialmains
+                .OrderBy(b => b.Burialid)
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
+
+                PageInfo = new PageInfo
+                {
+                    TotalNumBurials = repo.Burialmains.Count(),
+                        //(bookCategory == null
+                        //? repo.Burialmains.Count()
+                        //: repo.Burialmains.Where(x => x.Category == bookCategory).Count()),
+                    BurialsPerPage = pageSize,
+                    CurrentPage = pageNum
+                }
+            };
+            return View(x);
         }
         [Authorize(AuthenticationSchemes = "Identity.Application")]
         public IActionResult Sex_Analysis()
