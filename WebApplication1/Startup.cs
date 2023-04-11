@@ -108,7 +108,7 @@ namespace WebApplication1
             app.UseAuthorization();
 
             app.Use(async (context, next) => {
-                context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; script-src 'sha256-m1igTNlg9PL5o60ru2HIIK6OPQet2z9UgiEAhCyg/RU='; style-src 'self' sha256-aqNNdDLnnrDOnTNdkJpYlAxKVJtLt9CtFLklmInuUAE=; font-src 'self'; img-src 'self'; frame-src 'self'");
+                context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; script-src 'sha256-m1igTNlg9PL5o60ru2HIIK6OPQet2z9UgiEAhCyg/RU='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self'; frame-src 'self'");
 
                 await next();
             });
