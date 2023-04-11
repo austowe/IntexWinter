@@ -1,9 +1,9 @@
 ﻿@{
     ViewData["Title"] = "Burial Records";
 }
-@model List<IntexWinter.Models.Burialmain>
+@model BurialsViewModel
 
-@foreach (IntexWinter.Models.Burialmain b in Model)
+@foreach (IntexWinter.Models.Burialmain b in Model.Burialmains)
 {
     <h3>Burial Entry @b.Id</h3>
     <ul>
@@ -14,3 +14,5 @@
     </ul>
     <br />
 }
+
+<div page-model="@Model.PageInfo" page-action="Burial_Records"></div>
