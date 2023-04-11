@@ -26,4 +26,9 @@
     <ProjectReference Include="..\IdentityManagerUI\IdentityManagerUI.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="Infrastructure\" />
+  </ItemGroup>
+
 </Project>
