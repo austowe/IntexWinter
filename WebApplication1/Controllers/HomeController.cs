@@ -30,7 +30,6 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        [Authorize(AuthenticationSchemes = "Identity.Application")]
         public IActionResult Burial_Records(int? id, string burialSex, int pageNum = 1)
         {
             int pageSize = 10;
@@ -78,13 +77,11 @@ namespace WebApplication1.Controllers
         }
 
 
-        [Authorize(AuthenticationSchemes = "Identity.Application")]
         public IActionResult Burial_Details()
         {
             return View();
         }
 
-        [Authorize(AuthenticationSchemes = "Identity.Application")]
         public IActionResult Sex_Analysis()
         {
             return View();
