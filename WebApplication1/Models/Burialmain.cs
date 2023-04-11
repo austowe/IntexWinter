@@ -40,5 +40,7 @@ namespace IntexWinter.Models
         public string Fieldbookexcavationyear { get; set; }
         public string Clusternumber { get; set; }
         public string Shaftnumber { get; set; }
+
+        public ICollection<BurialmainTextile> burialmainTextiles { get; set; } = new HashSet<BurialmainTextile>();
     }
 }

@@ -7,5 +7,8 @@ namespace IntexWinter.Models
     {
         public long MainBurialmainid { get; set; }
         public long MainTextileid { get; set; }
+
+        public Burialmain Burialmain { get; set; }
+        public Textile Textile { get; set; }
     }
 }
