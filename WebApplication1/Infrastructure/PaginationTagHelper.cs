@@ -57,6 +57,7 @@ namespace IntexWinter.Infrastructure
             if (PageModel.CurrentPage > 1)
             {
                 first.Attributes["href"] = uh.Action(PageAction, new { pageNum = 1 });
+                //first.Attributes["style"] = "padding:10px;";
                 first.AddCssClass(PageClass); first.AddCssClass(PageClassEnabled);
                 first.InnerHtml.Append("First");
 
