@@ -40,7 +40,7 @@
                                 <li>Hair color: @b.Haircolor</li>
                             </ul>
 
-                            <form method="post" asp-action="Burial_Details">
+                            <form method="post" asp-action="Burial_Details" asp-route-id="@b.Id">
                                 <input type="hidden" asp-for="@b.Id" />
                                 @*<input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />*@
                                 <span class="card-text">
