@@ -8,6 +8,7 @@ namespace IntexWinter.Models
     {
         public intexContext()
         {
+            
         }
 
         public intexContext(DbContextOptions<intexContext> options)
@@ -45,6 +46,12 @@ namespace IntexWinter.Models
         public virtual DbSet<DimensionTextile> DimensionTextile { get; set; }
         public virtual DbSet<Newsarticle> Newsarticle { get; set; }
         public virtual DbSet<Photodata> Photodata { get; set; }
+
+        internal object GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual DbSet<PhotodataTextile> PhotodataTextile { get; set; }
         public virtual DbSet<Photoform> Photoform { get; set; }
         public virtual DbSet<Structure> Structure { get; set; }
@@ -58,9 +65,11 @@ namespace IntexWinter.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            base.OnConfiguring(optionsBuilder);
+            optionsBuilder.EnableSensitiveDataLogging();
             if (!optionsBuilder.IsConfigured)
             {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseNpgsql("Server=stowe.dev;Port=777;Database=intex;User Id=postgres;Password=apollo11");
             }
         }

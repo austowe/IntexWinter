@@ -14,6 +14,7 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using System.Text;
 
+
 namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
@@ -26,109 +27,199 @@ namespace WebApplication1.Controllers
 
         private readonly ILogger<HomeController> _logger;
 
-
-
-
-
+        public HomeController(ILogger<HomeController> logger, IIntexWinterRepository temp, intexContext context)
+        {
+            _intexContext = context;
+            _logger = logger;
+            repo = temp;
+        }
         public IActionResult Index()
         {
             return View();
         }
 
 
-
-
-
-
-        public IActionResult Burial_Records(int? id, string burialSex, int pageNum = 1)
+        [HttpGet]
+        public IActionResult Burial_Records(string sex = "z", string depth = "", string headdirection = "z", string ageatdeath = "z", string haircolor = "z", string wrapping = "z", int pageNum = 1)
         {
             int pageSize = 10;
-
-            //Create new IQueryable so we can change display data without changing actual repo
-            var BurialsIQeryable = repo.Burialmains;
-            foreach (Burialmain burial in BurialsIQeryable)
-            {
-                //Change burial.Sex of BurialsIQeryable for display
-                if (burial.Sex == null || burial.Sex == "")
-                {
-                    burial.Sex = "N/A";
-                } else if (burial.Sex == "M")
-                {
-                    burial.Sex = "Male";
-                } else if (burial.Sex == "F")
-                {
-                    burial.Sex = "Female";
-                }
-            }
-
             var x = new BurialsViewModel
             {
-
-                Burialmains = BurialsIQeryable
-                //.Include(x=>x.burialmainTextiles).ThenInclude(y=>y.Textile).SingleOrDefault(m=>m.Id == id)
-                .Where(b => b.Sex == burialSex || burialSex == null)
-                .OrderBy(b => b.Burialid)
+                Burialmains = repo.Burialmains
+                .Where(b => b.Sex == sex || sex == null || sex == "z")
+                .Where(b => b.Headdirection == headdirection || headdirection == null || headdirection == "z")
+                .Where(b => b.Ageatdeath == ageatdeath || ageatdeath == null || ageatdeath == "z")
+                .Where(b => b.Haircolor == haircolor || haircolor == null || haircolor == "z")
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
 
                 PageInfo = new PageInfo
                 {
-                    TotalNumBurials =
-                        (burialSex == null
-                        ? BurialsIQeryable.Count()
-                        : BurialsIQeryable.Where(x => x.Sex == burialSex).Count()),
+                    TotalNumBurials = (depth == null || depth == "")
+                                    ? ((sex == null || sex == "z")
+                                        ? ((headdirection == null || headdirection == "z")
+                                            ? ((ageatdeath == null || ageatdeath == "z")
+                                                ? ((haircolor == null || haircolor == "z")
+                                                    ? repo.Burialmains.Count()
+                                                    : repo.Burialmains.Where(b => b.Haircolor == haircolor).Count())
+                                                : repo.Burialmains.Where(b => b.Ageatdeath == ageatdeath).Count())
+                                            : repo.Burialmains.Where(b => b.Headdirection == headdirection).Count())
+                                        : repo.Burialmains.Where(b => b.Sex == sex).Count())
+                                    : repo.Burialmains.Where(b => b.Depth != "U" && b.Depth != null && b.Depth != "" && Convert.ToDecimal(b.Depth) <= Convert.ToDecimal(depth) && Convert.ToDecimal(b.Depth) > (Convert.ToDecimal(depth) - 1)).Count(),
                     BurialsPerPage = pageSize,
                     CurrentPage = pageNum
                 }
             };
-
+            x.SelectedDepth = depth;
+            x.SelectedSex = sex;
+            x.SelectedHeadDir = headdirection;
+            x.SelectedAgeAtDeath = ageatdeath;
+            x.SelectedHairColor = haircolor;
             return View(x);
         }
+    
 
-        public IActionResult Burial_Details(long id, string returnUrl)
+        //Old Burial_Records version here while testing
+
+        //public IActionResult Burial_Records(string burialSex, string hairColor, int pageNum = 1)
+        //{
+        //    int pageSize = 10;
+
+        //    //Create new IQueryable so we can change display data without changing actual repo
+        //    var BurialsIQeryable = repo.Burialmains;
+        //    foreach (Burialmain burial in BurialsIQeryable)
+        //    {
+        //        //Change burial.Sex of BurialsIQeryable for display
+        //        if (burial.Sex == null || burial.Sex == "")
+        //        {
+        //            burial.Sex = "N/A";
+        //        } else if (burial.Sex == "M")
+        //        {
+        //            burial.Sex = "Male";
+        //        } else if (burial.Sex == "F")
+        //        {
+        //            burial.Sex = "Female";
+        //        }
+        //    }
+
+
+        //    var totalBurials = 0;
+
+        //    if (burialSex == null)
+        //    {
+        //        totalBurials = BurialsIQeryable.Count();
+        //    }
+        //    else
+        //    {
+        //        totalBurials = BurialsIQeryable.Where(x => x.Sex == burialSex).Count();
+        //    }
+
+
+        //    var sexFilters = BurialsIQeryable
+        //        .Select(x => x.Sex)
+        //        .Distinct();
+
+
+        //    var x = new BurialsViewModel
+        //    {
+
+        //    Burialmains = BurialsIQeryable
+        //    //.Include(x=>x.burialmainTextiles).ThenInclude(y=>y.Textile).SingleOrDefault(m=>m.Id == id)
+        //    .Where(b => b.Sex == burialSex || burialSex == null)
+        //    .Where(b => b.Haircolor == hairColor || hairColor == null)
+        //    .OrderBy(b => b.Id)
+        //    .Skip((pageNum - 1) * pageSize)
+        //    .Take(pageSize),
+
+        //    PageInfo = new PageInfo
+        //    {
+        //        TotalNumBurials = totalBurials,
+        //        BurialsPerPage = pageSize,
+        //        CurrentPage = pageNum,
+        //        sexFilters = sexFilters
+        //    }
+        //};
+
+        //    return View(x);
+        //}
+
+        public IActionResult Burial_Details(long id)
         {
-
-            var x = new BurialsViewModel
+            var burial = repo.GetById(id);
+            if (burial == null)
             {
-                Burial = repo.Burialmains.SingleOrDefault(x => x.Id == id),
+                return NotFound();
+            }
 
-            PageInfo = new PageInfo
-                {
-                    ReturnUrl = returnUrl
-                }
-            };
+            var viewModel = new BurialDetailsViewModel(burial);
 
-            return View(x);
+            return View(viewModel);
         }
-
 
         [HttpGet]
-        public IActionResult Edit( int Burialid)
+        public IActionResult Edit(long id)
         {
-            ViewBag.Burialmain = _intexContext.Burialmain.ToList();
-
-            var burial = _intexContext.Burialmain.Single(x => x.Burialid == Burialid);
-
-            return View("Burial_Records", burial);
+            var burial = repo.GetById(id);
+            var viewModel = new BurialEditViewModel
+            {
+                Id = burial.Id,
+                SquareNorthSouth = burial.Squarenorthsouth,
+                HeadDirection = burial.Headdirection,
+                Sex = burial.Sex,
+                NorthSouth = burial.Northsouth,
+                Depth = burial.Depth,
+                EastWest = burial.Eastwest,
+                AdultSubadult = burial.Adultsubadult,
+                FaceBundles = burial.Facebundles,
+                SouthToHead = burial.Southtohead,
+                Preservation = burial.Preservation,
+                FieldBookPage = burial.Fieldbookpage,
+                SquareEastWest = burial.Squareeastwest,
+                Goods = burial.Goods,
+                Text = burial.Text,
+                Wrapping = burial.Wrapping,
+                HairColor = burial.Haircolor,
+                WestToHead = burial.Westtohead,
+                SamplesCollected = burial.Samplescollected,
+                Burialid = burial.Burialid,
+                Area = burial.Area,
+                Length = burial.Length,
+                BurialNumber = burial.Burialnumber,
+                DataExpertInitials = burial.Dataexpertinitials,
+                WestToFeet = burial.Westtofeet,
+                AgeAtDeath = burial.Ageatdeath,
+                SouthToFeet = burial.Southtofeet,
+                ExcavationRecorder = burial.Excavationrecorder,
+                Photos = burial.Photos,
+                Hair = burial.Hair,
+                BurialMaterials = burial.Burialmaterials,
+                DateOfExcavation = burial.Dateofexcavation,
+                FieldBookExcavationYear = burial.Fieldbookexcavationyear,
+                ClusterNumber = burial.Clusternumber,
+                ShaftNumber = burial.Shaftnumber
+            };
+            return View(viewModel);
         }
 
         [HttpPost]
-        public IActionResult Edit(Burialmain bm)
+        public IActionResult Edit(BurialEditViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
-                _intexContext.Update(bm);
-                _intexContext.SaveChanges();
+                var burial = viewModel.BurialMain;
+
+                repo.Update(burial);
+                repo.SaveChanges();
 
                 return RedirectToAction("Burial_Records");
             }
             else
             {
-                ViewBag.Burialmain = _intexContext.Burialmain.ToList();
-
-                return View(bm);
+                return View(viewModel);
             }
         }
+
+
 
         [HttpGet]
         public IActionResult Delete(int burialid)
@@ -145,7 +236,8 @@ namespace WebApplication1.Controllers
             _intexContext.SaveChanges();
 
             return RedirectToAction("Burial_Records");
-        }
+         }
+
 
         [HttpGet]
         public IActionResult Predictions(PredictModel pm)
