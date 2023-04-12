@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "IdentityManagerUI": {
+      "commandName": "Project"
+    },
+    "Project": {
+      "commandName": "Project"
+    }
+  }
+}

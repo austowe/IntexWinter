@@ -148,7 +148,7 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Burial_Records");
         }
 
-        public IActionResult Sex_Analysis()
+        public IActionResult Predictions()
         {
             return View();
         }
