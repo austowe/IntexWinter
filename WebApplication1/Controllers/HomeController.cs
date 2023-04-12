@@ -138,8 +138,6 @@ namespace WebApplication1.Controllers
         //    return View(x);
         //}
 
-            return View(x);
-        }
         public IActionResult Burial_Details(long id)
         {
             var burial = repo.GetById(id);
