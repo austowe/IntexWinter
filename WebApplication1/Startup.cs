@@ -18,6 +18,7 @@ using IntexWinter.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
+using System.Net.Http;
 
 namespace WebApplication1
 {
@@ -50,6 +51,7 @@ namespace WebApplication1
             services.AddControllersWithViews();
 
             services.AddRazorPages();
+            services.AddHttpClient();
 
             services.Configure<IdentityOptions>(options =>
             {
