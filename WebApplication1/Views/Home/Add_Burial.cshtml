@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "Burial Submit";
+}
+
+@model IntexWinter.Models.Burialmain
+
+<h1>Add a Movie</h1>
+
+<div>
+    <form method="post">
+        <div asp-validation-summary="All" style="color: red"></div>
+
+        <label asp-for="Sex">Sex:</label>
+        <select asp-for="Sex">
+            <option value="">Select a Textile</option>
+            @foreach (BurialmainTextile bt in Model.burialmainTextiles)
+            {
+                <option value="@bt.MainTextileid">@bt.MainTextileid</option>
+            }
+        </select><br />
+
+        <label asp-for="Sex">Sex:</label>
+        <input asp-for="Sex" /><br />
+
+        <label asp-for="Depth">Depth:</label>
+        <input asp-for="Depth" /><br />
+
+        <label asp-for="Headdirection">Head Direction:</label>
+        <input asp-for="Headdirection" /><br />
+
+        <label asp-for="Adultsubadult">Adult or Child:</label>
+        <select asp-for="Adultsubadult">
+            <option value="Adult">Adult</option>
+            <option value="Adult">Adult</option>
+        </select><br />
+
+        <label asp-for="Preservation">Preservation:</label>
+        <input asp-for="Preservation" /><br />
+
+        <label asp-for="Fieldbookpage">Field Book Page:</label>
+        <input asp-for="Fieldbookpage" /><br />
+
+        <label asp-for="Goods">Goods:</label>
+        <textarea asp-for="Goods"></textarea><br />
+
+        <label asp-for="Text">Text:</label>
+        <textarea asp-for="Text"></textarea><br />
+
+        <label asp-for="Wrapping">Wrapping:</label>
+        <textarea asp-for="Wrapping"></textarea><br />
+
+        <label asp-for="Haircolor">Hair Color:</label>
+        <textarea asp-for="Haircolor"></textarea><br />
+
+        <label asp-for="Samplescollected">Samples Collected:</label>
+        <textarea asp-for="Samplescollected"></textarea><br />
+
+        <label asp-for="Length">Length:</label>
+        <textarea asp-for="Length"></textarea><br />
+
+        <label asp-for="Ageatdeath">Age At Death:</label>
+        <textarea asp-for="Ageatdeath"></textarea><br />
+
+        <label asp-for="Excavationrecorder">Excavation Recorder:</label>
+        <textarea asp-for="Excavationrecorder"></textarea><br />
+
+        <label asp-for="Hair">Hair:</label>
+        <textarea asp-for="Hair"></textarea><br />
+
+        <label asp-for="Burialmaterials">Burial Materials:</label>
+        <textarea asp-for="Burialmaterials"></textarea><br />
+
+        <label asp-for="Dateofexcavation">Date Of Excavation:</label>
+        <input type="date" asp-for="Dateofexcavation"><br />
+
+        <button type="submit">Submit Application</button>
+    </form>
+</div>

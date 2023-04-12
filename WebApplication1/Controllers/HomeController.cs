@@ -15,13 +15,15 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
+        private intexContext _intexContext { get; set; }
 
         private IIntexWinterRepository repo;
 
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger, IIntexWinterRepository temp)
+        public HomeController(ILogger<HomeController> logger, IIntexWinterRepository temp, intexContext context)
         {
+            _intexContext = context;
             _logger = logger;
             repo = temp;
         }
@@ -74,11 +76,55 @@ namespace WebApplication1.Controllers
 
             return View(x);
         }
-
-
-        public IActionResult Burial_Details()
+        public IActionResult Burial_Details(int id)
         {
-            return View();
+            var burial = _intexContext.Burialmain.SingleOrDefault(x => x.Id == id);
+            return View(burial);
+        }
+
+        [HttpGet]
+        public IActionResult Edit( int Burialid)
+        {
+            ViewBag.Burialmain = _intexContext.Burialmain.ToList();
+
+            var burial = _intexContext.Burialmain.Single(x => x.Burialid == Burialid);
+
+            return View("Burial_Records", burial);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Burialmain bm)
+        {
+            if (ModelState.IsValid)
+            {
+                _intexContext.Update(bm);
+                _intexContext.SaveChanges();
+
+                return RedirectToAction("Burial_Records");
+            }
+            else
+            {
+                ViewBag.Burialmain = _intexContext.Burialmain.ToList();
+
+                return View(bm);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int burialid)
+        {
+            var burial = _intexContext.Burialmain.Single(x => x.Id == burialid);
+
+            return View(burial);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Burialmain ar)
+        {
+            _intexContext.Burialmain.Remove(ar);
+            _intexContext.SaveChanges();
+
+            return RedirectToAction("Burial_Records");
         }
 
         public IActionResult Sex_Analysis()
