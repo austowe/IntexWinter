@@ -1,8 +1,12 @@
 ﻿@{ ViewData["Title"] = "Burial Details"; }
 
-@model Burialmain
+@model BurialsViewModel
 
 <h1>Burial Details</h1>
+
+<div>
+    <a class="btn btn-primary" href="@Model.PageInfo.ReturnUrl">Go back</a>
+</div>
 
 @if (Model != null)
 {
@@ -14,121 +18,132 @@
                 Id
             </dt>
             <dd class="col-sm-10">
-                @Model.Id
+                @Model.Burial.Id
             </dd>
             <dt class="col-sm-2">
                 Sex
             </dt>
             <dd class="col-sm-10">
-                @Model.Sex
+                @Model.Burial.Sex
             </dd>
             <dt class="col-sm-2">
                 Depth
             </dt>
             <dd class="col-sm-10">
-                @Model.Depth
+                @Model.Burial.Depth
             </dd>
             <dt class="col-sm-2">
                 Adult Subadult
             </dt>
             <dd class="col-sm-10">
-                @Model.Adultsubadult
+                @Model.Burial.Adultsubadult
             </dd>
             <dt class="col-sm-2">
                 Preservation
             </dt>
             <dd class="col-sm-10">
-                @Model.Preservation
+                @Model.Burial.Preservation
             </dd>
             <dt class="col-sm-2">
                 Fieldbookpage
             </dt>
             <dd class="col-sm-10">
-                @Model.Fieldbookpage
+                @Model.Burial.Fieldbookpage
             </dd>
             <dt class="col-sm-2">
                 Goods
             </dt>
             <dd class="col-sm-10">
-                @Model.Goods
+                @Model.Burial.Goods
             </dd>
             <dt class="col-sm-2">
                 Text
             </dt>
             <dd class="col-sm-10">
-                @Model.Text
+                @Model.Burial.Text
             </dd>
             <dt class="col-sm-2">
                 Hair
             </dt>
             <dd class="col-sm-10">
-                @Model.Hair
+                @Model.Burial.Hair
             </dd>
             <dt class="col-sm-2">
                 Wrapping
             </dt>
             <dd class="col-sm-10">
-                @Model.Wrapping
+                @Model.Burial.Wrapping
             </dd>
             <dt class="col-sm-2">
                 Hair Color
             </dt>
             <dd class="col-sm-10">
-                @Model.Haircolor
+                @Model.Burial.Haircolor
             </dd>
             <dt class="col-sm-2">
                 Samplescollected
             </dt>
             <dd class="col-sm-10">
-                @Model.Samplescollected
+                @Model.Burial.Samplescollected
             </dd>
             <dt class="col-sm-2">
                 Length
             </dt>
             <dd class="col-sm-10">
-                @Model.Length
+                @Model.Burial.Length
             </dd>
             <dt class="col-sm-2">
                 Age At Death
             </dt>
             <dd class="col-sm-10">
-                @Model.Ageatdeath
+                @Model.Burial.Ageatdeath
             </dd>
             <dt class="col-sm-2">
                 Excavation Recorder
             </dt>
             <dd class="col-sm-10">
-                @Model.Excavationrecorder
+                @Model.Burial.Excavationrecorder
             </dd>
             <dt class="col-sm-2">
                 Hair
             </dt>
             <dd class="col-sm-10">
-                @Model.Hair
+                @Model.Burial.Hair
             </dd>
             <dt class="col-sm-2">
                 Burialmaterials
             </dt>
             <dd class="col-sm-10">
-                @Model.Burialmaterials)
+                @Model.Burial.Burialmaterials)
             </dd>
             <dt class="col-sm-2">
                 Date Of Excavation
             </dt>
             <dd class="col-sm-10">
-                @Model.Dateofexcavation)
+                @Model.Burial.Dateofexcavation)
             </dd>
             <dt class="col-sm-2">
                 Field Book Excavation Year
             </dt>
             <dd class="col-sm-10">
-                @Model.Fieldbookexcavationyear
+                @Model.Burial.Fieldbookexcavationyear
             </dd>
         </dl>
     </div>
+
     <div>
-        <a asp-page="./Edit" asp-route-id="@Model.Id">Edit</a> |
-        <a asp-page="./Index">Back to List</a>
+        <form method="post" asp-action="Edit">
+            <input type="hidden" asp-for="@Model.Burial.Id" />
+            <span class="card-text">
+                <button type="submit" class="btn btn-primary btn-sm float-end">Edit</button>
+            </span>
+        </form>
+        <div>
+            <a class="btn btn-primary" href="@Model.PageInfo.ReturnUrl">Go back</a>
+        </div>
+        @*<a asp-page="./Edit" asp-route-id="@Model.Burial.Id">Edit</a>
+        <a asp-page="./Index">Back to List</a>*@
+
     </div>
 }
 else

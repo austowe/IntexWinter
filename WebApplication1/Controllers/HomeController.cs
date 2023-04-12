@@ -27,10 +27,19 @@ namespace WebApplication1.Controllers
             _logger = logger;
             repo = temp;
         }
+
+
+
+
         public IActionResult Index()
         {
             return View();
         }
+
+
+
+
+
 
         public IActionResult Burial_Records(int? id, string burialSex, int pageNum = 1)
         {
@@ -56,31 +65,43 @@ namespace WebApplication1.Controllers
             var x = new BurialsViewModel
             {
 
-            Burialmains = BurialsIQeryable
-            //.Include(x=>x.burialmainTextiles).ThenInclude(y=>y.Textile).SingleOrDefault(m=>m.Id == id)
-            .Where(b => b.Sex == burialSex || burialSex == null)
-            .OrderBy(b => b.Burialid)
-            .Skip((pageNum - 1) * pageSize)
-            .Take(pageSize),
+                Burialmains = BurialsIQeryable
+                //.Include(x=>x.burialmainTextiles).ThenInclude(y=>y.Textile).SingleOrDefault(m=>m.Id == id)
+                .Where(b => b.Sex == burialSex || burialSex == null)
+                .OrderBy(b => b.Burialid)
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
 
-            PageInfo = new PageInfo
-            {
-                TotalNumBurials =
-                    (burialSex == null
-                    ? BurialsIQeryable.Count()
-                    : BurialsIQeryable.Where(x => x.Sex == burialSex).Count()),
-                BurialsPerPage = pageSize,
-                CurrentPage = pageNum
-            }
-        };
+                PageInfo = new PageInfo
+                {
+                    TotalNumBurials =
+                        (burialSex == null
+                        ? BurialsIQeryable.Count()
+                        : BurialsIQeryable.Where(x => x.Sex == burialSex).Count()),
+                    BurialsPerPage = pageSize,
+                    CurrentPage = pageNum
+                }
+            };
 
             return View(x);
         }
-        public IActionResult Burial_Details(int id)
+
+        public IActionResult Burial_Details(long id, string returnUrl)
         {
-            var burial = _intexContext.Burialmain.SingleOrDefault(x => x.Id == id);
-            return View(burial);
+
+            var x = new BurialsViewModel
+            {
+                Burial = repo.Burialmains.SingleOrDefault(x => x.Id == id),
+
+            PageInfo = new PageInfo
+                {
+                    ReturnUrl = returnUrl
+                }
+            };
+
+            return View(x);
         }
+
 
         [HttpGet]
         public IActionResult Edit( int Burialid)

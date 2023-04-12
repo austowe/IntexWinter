@@ -13,5 +13,7 @@ namespace IntexWinter.Models.ViewModels
 
         // Calculate number of pages
         public int TotalPages => (int) Math.Ceiling((double)TotalNumBurials / BurialsPerPage);
+
+        public string ReturnUrl { get; set; }
     }
 }
