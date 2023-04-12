@@ -15,9 +15,8 @@
             <li>Hair color: @Model.Haircolor</li>
         </ul>
 
-        <a asp-page="/Pages/Edit" asp-route-id="@Model.Id">Edit</a>
 
-        <form method="post" asp-page="/Edit">
+        <form method="post" asp-area="" asp-controller="Home" asp-action="Burial_Details">
 
             <input type="hidden" asp-for="@Model.Id" />
             @*<input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />*@
