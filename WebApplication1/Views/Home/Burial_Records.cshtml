@@ -8,22 +8,61 @@
     <div class="bg-dark text-white p-2">
         <span class="navbar-brand ml-2">BURIAL RECORDS</span>
     </div>
+
     <div class="row m-1 p-1">
+
         <div id="categories" class="col-3">
             <vc:sexes></vc:sexes>
         </div>
-        <div class="container col-9">
+
+        <div class="container col-9" >
+            <div page-model="@Model.PageInfo" page-action="Burial_Records" page-classes-enabled="true"
+                 page-class="btn-outline-dark"
+                 page-class-enabled="btn font-weight-bolder"
+                 page-class-disabled="btn disabled font-weight-lighter"
+                 page-class-selected="btn btn-primary font-weight-bolder"
+                 class="btn-group pull-right m-1b" style="padding:5px;border:solid;">
+            </div>
+
             <main role="main" class="pb-3">
                 @foreach (IntexWinter.Models.Burialmain b in Model.Burialmains)
                 {
-                    <partial name="BurialSummary" model="b" />
+                    <div class="card card-outline-primary m-1 p-1">
+                        <div class="card-text p-1">
+
+                            <h3>Database id: @b.Id</h3>
+                            <ul>
+                                <li>Composite Burial id: @b.Squarenorthsouth@b.Northsouth@b.Squareeastwest@b.Eastwest@b.Area@b.Burialnumber</li>
+                                <li>Sex: @b.Sex</li>
+                                <li>Depth: @b.Depth</li>
+                                <li>Age at death: @b.Ageatdeath</li>
+                                <li>Head direction: @b.Headdirection</li>
+                                <li>Hair color: @b.Haircolor</li>
+                            </ul>
+
+                            <form method="post" asp-action="Burial_Details">
+                                <input type="hidden" asp-for="@b.Id" />
+                                @*<input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />*@
+                                <span class="card-text">
+                                    <button type="submit" class="btn btn-primary btn-sm float-end">Details</button>
+                                </span>
+                            </form>
+
+                        </div>
+                    </div>
                 }
             </main>
+
+            <div page-model="@Model.PageInfo" page-action="Burial_Records" page-classes-enabled="true"
+                 page-class="btn-outline-dark" 
+                 page-class-enabled="btn font-weight-bolder" 
+                 page-class-disabled="btn disabled font-weight-lighter"
+                 page-class-selected="btn btn-primary font-weight-bolder" 
+                 class="btn-group m-1b" style="padding: 4px; border:solid;">
+            </div>
         </div>
+
     </div>
-    <div page-model="@Model.PageInfo" page-action="Burial_Records" page-classes-enabled="true"
-         page-class="btn" page-class-normal="btn-outline-dark"
-         page-class-selected="btn-primary" class="btn-group pull-right m-1">
-    </div>
+
 </div>
 

@@ -63,7 +63,6 @@ namespace WebApplication1.Controllers
             .Skip((pageNum - 1) * pageSize)
             .Take(pageSize),
 
-            //Update pageNum and pageSize to show correct number of page tabs
             PageInfo = new PageInfo
             {
                 TotalNumBurials =
