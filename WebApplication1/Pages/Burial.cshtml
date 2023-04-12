@@ -1,0 +1,234 @@
+﻿@page
+@model IntexWinter.Pages.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Squarenorthsouth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Headdirection)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Sex)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Northsouth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Depth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Eastwest)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Adultsubadult)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Facebundles)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Southtohead)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Preservation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Fieldbookpage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Squareeastwest)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Goods)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Text)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Wrapping)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Haircolor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Westtohead)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Samplescollected)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Area)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Burialid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Length)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Burialnumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Dataexpertinitials)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Westtofeet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Ageatdeath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Southtofeet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Excavationrecorder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Photos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Hair)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Burialmaterials)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Dateofexcavation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Fieldbookexcavationyear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Clusternumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Burialmain[0].Shaftnumber)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Burialmain) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Squarenorthsouth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Headdirection)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sex)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Northsouth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Depth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Eastwest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adultsubadult)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Facebundles)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Southtohead)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preservation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fieldbookpage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Squareeastwest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Goods)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Text)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Wrapping)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Haircolor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Westtohead)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Samplescollected)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Area)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Burialid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Length)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Burialnumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dataexpertinitials)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Westtofeet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ageatdeath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Southtofeet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Excavationrecorder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Photos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hair)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Burialmaterials)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dateofexcavation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fieldbookexcavationyear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Clusternumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Shaftnumber)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
