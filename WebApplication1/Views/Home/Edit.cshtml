@@ -1,0 +1,148 @@
+﻿@model BurialEditViewModel
+
+<h2>Edit Burial</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="SquareNorthSouth">Square North South</label>
+        <input type="text" class="form-control" id="SquareNorthSouth" name="SquareNorthSouth" value="@Model.SquareNorthSouth" required>
+    </div>
+    <div class="form-group">
+        <label for="HeadDirection">Head Direction</label>
+        <input type="text" class="form-control" id="HeadDirection" name="HeadDirection" value="@Model.HeadDirection" required>
+    </div>
+    <div class="form-group">
+        <label for="Sex">Sex</label>
+        <input type="text" class="form-control" id="Sex" name="Sex" value="@Model.Sex" required>
+    </div>
+    <div class="form-group">
+        <label for="NorthSouth">North South</label>
+        <input type="text" class="form-control" id="NorthSouth" name="NorthSouth" value="@Model.NorthSouth" required>
+    </div>
+    <div class="form-group">
+        <label for="Depth">Depth</label>
+        <input type="text" class="form-control" id="Depth" name="Depth" value="@Model.Depth" required>
+    </div>
+    <div class="form-group">
+        <label for="EastWest">East West</label>
+        <input type="text" class="form-control" id="EastWest" name="EastWest" value="@Model.EastWest" required>
+    </div>
+    <div class="form-group">
+        <label for="AdultSubadult">Adult Subadult</label>
+        <input type="text" class="form-control" id="AdultSubadult" name="AdultSubadult" value="@Model.AdultSubadult" required>
+    </div>
+    <div class="form-group">
+        <label for="FaceBundles">Face Bundles</label>
+        <input type="text" class="form-control" id="FaceBundles" name="FaceBundles" value="@Model.FaceBundles" required>
+    </div>
+    <div class="form-group">
+        <label for="SouthToHead">South To Head</label>
+        <input type="text" class="form-control" id="SouthToHead" name="SouthToHead" value="@Model.SouthToHead" required>
+    </div>
+    <div class="form-group">
+        <label for="Preservation">Preservation</label>
+        <input type="text" class="form-control" id="Preservation" name="Preservation" value="@Model.Preservation" required>
+    </div>
+    <div class="form-group">
+        <label for="FieldBookPage">Field Book Page</label>
+        <input type="text" class="form-control" id="FieldBookPage" name="FieldBookPage" value="@Model.FieldBookPage" required>
+    </div>
+    <div class="form-group">
+        <label for="SquareEastWest">Square East West</label>
+        <input type="text" class="form-control" id="SquareEastWest" name="SquareEastWest" value="@Model.SquareEastWest" required>
+    </div>
+    <div class="form-group">
+        <label for="Goods">Goods</label>
+        <input type="text" class="form-control" id="Goods" name="Goods" value="@Model.Goods" required />
+    </div>
+    <div class="form-group">
+        <label for="Text">Goods</label>
+        <input type="text" class="form-control" id="Text" name="Text" value="@Model.Text" required />
+    </div>
+    <div class="form-group">
+        <label for="Wrapping">Wrapping</label>
+        <input type="text" class="form-control" id="Wrapping" name="Wrapping" value="@Model.Wrapping" required />
+    </div>
+    <div class="form-group">
+        <label for="HairColor">HairColor</label>
+        <input type="text" class="form-control" id="HairColor" name="HairColor" value="@Model.HairColor" required />
+    </div>
+    <div class="form-group">
+        <label for="WestToHead">WestToHead</label>
+        <input type="text" class="form-control" id="WestToHead" name="WestToHead" value="@Model.WestToHead" required />
+    </div>
+    <div class="form-group">
+        <label for="SamplesCollected">SamplesCollected</label>
+        <input type="text" class="form-control" id="SamplesCollected" name="SamplesCollected" value="@Model.SamplesCollected" required />
+    </div>
+    <div class="form-group">
+        <label for="Burialid">Burialid</label>
+        <input type="text" class="form-control" id="Burialid" name="Burialid" value="@Model.Burialid" required />
+    </div>
+    <div class="form-group">
+        <label for="Area">Area</label>
+        <input type="text" class="form-control" id="Area" name="Area" value="@Model.Area" required />
+    </div>
+    <div class="form-group">
+        <label for="Length">Length</label>
+        <input type="text" class="form-control" id="Length" name="Length" value="@Model.Length" required />
+    </div>
+    <div class="form-group">
+        <label for="BurialNumber">BurialNumber</label>
+        <input type="text" class="form-control" id="BurialNumber" name="BurialNumber" value="@Model.BurialNumber" required />
+    </div>
+    <div class="form-group">
+        <label for="DataExpertInitials">DataExpertInitials</label>
+        <input type="text" class="form-control" id="DataExpertInitials" name="DataExpertInitials" value="@Model.DataExpertInitials" required />
+    </div>
+    <div class="form-group">
+        <label for="WestToFeet">WestToFeet</label>
+        <input type="text" class="form-control" id="WestToFeet" name="WestToFeet" value="@Model.WestToFeet" required />
+    </div>
+    <div class="form-group">
+        <label for="AgeAtDeath">AgeAtDeath</label>
+        <input type="text" class="form-control" id="AgeAtDeath" name="AgeAtDeath" value="@Model.AgeAtDeath" required />
+    </div>
+    <div class="form-group">
+        <label for="SouthToFeet">SouthToFeet</label>
+        <input type="text" class="form-control" id="SouthToFeet" name="SouthToFeet" value="@Model.SouthToFeet" required />
+    </div>
+    <div class="form-group">
+        <label for="ExcavationRecorder">ExcavationRecorder</label>
+        <input type="text" class="form-control" id="ExcavationRecorder" name="ExcavationRecorder" value="@Model.ExcavationRecorder" required />
+    </div>
+    <div class="form-group">
+        <label for="Hair">Hair</label>
+        <input type="text" class="form-control" id="Hair" name="Hair" value="@Model.Hair" required />
+    </div>
+    <div class="form-group">
+        <label for="Photos">Photos</label>
+        <input type="text" class="form-control" id="Photos" name="Photos" value="@Model.Photos" required />
+    </div>
+    <div class="form-group">
+        <label for="BurialMaterials">BurialMaterials</label>
+        <input type="text" class="form-control" id="BurialMaterials" name="BurialMaterials" value="@Model.BurialMaterials" required />
+    </div>
+    <div class="form-group">
+        <label for="DateOfExcavation">DateOfExcavation</label>
+        <input type="date" class="form-control" id="DateOfExcavation" name="DateOfExcavation" value="@Model.DateOfExcavation" required />
+    </div>
+    <div class="form-group">
+        <label for="FieldBookExcavationYear">FieldBookExcavationYear</label>
+        <input type="text" class="form-control" id="FieldBookExcavationYear" name="FieldBookExcavationYear" value="@Model.FieldBookExcavationYear" required />
+    </div>
+    <div class="form-group">
+        <label for="ClusterNumber">ClusterNumber</label>
+        <input type="text" class="form-control" id="ClusterNumber" name="ClusterNumber" value="@Model.ClusterNumber" required />
+    </div>
+    <div class="form-group">
+        <label for="ShaftNumber">ShaftNumber</label>
+        <input type="text" class="form-control" id="ShaftNumber" name="ShaftNumber" value="@Model.ShaftNumber" required />
+    </div>
+
+    <br />
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a asp-action="Burial_Details" asp-route-id="@Model.Id" class="btn btn-default">Cancel</a>
+
+</form>

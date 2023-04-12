@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using WebApplication1.Models;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
@@ -137,42 +138,85 @@ namespace WebApplication1.Controllers
         //    return View(x);
         //}
 
-
-
-
-        public IActionResult Burial_Details(int id)
+            return View(x);
+        }
+        public IActionResult Burial_Details(long id)
         {
-            var burial = _intexContext.Burialmain.SingleOrDefault(x => x.Id == id);
-            return View(burial);
+            var burial = repo.GetById(id);
+            if (burial == null)
+            {
+                return NotFound();
+            }
+
+            var viewModel = new BurialDetailsViewModel(burial);
+
+            return View(viewModel);
         }
 
         [HttpGet]
-        public IActionResult Edit( int Burialid)
+        public IActionResult Edit(long id)
         {
-            ViewBag.Burialmain = _intexContext.Burialmain.ToList();
-
-            var burial = _intexContext.Burialmain.Single(x => x.Burialid == Burialid);
-
-            return View("Burial_Records", burial);
+            var burial = repo.GetById(id);
+            var viewModel = new BurialEditViewModel
+            {
+                Id = burial.Id,
+                SquareNorthSouth = burial.Squarenorthsouth,
+                HeadDirection = burial.Headdirection,
+                Sex = burial.Sex,
+                NorthSouth = burial.Northsouth,
+                Depth = burial.Depth,
+                EastWest = burial.Eastwest,
+                AdultSubadult = burial.Adultsubadult,
+                FaceBundles = burial.Facebundles,
+                SouthToHead = burial.Southtohead,
+                Preservation = burial.Preservation,
+                FieldBookPage = burial.Fieldbookpage,
+                SquareEastWest = burial.Squareeastwest,
+                Goods = burial.Goods,
+                Text = burial.Text,
+                Wrapping = burial.Wrapping,
+                HairColor = burial.Haircolor,
+                WestToHead = burial.Westtohead,
+                SamplesCollected = burial.Samplescollected,
+                Burialid = burial.Burialid,
+                Area = burial.Area,
+                Length = burial.Length,
+                BurialNumber = burial.Burialnumber,
+                DataExpertInitials = burial.Dataexpertinitials,
+                WestToFeet = burial.Westtofeet,
+                AgeAtDeath = burial.Ageatdeath,
+                SouthToFeet = burial.Southtofeet,
+                ExcavationRecorder = burial.Excavationrecorder,
+                Photos = burial.Photos,
+                Hair = burial.Hair,
+                BurialMaterials = burial.Burialmaterials,
+                DateOfExcavation = burial.Dateofexcavation,
+                FieldBookExcavationYear = burial.Fieldbookexcavationyear,
+                ClusterNumber = burial.Clusternumber,
+                ShaftNumber = burial.Shaftnumber
+            };
+            return View(viewModel);
         }
 
         [HttpPost]
-        public IActionResult Edit(Burialmain bm)
+        public IActionResult Edit(BurialEditViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
-                _intexContext.Update(bm);
-                _intexContext.SaveChanges();
+                var burial = viewModel.BurialMain;
+
+                repo.Update(burial);
+                repo.SaveChanges();
 
                 return RedirectToAction("Burial_Records");
             }
             else
             {
-                ViewBag.Burialmain = _intexContext.Burialmain.ToList();
-
-                return View(bm);
+                return View(viewModel);
             }
         }
+
+
 
         [HttpGet]
         public IActionResult Delete(int burialid)
@@ -189,7 +233,8 @@ namespace WebApplication1.Controllers
             _intexContext.SaveChanges();
 
             return RedirectToAction("Burial_Records");
-        }
+         }
+
 
         public IActionResult Sex_Analysis()
         {
