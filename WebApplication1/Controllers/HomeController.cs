@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Text;
-
+using System.IO;
 
 namespace WebApplication1.Controllers
 {
@@ -485,7 +485,12 @@ namespace WebApplication1.Controllers
 
             var content = new FormUrlEncodedContent(payload);
 
-            var response = await client.PostAsync("https://stowe.dev/intex/?apikey=XQDdgrTv8c4ZRsh1rUnAVbktzgz6Dwb9t3V55Kc93yB0chgFgwe9", content);
+            TextReader tr = new StreamReader("keys.txt");
+            string key = tr.ReadLine();
+            string url = "https://stowe.dev/intex/?apikey=" + key;
+            tr.Close();
+
+            var response = await client.PostAsync(url, content);
 
             var responseString = await response.Content.ReadAsStringAsync();
             //{response:"ok","prediction":"E"}
