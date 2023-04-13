@@ -119,7 +119,6 @@ namespace IntexWinter.Infrastructure
             }
 
             current.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection, depth = Depth });
-            current.Attributes["style"] = "color:white;background-color:darkslateblue;";
             current.AddCssClass(PageClass); current.AddCssClass(PageClassSelected);
             current.InnerHtml.Append(currentPage.ToString());
 
