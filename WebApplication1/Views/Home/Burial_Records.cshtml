@@ -14,7 +14,18 @@
 <div class="d-flex flex-column h-100" style="padding-top: 10px; padding-bottom: 70px;">
     <div class="bg-dark text-white p-2">
         <span class="navbar-brand ml-2">BURIAL RECORDS</span>
-        <a type="button" class="btn btn-success btn-sm float-end m-1" asp-area="" asp-controller="Home" asp-action="Add_Burial">Add a Record</a>
+        @{
+            if (SignInManager.IsSignedIn(User))
+            {
+                if (User.IsInRole("Researcher"))
+                {
+                    <a type="button" class="btn btn-success btn-sm float-end m-1" asp-area="" asp-controller="Home" asp-action="Add_Burial">Add a Record</a>
+                }
+            }
+
+        }
+        
+
     </div>
 
     <div class="row m-1 p-1">
@@ -90,18 +101,6 @@
                  page-class-selected="btn btn-primary font-weight-bolder"
                  class="btn-group pull-right m-1b" style="padding:5px;">
             </div>
-            @{
-                if (SignInManager.IsSignedIn(User))
-                {
-                    if (User.IsInRole("Researcher"))
-                    {
-                        <div>
-                            <a type="button" class="btn btn-primary btn-sm float-end" asp-area="" asp-controller="Home" asp-action="Add_Burial">Add a Record</a>
-                        </div>
-                    }
-                }
-
-            }
 
             <main role="main" class="pb-3">
 
