@@ -17,7 +17,7 @@
                 <div>
                     <label>Sex: </label>
                     <select asp-for="PageInfo.SelectedSex" id="sex" name="sex">
-                        <option value="z">All</option>
+                        <option value="z">---</option>
                         <option value="M">Male</option>
                         <option value="F">Female</option>
                     </select>
@@ -26,7 +26,7 @@
                 <div>
                     <label>Hair Color</label>
                     <select asp-for="PageInfo.SelectedHairColor" id="haircolor" name="haircolor">
-                        <option value="z">All</option>
+                        <option value="z">---</option>
                         <option value="K">Black</option>
                         <option value="B">Brown</option>
                         <option value="D">Blonde</option>
@@ -38,7 +38,7 @@
                 <div>
                     <label>Age at Death: </label>
                     <select asp-for="PageInfo.SelectedAgeAtDeath" id="ageatdeath" name="ageatdeath">
-                        <option value="z">All</option>
+                        <option value="z">---</option>
                         <option value="A">Adult</option>
                         <option value="C">Child</option>
                         <option value="I">Infant</option>
@@ -49,30 +49,30 @@
                 <div>
                     <label>Head Direction: </label>
                     <select asp-for="PageInfo.SelectedHeadDir" id="headdirection" name="headdirection">
-                        <option value="z">All</option>
+                        <option value="z">---</option>
                         <option value="E">East</option>
                         <option value="W">West</option>
                     </select>
                 </div>
 
-            @*<div>
-            <label>Burial Depth: </label>
-            <select id="depth" name="depth">
-                <option selected="@(Model.PageInfo.SelectedDepth == "" ? "selected" : null)" value="">All</option>
-                <option selected="@(Model.PageInfo.SelectedDepth == "1" ? "selected" : null)" value="1">0-1 Meters</option>
-                <option selected="@(Model.PageInfo.SelectedDepth == "2" ? "selected" : null)" value="2">1-2 Meters</option>
-                <option selected="@(Model.PageInfo.SelectedDepth == "3" ? "selected" : null)" value="3">2-3 Meters</option>
-                <option selected="@(Model.PageInfo.SelectedDepth == "4" ? "selected" : null)" value="4">3-4 Meters</option>
-            </select>
-            </div>*@
+                @*<div>
+                    <label>Burial Depth: </label>
+                    <select id="depth" name="depth">
+                        <option value="">All</option>
+                        <option value="1">0-1 Meters</option>
+                        <option value="2">1-2 Meters</option>
+                        <option value="3">2-3 Meters</option>
+                        <option value="4">3-4 Meters</option>
+                    </select>
+                    </div>*@
 
-                <a class=" btn btn-outline-dark btn-sm m-3"  asp-controller="Home" asp-action="Burial_Records">Reset</a>
+                <a class=" btn btn-outline-dark btn-sm m-3" asp-controller="Home" asp-action="Burial_Records">Reset</a>
                 <button class="btn-primary btn-sm m-1" type="submit">Apply Filter</button>
             </form>
-            
+
         </div>
-        
-        
+
+
         <div class="container col-8">
 
             <!--Pagination div that connects to PaginationTagHelper-->
@@ -84,6 +84,7 @@
                  class="btn-group pull-right m-1b" style="padding:5px;">
             </div>
             <main role="main" class="pb-3">
+
                 @foreach (Burialmain b in Model.Burialmains)
                 {
                     <div class="card card-outline-primary m-1 p-1">
@@ -96,7 +97,10 @@
                                 <li>Age at death: <a class="font-weight-bold">@b.Ageatdeath</a></li>
                                 <li>Head direction: <a class="font-weight-bold">@b.Headdirection</a></li>
                                 <li>Hair color: <a class="font-weight-bold">@b.Haircolor</a></li>
+                                <li>Database id: <a class="font-weight-bold">@b.Id</a></li>
                             </ul>
+
+
 
                             <form method="post" asp-action="Burial_Details" asp-route-id="@b.Id">
                                 <input type="hidden" asp-for="@b.Id" />

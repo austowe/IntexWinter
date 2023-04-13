@@ -50,38 +50,106 @@ namespace WebApplication1.Controllers
 
             var BurialsIQeryable = repo.Burialmains;
 
-            //foreach (Burialmain burial in BurialsIQeryable)
+            foreach (Burialmain burial in BurialsIQeryable)
+            {
+                //Change burial.Sex of BurialsIQeryable for display
+                if (burial.Sex == null || burial.Sex == "")
+                {
+                    burial.Sex = "N/A";
+                }
+                else if (burial.Sex == "M")
+                {
+                    burial.Sex = "Male";
+                }
+                else if (burial.Sex == "F")
+                {
+                    burial.Sex = "Female";
+                }
+            }
+
+
+            //Calculate total number of burials based on filter criteria
+            var totalBurials = BurialsIQeryable
+                //.Where(b => b.Depth != "U" && b.Depth != null && b.Depth != "" && Convert.ToDecimal(b.Depth) <= Convert.ToDecimal(depth) && Convert.ToDecimal(b.Depth) > (Convert.ToDecimal(depth) - 1))
+                .Where(b => b.Sex == sex || sex == null || sex == "z")
+                .Where(b => b.Haircolor == hairColor || hairColor == null || hairColor == "z")
+                .Where(b => b.Headdirection == headDirection || headDirection == null || headDirection == "z")
+                .Where(b => b.Ageatdeath == ageAtDeath || ageAtDeath == null || ageAtDeath == "z")
+                .Count();
+
+
+            ////populate IQueryable "burials" based on filter criteria
+            //var burials = BurialsIQeryable
+            //    .Where(b => b.Sex == sex || sex == null || sex == "z")
+            //    .Where(b => b.Haircolor == hairColor || hairColor == null || hairColor == "z")
+            //    .Where(b => b.Ageatdeath == ageAtDeath || ageAtDeath == null || ageAtDeath == "z")
+            //    .Where(b => b.Headdirection == headDirection || headDirection == null || headDirection == "z")
+            //    .OrderBy(b => b.Id);
+
+            ////new list of SummaryView objects
+            //var summaryViewList = new List<SummaryView>();
+
+            ////loop through each burial in IQueryable
+            //foreach (var item in burials)
             //{
-            //    //Change burial.Sex of BurialsIQeryable for display
-            //    if (burial.Sex == null || burial.Sex == "")
+
+            //    var someId = item.Id;
+            //    //create a new summary view and set items
+            //    var summaryView = new SummaryView
             //    {
-            //        burial.Sex = "N/A";
-            //    }
-            //    else if (burial.Sex == "M")
+            //        id = item.Id,
+            //        sex = item.Sex,
+            //        hairColor = item.Haircolor,
+            //        age = item.Ageatdeath,
+            //        depth = item.Depth,
+            //        headDir = item.Headdirection
+            //    };
+            //    //add new summary view to list of SummaryView objects
+            //    summaryViewList.Add(summaryView);
+            //}
+
+
+
+            ////loop through each burial in list of SummaryView objects
+            //foreach (var burial in summaryViewList)
+            //{
+            //    //create new list of TextileDetails
+            //    var textileList = new List<TextileDetails>();
+
+            //    //loop through each burialTextile object in connecting table
+            //    foreach (var bt in repo.BurialmainTextiles)
             //    {
-            //        burial.Sex = "Male";
-            //    }
-            //    else if (burial.Sex == "F")
-            //    {
-            //        burial.Sex = "Female";
+            //        //if current row in connecting table matches current burial id
+            //        if (bt.MainBurialmainid == burial.id)
+            //        {
+            //            //loop through each textile in textile table
+            //            foreach (var textile in repo.Textiles)
+            //            {
+            //                //if current row in connecting table matches current textile id
+            //                if (bt.MainTextileid == textile.Id)
+            //                {
+            //                    //if we arrive at this point it's because we have a burial id and a textile id that match
+
+            //                    //create a new TextileDetails object to add to the current burial's TextileDetails list
+            //                    var textileDetails = new TextileDetails
+            //                    {
+            //                        id = textile.Id
+            //                        //add more details and connecting pages here
+            //                    };
+
+            //                    burial.textileList.Add(textileDetails);
+            //                }
+            //            }
+            //        }
             //    }
             //}
 
-            var totalBurials =
-            ((sex == null || sex == "z")
-                ? ((hairColor == null || hairColor == "z")
-                    ? ((ageAtDeath == null || ageAtDeath == "z")
-                        ? ((headDirection == null || headDirection == "z")
-                            ? BurialsIQeryable.Count()
-                        : BurialsIQeryable.Where(b => b.Headdirection == headDirection).Count())
-                    : BurialsIQeryable.Where(b => b.Ageatdeath == ageAtDeath).Count())
-                : BurialsIQeryable.Where(b => b.Haircolor == hairColor).Count())
-            : BurialsIQeryable.Where(b => b.Sex == sex).Count());
+
+
 
             var x = new BurialsViewModel
             {
                 Burialmains = BurialsIQeryable
-                //.Include(x=>x.burialmainTextiles).ThenInclude(y=>y.Textile).SingleOrDefault(m=>m.Id == id)
                 .Where(b => b.Sex == sex || sex == null || sex == "z")
                 .Where(b => b.Haircolor == hairColor || hairColor == null || hairColor == "z")
                 .Where(b => b.Ageatdeath == ageAtDeath || ageAtDeath == null || ageAtDeath == "z")
@@ -89,6 +157,8 @@ namespace WebApplication1.Controllers
                 .OrderBy(b => b.Id)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
+
+                //summaryViewList = summaryViewList,
 
                 PageInfo = new PageInfo
                 {

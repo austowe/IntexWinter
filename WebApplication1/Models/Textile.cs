@@ -15,6 +15,5 @@ namespace IntexWinter.Models
         public DateTime? Photographeddate { get; set; }
         public string Direction { get; set; }
 
-        public ICollection<BurialmainTextile> burialmainTextiles { get; set; } = new HashSet<BurialmainTextile>();
     }
 }

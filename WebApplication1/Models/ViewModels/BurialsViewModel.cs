@@ -9,5 +9,7 @@ namespace IntexWinter.Models.ViewModels
     {
         public IQueryable<Burialmain> Burialmains { get; set; }
         public PageInfo PageInfo { get; set; }
+
+        public List<SummaryView> summaryViewList { get; set; }
     }
 }
