@@ -1,6 +1,13 @@
 ﻿@{ ViewData["Title"] = "Burial Details"; }
 
+@using IdentityManagerUI.Models
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
 @model IntexWinter.Models.ViewModels.BurialDetailsViewModel
+
 
 <h1>Burial Details</h1>
 
@@ -127,8 +134,17 @@
         </dl>
     </div>
     <div>
-        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-        <a asp-action="Delete" asp-route-id="@Model.Id">Delete Record</a> |
+        @{
+            if (SignInManager.IsSignedIn(User))
+            {
+                if (User.IsInRole("Researcher"))
+                {
+                    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@Model.Id">Delete Record</a>
+                }
+            }
+
+        }
         <a asp-action="Burial_Records">Back to List</a>
     </div>
 }
