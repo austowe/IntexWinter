@@ -1,0 +1,199 @@
+﻿@model IntexWinter.Models.Burialmain
+
+    <h2>Add Burial</h2>
+
+    <form method="post">
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="hidden" class="form-control" id="id" name="id" value="@Model.Id + 1" />
+        </div>
+        <div class="form-group">
+            <label for="SquareNorthSouth">Square North South</label>
+            <input type="text" class="form-control" id="SquareNorthSouth" name="SquareNorthSouth">
+        </div>
+        <div class="form-group">
+            <label for="HeadDirection">Head Direction</label>
+            <select class="form-control" id="HeadDirection" name="HeadDirection">
+                <option value="W">W</option>
+                <option value="E">E</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="Sex">Sex</label>
+            <select class="form-control" id="Sex" name="Sex">
+                <option value="M">M</option>
+                <option value="F">F</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="NorthSouth">North South</label>
+            <select class="form-control" id="NorthSouth" name="NorthSouth">
+                <option value="N">N</option>
+                <option value="S">S</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="Depth">Depth</label>
+            <input type="number" class="form-control" id="Depth" name="Depth" min="0" max="10" step="0.1" />
+        </div>
+        <div class="form-group">
+            <label for="EastWest">East West</label>
+            <select class="form-control" id="EastWest" name="EastWest">
+                <option value="W">W</option>
+                <option value="E">E</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="AdultSubadult">Adult Subadult</label>
+            <select class="form-control" id="EastWest" name="EastWest">
+                <option value="A">Adult</option>
+                <option value="C">Child</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="FaceBundles">Face Bundles</label>
+            <select class="form-control" id="FaceBundles" name="FaceBundles">
+                <option value="Y">Y</option>
+                <option value="N">N</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="SouthToHead">South To Head</label>
+            <input type="number" class="form-control" id="SouthToHead" name="SouthToHead" min="-10" max="10" step="0.1" />
+        </div>
+        <div class="form-group">
+            <label for="Preservation">Preservation</label>
+            <input type="text" class="form-control" id="Preservation" name="Preservation">
+        </div>
+        <div class="form-group">
+            <label for="FieldBookPage">Field Book Page</label>
+            <input type="number" class="form-control" id="FieldBookPage" name="FieldBookPage">
+        </div>
+        <div class="form-group">
+            <label for="SquareEastWest">Square East West</label>
+            <input type="number" class="form-control" id="SquareEastWest" name="SquareEastWest" min="0" max="100" step="0.1" />
+        </div>
+        <div class="form-group">
+            <label for="Goods">Goods</label>
+            <select class="form-control" id="Goods" name="Goods">
+                <option value="Y">Y</option>
+                <option value="N">N</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="Text">Text</label>
+            <input type="text" class="form-control" id="Text" name="Text" />
+        </div>
+        <div class="form-group">
+            <label for="Wrapping">Wrapping</label>
+            <select class="form-control" id="Wrapping" name="Wrapping">
+                <option value="B">Bones</option>
+                <option value="W">Fully Wrapped</option>
+                <option value="H">Partial Wrapping</option>
+                <option value="U">Uknown</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="HairColor">Hair Color</label>
+            <select class="form-control" id="HairColor" name="HairColor">
+                <option value="B">Brown</option>
+                <option value="K">Black</option>
+                <option value="A">Brown-Red</option>
+                <option value="R">Red</option>
+                <option value="D">Blonde</option>
+                <option value="U">Uknown</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="WestToHead">WestToHead</label>
+            <input type="text" class="form-control" id="WestToHead" name="WestToHead" />
+        </div>
+        <div class="form-group">
+            <label for="SamplesCollected">SamplesCollected</label>
+            <select class="form-control" id="SamplesCollected" name="SamplesCollected">
+                <option value="True">True</option>
+                <option value="False">False</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="Burialid">Burialid</label>
+            <input type="text" class="form-control" id="Burialid" name="Burialid" />
+        </div>
+        <div class="form-group">
+            <label for="Area">Area</label>
+            <select class="form-control" id="Area" name="Area">
+                <option value="NW">NW</option>
+                <option value="SW">SW</option>
+                <option value="SE">SE</option>
+                <option value="NE">NE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="Length">Length</label>
+            <input type="number" class="form-control" id="Length" name="Length" min="0" max="10" step="0.1" />
+        </div>
+        <div class="form-group">
+            <label for="BurialNumber">BurialNumber</label>
+            <input type="number" class="form-control" id="BurialNumber" name="BurialNumber" />
+        </div>
+        <div class="form-group">
+            <label for="DataExpertInitials">DataExpertInitials</label>
+            <input type="text" class="form-control" id="DataExpertInitials" name="DataExpertInitials" />
+        </div>
+        <div class="form-group">
+            <label for="WestToFeet">WestToFeet</label>
+            <input type="number" class="form-control" id="WestToFeet" name="WestToFeet" min="-10" max="10" step="0.1" />
+        </div>
+        <div class="form-group">
+            <label for="AgeAtDeath">AgeAtDeath</label>
+            <select class="form-control" id="AgeAtDeath" name="AgeAtDeath">
+                <option value="A">Adult</option>
+                <option value="C">Child</option>
+                <option value="I">Infant</option>
+                <option value="N">Neborn</option>
+                <option value="U">Uknown</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="SouthToFeet">SouthToFeet</label>
+            <input type="number" class="form-control" id="SouthToFeet" name="SouthToFeet" min="-10" max="10" step="0.1" />
+        </div>
+        <div class="form-group">
+            <label for="ExcavationRecorder">ExcavationRecorder</label>
+            <input type="text" class="form-control" id="ExcavationRecorder" name="ExcavationRecorder" />
+        </div>
+        <div class="form-group">
+            <label for="Hair">Hair</label>
+            <input type="text" class="form-control" id="Hair" name="Hair" />
+        </div>
+        <div class="form-group">
+            <label for="Photos">Photos</label>
+            <input type="text" class="form-control" id="Photos" name="Photos" />
+        </div>
+        <div class="form-group">
+            <label for="BurialMaterials">BurialMaterials</label>
+            <input type="text" class="form-control" id="BurialMaterials" name="BurialMaterials" />
+        </div>
+        <div class="form-group">
+            <label for="DateOfExcavation">DateOfExcavation</label>
+            <input type="date" class="form-control" id="DateOfExcavation" name="DateOfExcavation" />
+        </div>
+        <div class="form-group">
+            <label for="FieldBookExcavationYear">FieldBookExcavationYear</label>
+            <input type="number" class="form-control" id="FieldBookExcavationYear" name="FieldBookExcavationYear" min="2000" max="2200"/>
+        </div>
+        <div class="form-group">
+            <label for="ClusterNumber">ClusterNumber</label>
+            <input type="text" class="form-control" id="ClusterNumber" name="ClusterNumber" />
+        </div>
+        <div class="form-group">
+            <label for="ShaftNumber">ShaftNumber</label>
+            <input type="text" class="form-control" id="ShaftNumber" name="ShaftNumber" />
+        </div>
+
+        <br />
+
+        <button type="submit">Add Burial</button>
+        <a asp-action="Burial_Records" class="btn btn-default">Cancel</a>
+
+    </form>
