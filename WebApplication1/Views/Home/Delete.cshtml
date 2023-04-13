@@ -1,15 +1,15 @@
 ﻿@{
-    ViewData["Title"] = "Application Submitted";
+    ViewData["Title"] = "Delete Burial";
 }
 
-@model IntexWinter.Models.Burialmain
+@model Burialmain
 
 <h2>Confirm Deletion</h2>
 <h3>Are you sure you want to delete the record for @Model.Id?</h3>
 
 <form method="post" asp-controller="Home" asp-action="Delete">
     <button type="submit">Delete</button>
-    <a asp-controller="Home" asp-action="MovieList" class="btn btn-primary">Cancel</a>
+    <a asp-controller="Home" asp-action="Burial_Records" class="btn btn-primary">Cancel</a>
 
     <input type="hidden" asp-for="Id" />
 </form>

@@ -20,12 +20,12 @@ namespace IntexWinter.Models
         {
             return context.Burialmain.SingleOrDefault(b => b.Id == id);
         }
-        public void Update(Burialmain burial)
+        public void Edit(Burialmain burial)
         {
             context.Entry(burial).State = EntityState.Modified;
         }
 
-        public void Add(Burialmain burial)
+        public void Add_Burial(Burialmain burial)
         {
             context.Burialmain.Add(burial);
         }

@@ -6,8 +6,8 @@ namespace IntexWinter.Models
     {
         IQueryable<Burialmain> Burialmains { get; }
         Burialmain GetById(long id);
-        void Update(Burialmain burial);
-        void Add(Burialmain burial);
+        void Edit(Burialmain burial);
+        void Add_Burial(Burialmain burial);
         void Delete(Burialmain burial);
         void SaveChanges();
     }

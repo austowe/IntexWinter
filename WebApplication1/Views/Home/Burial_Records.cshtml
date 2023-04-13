@@ -83,6 +83,9 @@
                  page-class-selected="btn btn-primary font-weight-bolder"
                  class="btn-group pull-right m-1b" style="padding:5px;">
             </div>
+            <div>
+                <a type="button" class="btn btn-primary btn-sm float-end" asp-area="" asp-controller="Home" asp-action="Add_Burial">Add a Record</a>
+            </div>
 
             <main role="main" class="pb-3">
                 @foreach (Burialmain b in Model.Burialmains)
@@ -102,7 +105,6 @@
 
                             <form method="post" asp-action="Burial_Details" asp-route-id="@b.Id">
                                 <input type="hidden" asp-for="@b.Id" />
-                                @*<input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />*@
                                 <span class="card-text">
                                     <button type="submit" class="btn btn-primary btn-sm float-end">Details</button>
                                 </span>
