@@ -86,18 +86,33 @@ namespace IntexWinter.Models.ViewModels
         {
             Northsouthsquare = 200;
             Northsouth = "N";
-            Eastwestsquare = 20;
+            Eastwestsquare = 30;
             Eastwest = "E";
-            Area = "NW";
-            Westtohead = 20;
+            Area = "NE";
+            Westtohead = 1.6;
             Westtofeet = 1.6;
-            Southtohead = 1.6;
+            Southtohead = 0.6;
             Length = 1.6;
             Year = 1998;
-            Depth = 0.95;
+            Depth = 2.03;
             Southtofeet = 1.6;
             Prediction = "";
             Display = "None";
+            Sex = "U";
+            Age = "A";
+            Facebundles = "Y";
+            Wrapping = "B";
+            Haircolor = "B";
+            Function = "F";
+            Thickness = "F";
+            Angle = "U";
+            Manipulation = "U";
+            Material = "L";
+            Yarndirection = "U";
+            Preservation = "P";
+            Facebundles = "U";
+
+
 
 
         }

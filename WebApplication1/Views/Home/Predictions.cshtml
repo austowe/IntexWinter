@@ -4,8 +4,9 @@
 @{
     @model IntexWinter.Models.ViewModels.PredictModel
 
-    <h1>Make predictions based on mummy information!</h1>
     <br />
+    <h2>Predict the direction that a mummy's head will face</h2>
+
     <div class="alert alert-success" role="alert" style="display:@Model.Display">
         Your predicted result is: @Model.Prediction
     </div>
@@ -474,6 +475,8 @@
                 </div>
             </div>
         </div>
-        <button type="submit">Submit</button>
+        <br />
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <br />
     </form>
 }
