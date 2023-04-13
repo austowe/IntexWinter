@@ -43,20 +43,80 @@ namespace WebApplication1.Controllers
         public IActionResult Burial_Records(string sex = "z", string hairColor = "z", string ageAtDeath = "z", string headDirection = "z", string depth = "", int pageNum = 1)
         {
             int pageSize = 10;
+            int totalBurials;
+            var x = new BurialsViewModel();
 
-            //TotalNumBurials = (depth == null || depth == "")
-            //   ? repo.Burialmains.Count()
-            //   : repo.Burialmains.Where(b => b.Depth != "U" && b.Depth != null && b.Depth != "" && Convert.ToDecimal(b.Depth) <= Convert.ToDecimal(depth) && Convert.ToDecimal(b.Depth) > (Convert.ToDecimal(depth) - 1)).Count();
 
-            
-            //Calculate total number of burials based on filter criteria
-            var totalBurials = repo.Burialmains
-                //.Where(b => b.Depth != "U" && b.Depth != null && b.Depth != "" && Convert.ToDecimal(b.Depth) <= Convert.ToDecimal(depth) && Convert.ToDecimal(b.Depth) > (Convert.ToDecimal(depth) - 1))
+            if (depth != "U" && depth != null && depth != "")
+            {
+                decimal decimalDepth = Convert.ToDecimal(depth);
+
+                totalBurials = repo.Burialmains
+                .Where(b => b.Depth != "U" && b.Depth != null && b.Depth != "" && Convert.ToDecimal(b.Depth) <= decimalDepth && Convert.ToDecimal(b.Depth) > (decimalDepth - 1))
                 .Where(b => b.Sex == sex || sex == null || sex == "z")
                 .Where(b => b.Haircolor == hairColor || hairColor == null || hairColor == "z")
                 .Where(b => b.Headdirection == headDirection || headDirection == null || headDirection == "z")
                 .Where(b => b.Ageatdeath == ageAtDeath || ageAtDeath == null || ageAtDeath == "z")
                 .Count();
+
+                x.Burialmains = repo.Burialmains
+                .Where(b => b.Depth != "U" && b.Depth != null && b.Depth != "" && Convert.ToDecimal(b.Depth) <= decimalDepth && Convert.ToDecimal(b.Depth) > (decimalDepth - 1))
+                .Where(b => b.Sex == sex || sex == null || sex == "z")
+                .Where(b => b.Haircolor == hairColor || hairColor == null || hairColor == "z")
+                .Where(b => b.Ageatdeath == ageAtDeath || ageAtDeath == null || ageAtDeath == "z")
+                .Where(b => b.Headdirection == headDirection || headDirection == null || headDirection == "z")
+                .OrderBy(b => b.Id)
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize);
+
+                //x.summaryViewList = summaryViewList,
+
+                x.PageInfo = new PageInfo
+                {
+                    TotalNumBurials = totalBurials,
+                    BurialsPerPage = pageSize,
+                    CurrentPage = pageNum,
+                    SelectedSex = sex,
+                    SelectedHairColor = hairColor,
+                    SelectedAgeAtDeath = ageAtDeath,
+                    SelectedHeadDir = headDirection,
+                    SelectedDepth = depth
+                };
+                return View(x);
+            }
+            else
+            {
+                totalBurials = repo.Burialmains
+                .Where(b => b.Sex == sex || sex == null || sex == "z")
+                .Where(b => b.Haircolor == hairColor || hairColor == null || hairColor == "z")
+                .Where(b => b.Headdirection == headDirection || headDirection == null || headDirection == "z")
+                .Where(b => b.Ageatdeath == ageAtDeath || ageAtDeath == null || ageAtDeath == "z")
+                .Count();
+
+                x.Burialmains = repo.Burialmains
+                .Where(b => b.Sex == sex || sex == null || sex == "z")
+                .Where(b => b.Haircolor == hairColor || hairColor == null || hairColor == "z")
+                .Where(b => b.Ageatdeath == ageAtDeath || ageAtDeath == null || ageAtDeath == "z")
+                .Where(b => b.Headdirection == headDirection || headDirection == null || headDirection == "z")
+                .OrderBy(b => b.Id)
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize);
+
+                //x.summaryViewList = summaryViewList,
+
+                x.PageInfo = new PageInfo
+                {
+                    TotalNumBurials = totalBurials,
+                    BurialsPerPage = pageSize,
+                    CurrentPage = pageNum,
+                    SelectedSex = sex,
+                    SelectedHairColor = hairColor,
+                    SelectedAgeAtDeath = ageAtDeath,
+                    SelectedHeadDir = headDirection,
+                    SelectedDepth = depth
+                };
+                return View(x);
+            }
 
 
             ////populate IQueryable "burials" based on filter criteria
@@ -124,35 +184,6 @@ namespace WebApplication1.Controllers
             //        }
             //    }
             //}
-
-
-
-
-            var x = new BurialsViewModel
-            {
-                Burialmains = repo.Burialmains
-                .Where(b => b.Sex == sex || sex == null || sex == "z")
-                .Where(b => b.Haircolor == hairColor || hairColor == null || hairColor == "z")
-                .Where(b => b.Ageatdeath == ageAtDeath || ageAtDeath == null || ageAtDeath == "z")
-                .Where(b => b.Headdirection == headDirection || headDirection == null || headDirection == "z")
-                .OrderBy(b => b.Id)
-                .Skip((pageNum - 1) * pageSize)
-                .Take(pageSize),
-
-                //summaryViewList = summaryViewList,
-
-                PageInfo = new PageInfo
-                {
-                    TotalNumBurials = totalBurials,
-                    BurialsPerPage = pageSize,
-                    CurrentPage = pageNum,
-                    SelectedSex = sex,
-                    SelectedHairColor = hairColor,
-                    SelectedAgeAtDeath = ageAtDeath,
-                    SelectedHeadDir = headDirection
-                }
-            };
-            return View(x);
         }
 
 
