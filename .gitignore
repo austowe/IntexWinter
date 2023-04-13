@@ -366,4 +366,4 @@ FodyWeavers.xsd
 keys.txt
 
 # Config files
-appsettings.Development.json
+appsettings.json
