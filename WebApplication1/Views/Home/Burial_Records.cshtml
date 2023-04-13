@@ -85,7 +85,7 @@
                     </div>*@
 
                 <a class=" btn btn-outline-dark btn-sm m-3" asp-controller="Home" asp-action="Burial_Records">Reset</a>
-                <button class="btn-primary btn-sm m-1" type="submit">Apply Filter</button>
+                <button class="btn-primary btn-sm m-1" style="background-color: darkslateblue;" type="submit">Apply Filter</button>
             </form>
 
         </div>
@@ -139,7 +139,7 @@
                             <form method="post" asp-action="Burial_Details" asp-route-id="@b.Id">
                                 <input type="hidden" asp-for="@b.Id" />
                                 <span class="card-text">
-                                    <button type="submit" class="btn-primary btn-sm m-1 float-end">Details</button>
+                                    <button type="submit" class="btn-primary btn-sm m-1 float-end" style="background-color: darkslateblue;">Details</button>
                                 </span>
                             </form>
 

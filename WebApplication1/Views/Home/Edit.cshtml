@@ -12,23 +12,72 @@
     </div>
     <div class="form-group">
         <label for="HeadDirection">Head Direction</label>
-        <select class="form-control" id="HeadDirection" name="HeadDirection" value="@Model.Headdirection">
-            <option value="W">W</option>
-            <option value="E">E</option>
+        <select class="form-control" id="HeadDirection" name="HeadDirection">
+            @if (Model.Headdirection == "W")
+            {
+                <option value=""></option>
+                <option value="W" selected>West</option>
+                <option value="E">East</option>
+            }
+            else if (Model.Headdirection == "E")
+            {
+                <option value=""></option>
+                <option value="W">West</option>
+                <option value="E" selected>East</option>
+            }
+            else
+            {
+                <option value="" selected></option>
+                <option value="W">West</option>
+                <option value="E">East</option>
+            }
         </select>
     </div>
+
     <div class="form-group">
         <label for="Sex">Sex</label>
         <select class="form-control" id="Sex" name="Sex" value="@Model.Sex">
-            <option value="M">M</option>
-            <option value="F">F</option>
+            @if (Model.Sex == "M")
+            {
+                <option value=""></option>
+                <option value="M" selected>Male</option>
+                <option value="F">Female</option>
+            }
+            else if (Model.Sex == "F")
+            {
+                <option value=""></option>
+                <option value="M">Male</option>
+                <option value="F" selected>Female</option>
+            }
+            else
+            {
+                <option value="" selected></option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            }
         </select>
     </div>
     <div class="form-group">
         <label for="NorthSouth">North South</label>
         <select class="form-control" id="NorthSouth" name="NorthSouth" value="@Model.Northsouth">
-            <option value="N">N</option>
-            <option value="S">S</option>
+            @if (Model.Northsouth == "N")
+            {
+                <option value=""></option>
+                <option value="N" selected>North</option>
+                <option value="S">South</option>
+            }
+            else if (Model.Northsouth == "S")
+            {
+                <option value=""></option>
+                <option value="N">North</option>
+                <option value="S" selected>South</option>
+            }
+            else
+            {
+                <option value="" selected></option>
+                <option value="N">North</option>
+                <option value="S">South</option>
+            }
         </select>
     </div>
     <div class="form-group">
@@ -38,22 +87,70 @@
     <div class="form-group">
         <label for="EastWest">East West</label>
         <select class="form-control" id="EastWest" name="EastWest" value="@Model.Eastwest">
-            <option value="W">W</option>
-            <option value="E">E</option>
+            @if (Model.Eastwest == "W")
+            {
+                <option value=""></option>
+                <option value="W" selected>West</option>
+                <option value="E">East</option>
+            }
+            else if (Model.Eastwest == "E")
+            {
+                <option value=""></option>
+                <option value="W">West</option>
+                <option value="E" selected>East</option>
+            }
+            else
+            {
+                <option value="" selected></option>
+                <option value="W">West</option>
+                <option value="E">East</option>
+            }
         </select>
     </div>
     <div class="form-group">
         <label for="AdultSubadult">Adult Subadult</label>
         <select class="form-control" id="EastWest" name="EastWest" value="@Model.Adultsubadult">
-            <option value="A">Adult</option>
-            <option value="C">Child</option>
+            @if (Model.Adultsubadult == "A")
+            {
+                <option value=""></option>
+                <option value="A" selected>Adult</option>
+                <option value="C">Child</option>
+            }
+            else if (Model.Adultsubadult == "C")
+            {
+                <option value=""></option>
+                <option value="A">Adult</option>
+                <option value="C" selected>Child</option>
+            }
+            else
+            {
+                <option value="" selected></option>
+                <option value="A">Adult</option>
+                <option value="C">Child</option>
+            }
         </select>
     </div>
     <div class="form-group">
         <label for="FaceBundles">Face Bundles</label>
         <select class="form-control" id="FaceBundles" name="FaceBundles" value="@Model.Facebundles">
-            <option value="Y">Y</option>
-            <option value="N">N</option>
+            @if (Model.Facebundles == "Y")
+            {
+                <option value=""></option>
+                <option value="Y" selected>Yes</option>
+                <option value="N">No</option>
+            }
+            else if (Model.Facebundles == "N")
+            {
+                <option value=""></option>
+                <option value="Y">Yes</option>
+                <option value="N" selected>No</option>
+            }
+            else
+            {
+                <option value="" selected></option>
+                <option value="Y">Yes</option>
+                <option value="N">No</option>
+            }
         </select>
     </div>
     <div class="form-group">
@@ -75,8 +172,24 @@
     <div class="form-group">
         <label for="Goods">Goods</label>
         <select class="form-control" id="Goods" name="Goods" value="@Model.Goods">
-            <option value="Y">Y</option>
-            <option value="N">N</option>
+            @if (Model.Goods == "Y")
+            {
+                <option value=""></option>
+                <option value="Y" selected>Yes</option>
+                <option value="N">No</option>
+            }
+            else if (Model.Goods == "N")
+            {
+                <option value=""></option>
+                <option value="Y">Yes</option>
+                <option value="N" selected>No</option>
+            }
+            else
+            {
+                <option value="" selected></option>
+                <option value="Y">Yes</option>
+                <option value="N">No</option>
+            }
         </select>
     </div>
     <div class="form-group">
@@ -86,21 +199,121 @@
     <div class="form-group">
         <label for="Wrapping">Wrapping</label>
         <select class="form-control" id="Wrapping" name="Wrapping" value="@Model.Wrapping">
-            <option value="B">Bones</option>
-            <option value="W">Fully Wrapped</option>
-            <option value="H">Partial Wrapping</option>
-            <option value="U">Uknown</option>
+            @if (Model.Wrapping == "B")
+            {
+                <option value=""></option>
+                <option value="B" selected>Bones</option>
+                <option value="W">Fully Wrapped</option>
+                <option value="H">Partial Wrapping</option>
+                <option value="U">Uknown</option>
+            }
+            else if (Model.Wrapping == "W")
+            {
+                <option value=""></option>
+                <option value="B">Bones</option>
+                <option value="W" selected>Fully Wrapped</option>
+                <option value="H">Partial Wrapping</option>
+                <option value="U">Uknown</option>
+            }
+            else if (Model.Wrapping == "H")
+            {
+                <option value=""></option>
+                <option value="B">Bones</option>
+                <option value="W">Fully Wrapped</option>
+                <option value="H" selected>Partial Wrapping</option>
+                <option value="U">Uknown</option>
+            }
+            else if (Model.Wrapping == "U")
+            {
+                <option value=""></option>
+                <option value="B">Bones</option>
+                <option value="W">Fully Wrapped</option>
+                <option value="H">Partial Wrapping</option>
+                <option value="U" selected>Uknown</option>
+            }
+            else
+            {
+                <option value="" selected></option>
+                <option value="B">Bones</option>
+                <option value="W">Fully Wrapped</option>
+                <option value="H">Partial Wrapping</option>
+                <option value="U">Uknown</option>
+            }
         </select>
     </div>
     <div class="form-group">
         <label for="HairColor">HairColor</label>
         <select class="form-control" id="HairColor" name="HairColor" value="@Model.Haircolor">
-            <option value="B">Brown</option>
-            <option value="K">Black</option>
-            <option value="A">Brown-Red</option>
-            <option value="R">Red</option>
-            <option value="D">Blonde</option>
-            <option value="U">Uknown</option>
+            @if (Model.Haircolor == "B")
+            {
+                <option value=""></option>
+                <option value="B" selected>Brown</option>
+                <option value="K">Black</option>
+                <option value="A">Brown-Red</option>
+                <option value="R">Red</option>
+                <option value="D">Blonde</option>
+                <option value="U">Uknown</option>
+            }
+            else if (Model.Haircolor == "K")
+            {
+                <option value=""></option>
+                <option value="B">Brown</option>
+                <option value="K" selected>Black</option>
+                <option value="A">Brown-Red</option>
+                <option value="R">Red</option>
+                <option value="D">Blonde</option>
+                <option value="U">Uknown</option>
+            }
+            else if (Model.Haircolor == "A")
+            {
+                <option value=""></option>
+                <option value="B">Brown</option>
+                <option value="K">Black</option>
+                <option value="A" selected>Brown-Red</option>
+                <option value="R">Red</option>
+                <option value="D">Blonde</option>
+                <option value="U">Uknown</option>
+            }
+            else if (Model.Haircolor == "R")
+            {
+                <option value=""></option>
+                <option value="B">Brown</option>
+                <option value="K">Black</option>
+                <option value="A">Brown-Red</option>
+                <option value="R" selected>Red</option>
+                <option value="D">Blonde</option>
+                <option value="U">Uknown</option>
+            }
+            else if (Model.Haircolor == "D")
+            {
+                <option value=""></option>
+                <option value="B">Brown</option>
+                <option value="K">Black</option>
+                <option value="A">Brown-Red</option>
+                <option value="R">Red</option>
+                <option value="D" selected>Blonde</option>
+                <option value="U">Uknown</option>
+            }
+            else if (Model.Haircolor == "U")
+            {
+                <option value=""></option>
+                <option value="B">Brown</option>
+                <option value="K">Black</option>
+                <option value="A">Brown-Red</option>
+                <option value="R">Red</option>
+                <option value="D">Blonde</option>
+                <option value="U" selected>Uknown</option>
+            }
+            else
+            {
+                <option value="" selected></option>
+                <option value="B">Brown</option>
+                <option value="K">Black</option>
+                <option value="A">Brown-Red</option>
+                <option value="R">Red</option>
+                <option value="D">Blonde</option>
+                <option value="U">Uknown</option>
+            }
         </select>
     </div>
     <div class="form-group">
@@ -110,17 +323,69 @@
     <div class="form-group">
         <label for="SamplesCollected">SamplesCollected</label>
         <select class="form-control" id="SamplesCollected" name="SamplesCollected" value="@Model.Samplescollected">
-            <option value="True">True</option>
-            <option value="False">False</option>
+            @if (Model.Samplescollected == "True")
+            {
+                <option value=""></option>
+                <option value="True" selected>True</option>
+                <option value="False">False</option>
+            }
+            else if (Model.Samplescollected == "False")
+            {
+                <option value=""></option>
+                <option value="True">True</option>
+                <option value="False" selected>False</option>
+            }
+            else
+            {
+                <option value="" selected></option>
+                <option value="True">True</option>
+                <option value="False">False</option>
+            }
         </select>
     </div>
     <div class="form-group">
         <label for="Area">Area</label>
         <select class="form-control" id="Area" name="Area" value="@Model.Area">
-            <option value="NW">NW</option>
-            <option value="SW">SW</option>
-            <option value="SE">SE</option>
-            <option value="NE">NE</option>
+            @if (Model.Area == "NW")
+            {
+                <option value=""></option>
+                <option value="NW" selected>North West</option>
+                <option value="SW">South West</option>
+                <option value="SE">South East</option>
+                <option value="NE">North East</option>
+            }
+            else if (Model.Area == "SW")
+            {
+                <option value=""></option>
+                <option value="NW">North West</option>
+                <option value="SW" selected>South West</option>
+                <option value="SE">South East</option>
+                <option value="NE">North East</option>
+            }
+            else if (Model.Area == "SE")
+            {
+                <option value=""></option>
+                <option value="NW">North West</option>
+                <option value="SW">South West</option>
+                <option value="SE" selected>South East</option>
+                <option value="NE">North East</option>
+            }
+            else if (Model.Area == "NE")
+            {
+                <option value=""></option>
+                <option value="NW">North West</option>
+                <option value="SW">South West</option>
+                <option value="SE">South East</option>
+                <option value="NE" selected>North East</option>
+            }
+            else
+            {
+                <option value="" selected></option>
+                <option value="NW">North West</option>
+                <option value="SW">South West</option>
+                <option value="SE">South East</option>
+                <option value="NE">North East</option>
+            }
         </select>
     </div>
     <div class="form-group">
@@ -146,11 +411,60 @@
     <div class="form-group">
         <label for="AgeAtDeath">AgeAtDeath</label>
         <select class="form-control" id="AgeAtDeath" name="AgeAtDeath" value="@Model.Ageatdeath">
-            <option value="A">Adult</option>
-            <option value="C">Child</option>
-            <option value="I">Infant</option>
-            <option value="N">Neborn</option>
-            <option value="U">Uknown</option>
+            @if (Model.Ageatdeath == "A")
+            {
+                <option value=""></option>
+                <option value="A" selected>Adult</option>
+                <option value="C">Child</option>
+                <option value="I">Infant</option>
+                <option value="N">Neborn</option>
+                <option value="U">Uknown</option>
+            }
+            else if (Model.Ageatdeath == "C")
+            {
+                <option value=""></option>
+                <option value="A">Adult</option>
+                <option value="C" selected>Child</option>
+                <option value="I">Infant</option>
+                <option value="N">Neborn</option>
+                <option value="U">Uknown</option>
+            }
+            else if (Model.Ageatdeath == "I")
+            {
+                <option value=""></option>
+                <option value="A">Adult</option>
+                <option value="C">Child</option>
+                <option value="I" selected>Infant</option>
+                <option value="N">Neborn</option>
+                <option value="U">Uknown</option>
+            }
+            else if (Model.Ageatdeath == "N")
+            {
+                <option value=""></option>
+                <option value="A">Adult</option>
+                <option value="C">Child</option>
+                <option value="I">Infant</option>
+                <option value="N" selected>Neborn</option>
+                <option value="U">Uknown</option>
+            }
+            else if (Model.Ageatdeath == "U")
+            {
+                <option value=""></option>
+                <option value="A">Adult</option>
+                <option value="C">Child</option>
+                <option value="I">Infant</option>
+                <option value="N">Neborn</option>
+                <option value="U" selected>Uknown</option>
+            }
+            else
+            {
+                <option value="" selected></option>
+                <option value="A">Adult</option>
+                <option value="C">Child</option>
+                <option value="I">Infant</option>
+                <option value="N">Neborn</option>
+                <option value="U">Uknown</option>
+            }
         </select>
     </div>
     <div class="form-group">
