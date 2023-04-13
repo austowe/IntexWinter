@@ -9,6 +9,7 @@ namespace IntexWinter.Models
         IQueryable<Textile> Textiles { get; }
         IQueryable<ColorTextile> ColorTextiles { get; }
         Burialmain GetById(long id);
+        Burialmain Get_Last_Burial();
         void Edit(Burialmain burial);
         void Add_Burial(Burialmain burial);
         void Delete(Burialmain burial);

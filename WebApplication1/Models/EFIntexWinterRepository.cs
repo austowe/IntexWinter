@@ -32,7 +32,13 @@ namespace IntexWinter.Models
         public void Add_Burial(Burialmain burial)
         {
             context.Burialmain.Add(burial);
+            context.SaveChanges();
         }
+        public Burialmain Get_Last_Burial()
+        {
+            return context.Burialmain.OrderByDescending(b => b.Id).FirstOrDefault();
+        }
+
 
         public void Delete(Burialmain burial)
         {

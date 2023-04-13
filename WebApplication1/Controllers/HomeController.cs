@@ -245,13 +245,20 @@ namespace WebApplication1.Controllers
             if (ModelState.IsValid)
             {
                 repo.Add_Burial(burialmain);
-                return RedirectToAction("Index");
+                return RedirectToAction("Confirmation", new { id = burialmain.Id });
             }
             else
             {
                 return View(burialmain);
             }
         }
+
+        public IActionResult Confirmation()
+        {
+            var lastBurialmain = repo.Get_Last_Burial(); 
+            return View(lastBurialmain);
+        }
+
 
         [HttpGet]
         [Authorize(Roles = "Researcher")]
