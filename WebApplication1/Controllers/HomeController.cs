@@ -208,7 +208,7 @@ namespace WebApplication1.Controllers
             {
                 var burial = viewModel.BurialMain;
 
-                repo.Update(burial);
+                repo.Edit(burial);
                 repo.SaveChanges();
 
                 return RedirectToAction("Burial_Records");
@@ -219,12 +219,34 @@ namespace WebApplication1.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult Add_Burial()
+        {
+            var lastId = repo.Burialmains.OrderByDescending(x => x.Id).FirstOrDefault()?.Id ?? 0;
+            var model = new Burialmain { Id = lastId + 1 };
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Add_Burial(Burialmain model)
+        {
+            if (ModelState.IsValid)
+            {
+                repo.Add_Burial(model);
+                repo.SaveChanges();
+                return RedirectToAction("Confirmation", new { id = model.Id });
+            }
+            else
+            {
+                return View(model);
+            }
+        }
 
 
         [HttpGet]
-        public IActionResult Delete(int burialid)
+        public IActionResult Delete(long id)
         {
-            var burial = _intexContext.Burialmain.Single(x => x.Id == burialid);
+            var burial = repo.Burialmains.Single(x => x.Id == id);
 
             return View(burial);
         }
@@ -232,12 +254,12 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult Delete(Burialmain ar)
         {
-            _intexContext.Burialmain.Remove(ar);
-            _intexContext.SaveChanges();
+            repo.Delete(ar);
+            repo.SaveChanges();
+
 
             return RedirectToAction("Burial_Records");
-         }
-
+        }
 
         [HttpGet]
         public IActionResult Predictions(PredictModel pm)
