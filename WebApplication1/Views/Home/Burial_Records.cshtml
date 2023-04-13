@@ -111,14 +111,26 @@
 
                             <h3>Burial id: @b.Squarenorthsouth@b.Northsouth@b.Squareeastwest@b.Eastwest@b.Area@b.Burialnumber</h3>
                             <ul>
-                                <li>Depth: <a class="font-weight-bold">@b.Depth</a> meters</li>
+
                                 @{if (b.Sex == "M") { b.Sex = "Male"; } else if (b.Sex == "F") { b.Sex = "Female"; } else { b.Sex = "N/A"; }}
-                                <li>Sex: <a class="font-weight-bold">@b.Sex</a></li>
+                                <li>Sex: <a class="@((b.Sex == "N/A") ? "font-weight-lighter" : "font-weight-bold")">@b.Sex</a></li>
+
+                                @{if (b.Depth == null || b.Depth == "" || b.Depth == "U") { b.Depth = "N/A"; }}
+                                <li>Depth: <a class="@((b.Depth == "N/A") ? "font-weight-lighter" : "font-weight-bold")">@b.Depth @((b.Depth == "N/A") ? "" : "meters")</a></li>
+
                                 @{if (b.Ageatdeath == "A") { b.Ageatdeath = "Adult"; } else if (b.Ageatdeath == "C") { b.Ageatdeath = "Child"; }
                                     else if (b.Ageatdeath == "I") { b.Ageatdeath = "Infant"; } else if (b.Ageatdeath == "N") { b.Ageatdeath = "Newborn"; } else { b.Ageatdeath = "N/A"; } }
-                                <li>Age at death: <a class="font-weight-bold">@b.Ageatdeath</a></li>
-                                <li>Head direction: <a class="font-weight-bold">@b.Headdirection</a></li>
-                                <li>Hair color: <a class="font-weight-bold">@b.Haircolor</a></li>
+                                <li>Age at death: <a class="@((b.Ageatdeath == "N/A") ? "font-weight-lighter" : "font-weight-bold")">@b.Ageatdeath</a></li>
+
+
+                                @{if (b.Headdirection == "E") { b.Headdirection = "East"; } else if (b.Headdirection == "W") { b.Headdirection = "West"; } else { b.Headdirection = "N/A"; }}
+                                <li>Head direction: <a class="@((b.Headdirection == "N/A") ? "font-weight-lighter" : "font-weight-bold")">@b.Headdirection</a></li>
+
+                                @{if (b.Haircolor == "K") { b.Haircolor = "Black"; } else if (b.Haircolor == "B") { b.Haircolor = "Brown"; }
+                                    else if (b.Haircolor == "D") { b.Haircolor = "Blonde"; } else if (b.Haircolor == "A") { b.Haircolor = "Brown/Red"; }
+                                    else if (b.Haircolor == "R") { b.Haircolor = "Red/Redblonde"; } else { b.Haircolor = "N/A"; } }
+                                <li>Hair color: <a class="@((b.Haircolor == "N/A") ? "font-weight-lighter" : "font-weight-bold")">@b.Haircolor</a></li>
+                                
                                 <li>Database id: <a class="font-weight-bold">@b.Id</a></li>
                             </ul>
 
@@ -127,7 +139,7 @@
                             <form method="post" asp-action="Burial_Details" asp-route-id="@b.Id">
                                 <input type="hidden" asp-for="@b.Id" />
                                 <span class="card-text">
-                                    <button type="submit" class="btn btn-primary btn-sm float-end">Details</button>
+                                    <button type="submit" class="btn-primary btn-sm m-1 float-end">Details</button>
                                 </span>
                             </form>
 
