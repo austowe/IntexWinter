@@ -112,7 +112,7 @@ namespace WebApplication1
             app.UseAuthorization();
 
             app.Use(async (context, next) => {
-                context.Response.Headers.Add("Content-Security-Policy", "default-src 'self' 'unsafe-inline' *;");
+                context.Response.Headers.Add("Content-Security-Policy", "default-src 'self' 'unsafe-inline' 'unsafe-eval' *;");
 
                 await next();
             });
