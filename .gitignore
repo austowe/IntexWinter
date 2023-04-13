@@ -365,5 +365,5 @@ FodyWeavers.xsd
 #key file
 keys.txt
 
-#appsettings to hide database
-appsettings.json
+# Config files
+appsettings.Development.json
