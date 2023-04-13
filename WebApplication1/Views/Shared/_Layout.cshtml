@@ -19,8 +19,11 @@
             padding-bottom: 60px;
         }
     </style>
+    <link rel="stylesheet" href="~/css/StyleSheet.css" />
+    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
+
 </head>
-<body>
+<body class="@ViewData["BodyClass"]">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -69,7 +72,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted" style="background-color: #fff;">
         <div class="container">
             &copy; 2023 - Eye of Anubis - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>

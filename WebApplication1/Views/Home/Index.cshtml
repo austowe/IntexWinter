@@ -1,9 +1,11 @@
 ﻿@{
     ViewData["Title"] = "Eye of Anubis";
+    ViewData["BodyClass"] = "homeBody";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome to the Eye of Anubis</h1>
+    <h6>Catalog and predictor for the Fag el-Gamous dig site</h6>
 </div>
 <br />
 <div class="container-fluid">
@@ -24,7 +26,7 @@
                                 and the oldest head-west burial dates to AD 128–284. One of the deepest signs of Christianity, a cross symbol, is present in the outer
                                 wrapping of a burial dated AD 545–645. The head-east and head-west burial practices in the Fag el-Gamous cemetery coexisted for at least 200 years.
                                 <br /><br />
-                                <a href="https://www-sciencedirect-com.erl.lib.byu.edu/science/article/pii/S2352409X15000188" class="btn btn-outline-dark">Learn More</a>
+                                <a href="https://www-sciencedirect-com.erl.lib.byu.edu/science/article/pii/S2352409X15000188" class="btn btn-outline-dark" target="_blank">Learn More</a>
                             </div>
                             <div class="col-md-6">
                                 <img src="~/img/map.jpg" class="img-fluid" />
@@ -48,14 +50,11 @@
                                 <img src="~/img/IMG_1214.JPG" class="img-fluid" />
                             </div>
                             <div class="col-md-6">
-                                The Fag el-Gamous cemetery is a 125 hectare Graeco-Roman necropolis on the eastern edge of the Fayoum Depression.
-                                The 1000 + burials excavated to date at the cemetery are found largely in rectangular shafts at 0.3–3.0 m deep and oriented on an east–west axis.
-                                The high burial density, varying between 1.3 and 3.0 burials per square meter, is due in part to multiple burials in the same shaft.
-                                The stratigraphically deepest burials in a shaft are buried head east and later burials in the same shaft are buried head west.
-                                It has been argued that this directional shift occurred as early as the late first to the early second century AD.
-                                AMS radiocarbon dating of the available samples shows that the deepest and presumably oldest head-east burial dates to AD 79–230,
-                                and the oldest head-west burial dates to AD 128–284. One of the deepest signs of Christianity, a cross symbol, is present in the outer
-                                wrapping of a burial dated AD 545–645. The head-east and head-west burial practices in the Fag el-Gamous cemetery coexisted for at least 200 years.
+                                Each burial entry in our database includes detailed information about the individual and the burial location, whenever that information
+                                is available. Any artifacts discovered during the excavation process, such as pottery, jewelry, or tools, are also cataloged, along with their descriptions and significance. 
+                                Users can also view high-quality images of the burials, including photographs
+                                of the skeletal remains, burial artifacts, and the excavation process. Additionally, researchers can input new data, delete records,
+                                and update burial information with new data.
                                 <br /><br />
                                 <a asp-area="" asp-controller="Home" asp-action="Burial_Records" class="btn btn-outline-dark">See Data</a>
                             </div>
@@ -70,23 +69,23 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Fag el-Gamous</h5>
+                    <h5 class="card-title">Predict Burial Data and View Analytics</h5>
                     <div class="row">
                         <p class="card-text">
                             <div class="col-md-6">
-                                The Fag el-Gamous cemetery is a 125 hectare Graeco-Roman necropolis on the eastern edge of the Fayoum Depression.
-                                The 1000 + burials excavated to date at the cemetery are found largely in rectangular shafts at 0.3–3.0 m deep and oriented on an east–west axis.
-                                The high burial density, varying between 1.3 and 3.0 burials per square meter, is due in part to multiple burials in the same shaft.
-                                The stratigraphically deepest burials in a shaft are buried head east and later burials in the same shaft are buried head west.
-                                It has been argued that this directional shift occurred as early as the late first to the early second century AD.
-                                AMS radiocarbon dating of the available samples shows that the deepest and presumably oldest head-east burial dates to AD 79–230,
-                                and the oldest head-west burial dates to AD 128–284. One of the deepest signs of Christianity, a cross symbol, is present in the outer
-                                wrapping of a burial dated AD 545–645. The head-east and head-west burial practices in the Fag el-Gamous cemetery coexisted for at least 200 years.
+
+                                Using data from the Fag el-Gamous dig site, we have build a predictive model to determine the most likely direction a body at the gounds will be laying 
+                                based on other factors such as artifact, location, and body information. This model was tested at 96.75% accuracy, and will determine whether a body 
+                                was laid with its head to the east or to the west. The model will still make an accurate prediction, even if you do not have all of the information. 
+                                Feel free to experiment and see which variables affect head direction!<br />We also have performed cluster analysis on all of the dig site data, which 
+                                can be previewed on the analysis page, linked below.
+
                                 <br /><br />
-                                <a href="https://www-sciencedirect-com.erl.lib.byu.edu/science/article/pii/S2352409X15000188" class="btn btn-outline-dark" target="_blank">Learn More</a>
+                                <a asp-area="" asp-controller="Home" asp-action="Predictions" class="btn btn-outline-dark">Make Predictions</a>
+                                <a asp-area="" asp-controller="Home" asp-action="Unsupervised" class="btn btn-outline-dark">See Analysis</a>
                             </div>
                             <div class="col-md-6">
-                                <img src="~/img/map.jpg" class="img-fluid" />
+                                <img src="~/img/2002-0058.JPG" class="img-fluid" />
                             </div>
                         </p>
                     </div>
