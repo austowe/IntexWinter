@@ -8,147 +8,201 @@
 
 @model IntexWinter.Models.ViewModels.BurialDetailsViewModel
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <p class="card-text">
+                            <div>
+                                @{
+                                    if (SignInManager.IsSignedIn(User))
+                                    {
+                                        if (User.IsInRole("Researcher"))
+                                        {
+                                            <a type="button" class="btn btn-danger btn-sm float-end m-1" asp-action="Delete" asp-route-id="@Model.Id">Delete Record</a>
+                                            <a type="button" class="btn btn-success btn-sm float-end m-1" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                                        }
+                                    }
 
-<h1>Burial Details</h1>
+                                }
+                                <a asp-action="Burial_Records">Back to List</a>
+                            </div>
+                            <div class="col-md-6">
+                                <h1>Burial Details for record @Model.Id</h1>
 
-@if (Model != null)
-{
-    <div>
-        <h4>Burialmain</h4>
-        <hr />
-        <dl class="row">
-            <dt class="col-sm-2">
-                Id
-            </dt>
-            <dd class="col-sm-10">
-                @Model.Id
-            </dd>
-            <dt class="col-sm-2">
-                Sex
-            </dt>
-            <dd class="col-sm-10">
-                @Model.Sex
-            </dd>
-            <dt class="col-sm-2">
-                Depth
-            </dt>
-            <dd class="col-sm-10">
-                @Model.Depth
-            </dd>
-            <dt class="col-sm-2">
-                Adult Subadult
-            </dt>
-            <dd class="col-sm-10">
-                @Model.AdultSubadult
-            </dd>
-            <dt class="col-sm-2">
-                Preservation
-            </dt>
-            <dd class="col-sm-10">
-                @Model.Preservation
-            </dd>
-            <dt class="col-sm-2">
-                Fieldbookpage
-            </dt>
-            <dd class="col-sm-10">
-                @Model.FieldBookPage
-            </dd>
-            <dt class="col-sm-2">
-                Goods
-            </dt>
-            <dd class="col-sm-10">
-                @Model.Goods
-            </dd>
-            <dt class="col-sm-2">
-                Text
-            </dt>
-            <dd class="col-sm-10">
-                @Model.Text
-            </dd>
-            <dt class="col-sm-2">
-                Hair
-            </dt>
-            <dd class="col-sm-10">
-                @Model.Hair
-            </dd>
-            <dt class="col-sm-2">
-                Wrapping
-            </dt>
-            <dd class="col-sm-10">
-                @Model.Wrapping
-            </dd>
-            <dt class="col-sm-2">
-                Hair Color
-            </dt>
-            <dd class="col-sm-10">
-                @Model.HairColor
-            </dd>
-            <dt class="col-sm-2">
-                Samplescollected
-            </dt>
-            <dd class="col-sm-10">
-                @Model.SamplesCollected
-            </dd>
-            <dt class="col-sm-2">
-                Length
-            </dt>
-            <dd class="col-sm-10">
-                @Model.Length
-            </dd>
-            <dt class="col-sm-2">
-                Age At Death
-            </dt>
-            <dd class="col-sm-10">
-                @Model.AgeAtDeath
-            </dd>
-            <dt class="col-sm-2">
-                Excavation Recorder
-            </dt>
-            <dd class="col-sm-10">
-                @Model.ExcavationRecorder
-            </dd>
-            <dt class="col-sm-2">
-                Hair
-            </dt>
-            <dd class="col-sm-10">
-                @Model.Hair
-            </dd>
-            <dt class="col-sm-2">
-                Burialmaterials
-            </dt>
-            <dd class="col-sm-10">
-                @Model.BurialMaterials
-            </dd>
-            <dt class="col-sm-2">
-                Date Of Excavation
-            </dt>
-            <dd class="col-sm-10">
-                @Model.DateOfExcavation
-            </dd>
-            <dt class="col-sm-2">
-                Field Book Excavation Year
-            </dt>
-            <dd class="col-sm-10">
-                @Model.FieldBookExcavationYear
-            </dd>
-        </dl>
+                                @if (Model != null)
+                                {
+                                    <div>
+                                        <hr />
+                                        <table class="table table-striped">
+                                            <tbody>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <td>@Model.Id</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Square North South</th>
+                                                    <td>@Model.SquareNorthSouth</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Head Direction</th>
+                                                    <td>@Model.HeadDirection</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Sex</th>
+                                                    <td>@Model.Sex</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>North South</th>
+                                                    <td>@Model.NorthSouth</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Depth</th>
+                                                    <td>@Model.Depth</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>East West</th>
+                                                    <td>@Model.EastWest</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Adult Subadult</th>
+                                                    <td>@Model.AdultSubadult</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Face Bundles</th>
+                                                    <td>@Model.FaceBundles</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>South To Head</th>
+                                                    <td>@Model.SouthToHead</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Preservation</th>
+                                                    <td>@Model.Preservation</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Fieldbookpage</th>
+                                                    <td>@Model.FieldBookPage</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Square East West</th>
+                                                    <td>@Model.SquareEastWest</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Goods</th>
+                                                    <td>@Model.Goods</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Text</th>
+                                                    <td>@Model.Text</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Wrapping</th>
+                                                    <td>@Model.Wrapping</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Hair Color</th>
+                                                    <td>@Model.HairColor</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>West To Head</th>
+                                                    <td>@Model.WestToHead</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Samples Collected</th>
+                                                    <td>@Model.SamplesCollected</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Area</th>
+                                                    <td>@Model.Area</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Length</th>
+                                                    <td>@Model.Length</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Burial Number</th>
+                                                    <td>@Model.BurialNumber</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Data Expert Initials</th>
+                                                    <td>@Model.DataExpertInitials</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>West To Feet</th>
+                                                    <td>@Model.WestToFeet</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Age At Death</th>
+                                                    <td>@Model.AgeAtDeath</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>South To Feet</th>
+                                                    <td>@Model.SouthToFeet</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Excavation Recorder</th>
+                                                    <td>@Model.ExcavationRecorder</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Photos</th>
+                                                    <td>@Model.Photos</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Hair</th>
+                                                    <td>@Model.Hair</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Burialmaterials</th>
+                                                    <td>@Model.BurialMaterials</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Date Of Excavation</th>
+                                                    <td>@Model.DateOfExcavation</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Field Book Excavation Year</th>
+                                                    <td>@Model.FieldBookExcavationYear</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Cluster Number</th>
+                                                    <td>@Model.ClusterNumber</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Shaft Number</th>
+                                                    <td>@Model.ShaftNumber</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div>
+                                        @{
+                                            if (SignInManager.IsSignedIn(User))
+                                            {
+                                                if (User.IsInRole("Researcher"))
+                                                {
+                                                    <a type="button" class="btn btn-danger btn-sm float-end m-1" asp-action="Delete" asp-route-id="@Model.Id">Delete Record</a>
+                                                    <a type="button" class="btn btn-success btn-sm float-end m-1" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                                                }
+                                            }
+
+                                        }
+                                        <a asp-action="Burial_Records">Back to List</a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <p>The model is null.</p>
+                                }
+                            </div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
     </div>
-    <div>
-        @{
-            if (SignInManager.IsSignedIn(User))
-            {
-                if (User.IsInRole("Researcher"))
-                {
-                    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@Model.Id">Delete Record</a>
-                }
-            }
-
-        }
-        <a asp-action="Burial_Records">Back to List</a>
-    </div>
-}
-else
-{
-    <p>The model is null.</p>
-}
+</div>
