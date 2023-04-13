@@ -48,28 +48,9 @@ namespace WebApplication1.Controllers
             //   ? repo.Burialmains.Count()
             //   : repo.Burialmains.Where(b => b.Depth != "U" && b.Depth != null && b.Depth != "" && Convert.ToDecimal(b.Depth) <= Convert.ToDecimal(depth) && Convert.ToDecimal(b.Depth) > (Convert.ToDecimal(depth) - 1)).Count();
 
-            var BurialsIQeryable = repo.Burialmains;
-
-            foreach (Burialmain burial in BurialsIQeryable)
-            {
-                //Change burial.Sex of BurialsIQeryable for display
-                if (burial.Sex == null || burial.Sex == "")
-                {
-                    burial.Sex = "N/A";
-                }
-                else if (burial.Sex == "M")
-                {
-                    burial.Sex = "Male";
-                }
-                else if (burial.Sex == "F")
-                {
-                    burial.Sex = "Female";
-                }
-            }
-
-
+            
             //Calculate total number of burials based on filter criteria
-            var totalBurials = BurialsIQeryable
+            var totalBurials = repo.Burialmains
                 //.Where(b => b.Depth != "U" && b.Depth != null && b.Depth != "" && Convert.ToDecimal(b.Depth) <= Convert.ToDecimal(depth) && Convert.ToDecimal(b.Depth) > (Convert.ToDecimal(depth) - 1))
                 .Where(b => b.Sex == sex || sex == null || sex == "z")
                 .Where(b => b.Haircolor == hairColor || hairColor == null || hairColor == "z")
@@ -149,7 +130,7 @@ namespace WebApplication1.Controllers
 
             var x = new BurialsViewModel
             {
-                Burialmains = BurialsIQeryable
+                Burialmains = repo.Burialmains
                 .Where(b => b.Sex == sex || sex == null || sex == "z")
                 .Where(b => b.Haircolor == hairColor || hairColor == null || hairColor == "z")
                 .Where(b => b.Ageatdeath == ageAtDeath || ageAtDeath == null || ageAtDeath == "z")
@@ -187,6 +168,8 @@ namespace WebApplication1.Controllers
 
             return View(viewModel);
         }
+
+
 
         [HttpGet]
         [Authorize(Roles = "Researcher")]
