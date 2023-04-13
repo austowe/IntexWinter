@@ -2,6 +2,23 @@
     ViewData["Title"] = "Application Submitted";
 }
 
-@model IntexWinter.Models.Burialmain
+@using IdentityManagerUI.Models
+@using Microsoft.AspNetCore.Identity
 
-<h2>@Model.Id has been added.</h2>
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@model Burialmain
+
+<h2>@Model.Id has successfully been added.</h2>
+@{
+    if (SignInManager.IsSignedIn(User))
+    {
+        if (User.IsInRole("Researcher"))
+        {
+            <a type="button" class="btn btn-success btn-sm float-end m-1" asp-area="" asp-controller="Home" asp-action="Add_Burial">Add another Record</a>
+        }
+    }
+
+}
+<a asp-action="Burial_Records">Back to List</a>
