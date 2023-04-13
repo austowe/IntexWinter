@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "IdentityManagerUI": {
+      "commandName": "Project"
+    },
+    "Project": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\austi\\OneDrive\\Documents\\GitHub\\IntexWinter",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

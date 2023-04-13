@@ -1,0 +1,482 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    @model IntexWinter.Models.ViewModels.PredictModel
+
+    <br />
+    <h2>Predict the direction that a mummy's head will face</h2>
+
+    <div class="alert alert-success" role="alert" style="display:@Model.Display">
+        Your predicted result is: @Model.Prediction
+    </div>
+    <form method="post">
+        <div asp-validation-summary="All"></div>
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                        Location
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                    <div class="accordion-body">
+                        <div>
+                            <div class="row g-3 align-items-center">
+                                <div class="col-auto">
+                                    <label asp-for="Northsouthsquare">North/South:</label>
+                                </div>
+                                <div class="col-auto">
+                                    <input asp-for="Northsouthsquare" class="form-control" type="number" step="any" placeholder="0" aria-label="North South Input" min="0">
+                                </div>
+                                <div class="col-auto">
+                                    <select class="form-select" aria-label="North/South" asp-for="Northsouth">
+                                        <option value="N" selected>N</option>
+                                        <option value="S">S</option>
+                                        <option value="U">Unknown</option>
+                                    </select>
+                                </div>
+                                <div class="col-auto">
+                                    <label asp-for="Eastwestsquare">East/West:</label>
+                                </div>
+                                <div class="col-auto">
+                                    <input asp-for="Eastwestsquare" class="form-control" type="number" step="any" placeholder="0" aria-label="North South Input" min="0">
+                                </div>
+                                <div class="col-auto">
+                                    <select class="form-select" aria-label="East/West" asp-for="Eastwest">
+                                        <option value="E" selected>E</option>
+                                        <option value="W">W</option>
+                                        <option value="U">Unknown</option>
+                                    </select>
+                                </div>
+                                <div class="col-auto">
+                                    <label asp-for="Area">Area:</label>
+                                </div>
+                                <div class="col-auto">
+                                    <select class="form-select" aria-label="Area" asp-for="Area">
+                                        <option value="NW" selected>NW</option>
+                                        <option value="NE">NE</option>
+                                        <option value="SW">SW</option>
+                                        <option value="SE">SE</option>
+                                        <option value="U">Unknown</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row g-3 align-items-center">
+                                <div class="col-auto">
+                                    <label asp-for="Westtohead">West to Head:</label>
+                                </div>
+                                <div class="col-auto">
+                                    <input asp-for="Westtohead" class="form-control" type="number" step="any" placeholder="0" aria-label="West to Head" min="0">
+                                </div>
+                                <div class="col-auto">
+                                    <label asp-for="Westtofeet">West to Feet:</label>
+                                </div>
+                                <div class="col-auto">
+                                    <input asp-for="Westtofeet" class="form-control" type="number" step="any" placeholder="0" aria-label="West to Feet" min="0">
+                                </div>
+                                <div class="col-auto">
+                                    <label asp-for="Southtohead">South to Head:</label>
+                                </div>
+                                <div class="col-auto">
+                                    <input asp-for="Southtohead" class="form-control" type="number" step="any" placeholder="0" aria-label="South to Head" min="0">
+                                </div>
+                                <div class="col-auto">
+                                    <label asp-for="Southtofeet">South to Feet:</label>
+                                </div>
+                                <div class="col-auto">
+                                    <input asp-for="Southtofeet" class="form-control" type="number" step="any" placeholder="0" aria-label="South to Feet" min="0">
+                                </div>
+
+                            </div>
+                            <br />
+                            <div class="row g-3 align-items-center">
+                                <div class="col-auto">
+                                    <label asp-for="Depth">Depth:</label>
+                                </div>
+                                <div class="col-auto">
+                                    <input asp-for="Depth" class="form-control" type="number" step="any" placeholder="Meters" aria-label="Depth" min="0">
+                                </div>
+                                <div class="col-auto">
+                                    <label asp-for="Year">Year Excavated:</label>
+                                </div>
+                                <div class="col-auto">
+                                    <input asp-for="Year" class="form-control" type="number" step="any" placeholder="2005" aria-label="Year" min="1950">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                        Body Data
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <div>
+                            <div class="row g-3 align-items-center">
+                                <div class="col-auto">
+                                    <label asp-for="Length">Length:</label>
+                                </div>
+                                <div class="col-auto">
+                                    <input asp-for="Length" class="form-control" type="number" step="any" placeholder="Meters" aria-label="Length" min="0">
+                                </div>
+                                <div class="col-auto">
+                                    <label asp-for="Age">Age at Death:</label>
+                                </div>
+                                <div class="col-auto">
+                                    <select asp-for="Age" class="form-select" aria-label="Age at Death">
+                                        <option value="A" selected>Adult: 15+</option>
+                                        <option value="C">Child: 3-15</option>
+                                        <option value="I">Infant: 1-3</option>
+                                        <option value="N">Newborn: 0-1</option>
+                                        <option value="U">Unknown</option>
+                                    </select>
+                                </div>
+                                <div class="col-auto">
+                                    <label asp-for="Sex">Sex:</label>
+                                </div>
+                                <div class="col-auto">
+                                    <select asp-for="Sex" class="form-select" aria-label="Sex">
+                                        <option value="M" selected>Male</option>
+                                        <option value="F">Female</option>
+                                        <option value="U">Unknown</option>
+                                    </select>
+                                </div>
+                                <div class="col-auto">
+                                    <label asp-for="Haircolor">Hair Color:</label>
+                                </div>
+                                <div class="col-auto">
+                                    <select asp-for="Haircolor" class="form-select" aria-label="Hair Color">
+                                        <option value="B" selected>Brown</option>
+                                        <option value="K">Black</option>
+                                        <option value="A">Brown-Red</option>
+                                        <option value="R">Red</option>
+                                        <option value="D">Blond</option>
+                                        <option value="U">Unknown</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row g-3 align-items-center">
+                                <div class="col-auto">
+                                    <label asp-for="Preservation">Preservation:</label>
+                                </div>
+                                <div class="col-auto">
+                                    <select asp-for="Preservation" class="form-select" aria-label="Preservation">
+                                        <option value="VG" selected>Very Good</option>
+                                        <option value="G">Good</option>
+                                        <option value="I">Intermediate</option>
+                                        <option value="P">Poor</option>
+                                        <option value="VP">Very Poor</option>
+                                        <option value="U">Unknown</option>
+                                    </select>
+                                </div>
+                                <div class="col-auto">
+                                    <label asp-for="Wrapping">Wrapping:</label>
+                                </div>
+                                <div class="col-auto">
+                                    <select asp-for="Wrapping" class="form-select" aria-label="Wrapping">
+                                        <option value="W" selected>Full or Nearly Full</option>
+                                        <option value="H">Partial</option>
+                                        <option value="B">Bones/Remnants</option>
+                                        <option value="U">Unknown</option>
+                                    </select>
+                                </div>
+                                <div class="col-auto">
+                                    <label asp-for="Facebundles">Face Bundles:</label>
+                                </div>
+                                <div class="col-auto">
+                                    <select asp-for="Facebundles" class="form-select" aria-label="Face Bundles">
+                                        <option value="Y" selected>Yes</option>
+                                        <option value="N">No</option>
+                                        <option value="U">Unknown</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <p>
+                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBones" aria-expanded="false" aria-controls="collapseBones">
+                                Show Bone Data
+                            </button>
+                        </p>
+                        <div class="collapse" id="collapseBones">
+                            <div class="card card-body">
+                                <div>
+                                    <div>
+                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                            <strong>Heads up:</strong> Bone Data may not change your result, as many related characteristics (age, sex) are already being factored in.
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16" style="vertical-align: 20px">
+                                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="row g-3 align-items-center">
+                                        <div class="col-auto">
+                                            <label asp-for="Femur">Femur Epiphyseal Union:</label>
+                                        </div>
+                                        <div class="col-auto">
+                                            <select asp-for="Femur" class="form-select" aria-label="Femur Epiphyseal Union">
+                                                <option value="C" selected>Closed</option>
+                                                <option value="N">Not Closed</option>
+                                                <option value="U">Unknown</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-auto">
+                                            <label asp-for="Femurheaddiameter">Femur Head Diameter:</label>
+                                        </div>
+                                        <div class="col-auto">
+                                            <input asp-for="Femurheaddiameter" class="form-control" type="number" step="any" placeholder="mm" aria-label="Femur Head Diameter" min="0">
+                                        </div>
+                                        <div class="col-auto">
+                                            <label asp-for="Femurlength">Femur Length:</label>
+                                        </div>
+                                        <div class="col-auto">
+                                            <input asp-for="Femurlength" class="form-control" type="number" step="any" placeholder="cm" aria-label="Femur Length" min="0">
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="row g-3 align-items-center">
+                                        <div class="col-auto">
+                                            <label asp-for="Humerus">Humerus Epiphyseal Union:</label>
+                                        </div>
+                                        <div class="col-auto">
+                                            <select asp-for="Humerus" class="form-select" aria-label="Humerus Epiphyseal Union">
+                                                <option value="C" selected>Closed</option>
+                                                <option value="N">Not Closed</option>
+                                                <option value="U">Unknown</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-auto">
+                                            <label asp-for="Humerusheaddiameter">Humerus Head Diameter:</label>
+                                        </div>
+                                        <div class="col-auto">
+                                            <input asp-for="Humerusheaddiameter" class="form-control" type="number" step="any" placeholder="mm" aria-label="Humerus Head Diameter" min="0">
+                                        </div>
+                                        <div class="col-auto">
+                                            <label asp-for="Humeruslength">Humerus Length:</label>
+                                        </div>
+                                        <div class="col-auto">
+                                            <input asp-for="Humeruslength" class="form-control" type="number" step="any" placeholder="cm" aria-label="Humerus Length" min="0">
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="row g-3 align-items-center">
+                                        <div class="col-auto">
+                                            <label asp-for="Robust">Robust:</label>
+                                        </div>
+                                        <div class="col-auto">
+                                            <select asp-for="Robust" class="form-select" aria-label="Robust">
+                                                <option value="Y" selected>Yes</option>
+                                                <option value="N">No</option>
+                                                <option value="U">Unknown</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-auto">
+                                            <label asp-for="Supraorbitalridges">Supraorbital Ridges:</label>
+                                        </div>
+                                        <div class="col-auto">
+                                            <select asp-for="Supraorbitalridges" class="form-select" aria-label="Supraorbital Ridges">
+                                                <option value="H" selected>Heavy</option>
+                                                <option value="L">Light</option>
+                                                <option value="U">Unknown</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-auto">
+                                            <label asp-for="Orbitedge">Orbit Edge:</label>
+                                        </div>
+                                        <div class="col-auto">
+                                            <select asp-for="Orbitedge" class="form-select" aria-label="Orbit Edge">
+                                                <option value="B" selected>Blunt</option>
+                                                <option value="S">Sharp</option>
+                                                <option value="U">Unknown</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-auto">
+                                            <label asp-for="Parietalblossing">Parietal Blossing:</label>
+                                        </div>
+                                        <div class="col-auto">
+                                            <select asp-for="Parietalblossing" class="form-select" aria-label="Parietal Blossing">
+                                                <option value="Y" selected>Yes</option>
+                                                <option value="N">No</option>
+                                                <option value="U">Unknown</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-auto">
+                                            <label asp-for="Gonion">Gonion:</label>
+                                        </div>
+                                        <div class="col-auto">
+                                            <select asp-for="Gonion" class="form-select" aria-label="Gonion">
+                                                <option value="F" selected>Flat</option>
+                                                <option value="P">Pointed</option>
+                                                <option value="U">Unknown</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-auto">
+                                            <label asp-for="Nuchalcrest">Nuchal Crest:</label>
+                                        </div>
+                                        <div class="col-auto">
+                                            <select asp-for="Nuchalcrest" class="form-select" aria-label="Nuchal Crest">
+                                                <option value="L" selected>Larger</option>
+                                                <option value="S">Smaller</option>
+                                                <option value="U">Unknown</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-auto">
+                                            <label asp-for="Zygomaticcrest">Zygomatic Crest:</label>
+                                        </div>
+                                        <div class="col-auto">
+                                            <select asp-for="Zygomaticcrest" class="form-select" aria-label="Zygomatic Crest">
+                                                <option value="L" selected>Longer</option>
+                                                <option value="S">Shorter</option>
+                                                <option value="U">Unknown</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="row g-3 align-items-center">
+                                        <div class="col-auto">
+                                            <label asp-for="Ventralarc">Ventral Arc:</label>
+                                        </div>
+                                        <div class="col-auto">
+                                            <select asp-for="Ventralarc" class="form-select" aria-label="Ventral Arc">
+                                                <option value="Y" selected>Yes</option>
+                                                <option value="N">No</option>
+                                                <option value="U">Unknown</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-auto">
+                                            <label asp-for="Subpubicangle">Subpubic Angle:</label>
+                                        </div>
+                                        <div class="col-auto">
+                                            <select asp-for="Subpubicangle" class="form-select" aria-label="Subpublic Angle">
+                                                <option value="N" selected>Narrow</option>
+                                                <option value="W">Wide</option>
+                                                <option value="U">Unknown</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-auto">
+                                            <label asp-for="Sciaticnotch">Sciatic Notch:</label>
+                                        </div>
+                                        <div class="col-auto">
+                                            <select asp-for="Sciaticnotch" class="form-select" aria-label="Sciatic Notch">
+                                                <option value="N" selected>Narrow</option>
+                                                <option value="W">Wide</option>
+                                                <option value="U">Unknown</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-auto">
+                                            <label asp-for="Medicalipramus">Medical IP Ramus:</label>
+                                        </div>
+                                        <div class="col-auto">
+                                            <select asp-for="Medicalipramus" class="form-select" aria-label="Medical IP Ramus">
+                                                <option value="F" selected>Flat</option>
+                                                <option value="R">Ridged</option>
+                                                <option value="U">Unknown</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                        Textile Information
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <div class="row g-3 align-items-center">
+                            <div class="col-auto">
+                                <label asp-for="Function">Function:</label>
+                            </div>
+                            <div class="col-auto">
+                                <select asp-for="Function" class="form-select" aria-label="Function">
+                                    <option value="B">Belt</option>
+                                    <option value="BS" selected>Blanket/Shroud</option>
+                                    <option value="FB">Face Bundle</option>
+                                    <option value="F">Fragmentary</option>
+                                    <option value="R">Ribbon</option>
+                                    <option value="S">Scarf</option>
+                                    <option value="T">Tunic</option>
+                                    <option value="U">Unknown</option>
+                                </select>
+                            </div>
+                            <div class="col-auto">
+                                <label asp-for="Thickness">Thickness:</label>
+                            </div>
+                            <div class="col-auto">
+                                <select asp-for="Thickness" class="form-select" aria-label="Thickness">
+                                    <option value="VF" selected>Very Fine</option>
+                                    <option value="F">Fine</option>
+                                    <option value="M">Medium</option>
+                                    <option value="C">Coarse</option>
+                                    <option value="VC">Very Coarse</option>
+                                    <option value="U">Unknown</option>
+                                </select>
+                            </div>
+                            <div class="col-auto">
+                                <label asp-for="Angle">Angle:</label>
+                            </div>
+                            <div class="col-auto">
+                                <select asp-for="Angle" class="form-select" aria-label="Angle">
+                                    <option value="S" selected>Soft Spun</option>
+                                    <option value="M">Medium Spun</option>
+                                    <option value="H">Hard Spun</option>
+                                    <option value="U">Unknown</option>
+                                </select>
+                            </div>
+                            <div class="col-auto">
+                                <label asp-for="Manipulation">Manipulation:</label>
+                            </div>
+                            <div class="col-auto">
+                                <select asp-for="Manipulation" class="form-select" aria-label="Manipulation">
+                                    <option value="WT" selected>Weft</option>
+                                    <option value="WP">Warp</option>
+                                    <option value="G">Green yarns</option>
+                                    <option value="U">Unknown</option>
+                                </select>
+                            </div>
+                            <div class="col-auto">
+                                <label asp-for="Material">Material:</label>
+                            </div>
+                            <div class="col-auto">
+                                <select asp-for="Material" class="form-select" aria-label="Material">
+                                    <option value="L" selected>Linen</option>
+                                    <option value="W">Wool</option>
+                                    <option value="O">Other</option>
+                                    <option value="U">Unknown</option>
+                                </select>
+                            </div>
+                            <div class="col-auto">
+                                <label asp-for="Yarndirection">Yarn Direction:</label>
+                            </div>
+                            <div class="col-auto">
+                                <select asp-for="Yarndirection" class="form-select" aria-label="Material">
+                                    <option value="S" selected>S-Twist</option>
+                                    <option value="Z">Z-Twist</option>
+                                    <option value="U">Unknown</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <br />
+    </form>
+}
