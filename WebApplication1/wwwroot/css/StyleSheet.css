@@ -1,3 +1,7 @@
 ﻿.homeBody {
     background-color: #d8d8d8;
 }
+
+:root {
+    --bs-primary: darkslateblue;
+}
