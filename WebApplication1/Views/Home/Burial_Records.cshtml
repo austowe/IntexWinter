@@ -1,6 +1,13 @@
 ﻿@{
     ViewData["Title"] = "Burial Records";
 }
+
+@using IdentityManagerUI.Models
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
 @model BurialsViewModel
 
 
@@ -83,6 +90,19 @@
                  page-class-selected="btn btn-primary font-weight-bolder"
                  class="btn-group pull-right m-1b" style="padding:5px;">
             </div>
+            @{
+                if (SignInManager.IsSignedIn(User))
+                {
+                    if (User.IsInRole("Researcher"))
+                    {
+                        <div>
+                            <a type="button" class="btn btn-primary btn-sm float-end" asp-area="" asp-controller="Home" asp-action="Add_Burial">Add a Record</a>
+                        </div>
+                    }
+                }
+
+            }
+
             <main role="main" class="pb-3">
 
                 @foreach (Burialmain b in Model.Burialmains)

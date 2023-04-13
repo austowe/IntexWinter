@@ -1,15 +1,18 @@
-﻿@model BurialEditViewModel
+﻿@model Burialmain
 
 <h2>Edit Burial</h2>
 
-<form method="post">
+<form asp-action="Edit">
+    <label for="id"></label>
+    <input type="hidden" class="form-control" id="id" name="id" value="@Model.Id">
+
     <div class="form-group">
         <label for="SquareNorthSouth">Square North South</label>
-        <input type="text" class="form-control" id="SquareNorthSouth" name="SquareNorthSouth" value="@Model.SquareNorthSouth" >
+        <input type="text" class="form-control" id="SquareNorthSouth" name="SquareNorthSouth" value="@Model.Squarenorthsouth">
     </div>
     <div class="form-group">
         <label for="HeadDirection">Head Direction</label>
-        <select class="form-control" id="HeadDirection" name="HeadDirection" value="@Model.HeadDirection">
+        <select class="form-control" id="HeadDirection" name="HeadDirection" value="@Model.Headdirection">
             <option value="W">W</option>
             <option value="E">E</option>
         </select>
@@ -23,7 +26,7 @@
     </div>
     <div class="form-group">
         <label for="NorthSouth">North South</label>
-        <select class="form-control" id="NorthSouth" name="NorthSouth" value="@Model.NorthSouth">
+        <select class="form-control" id="NorthSouth" name="NorthSouth" value="@Model.Northsouth">
             <option value="N">N</option>
             <option value="S">S</option>
         </select>
@@ -34,28 +37,28 @@
     </div>
     <div class="form-group">
         <label for="EastWest">East West</label>
-        <select class="form-control" id="EastWest" name="EastWest" value="@Model.EastWest">
+        <select class="form-control" id="EastWest" name="EastWest" value="@Model.Eastwest">
             <option value="W">W</option>
             <option value="E">E</option>
         </select>
     </div>
     <div class="form-group">
         <label for="AdultSubadult">Adult Subadult</label>
-        <select class="form-control" id="EastWest" name="EastWest" value="@Model.AdultSubadult">
+        <select class="form-control" id="EastWest" name="EastWest" value="@Model.Adultsubadult">
             <option value="A">Adult</option>
             <option value="C">Child</option>
         </select>
     </div>
     <div class="form-group">
         <label for="FaceBundles">Face Bundles</label>
-        <select class="form-control" id="FaceBundles" name="FaceBundles" value="@Model.FaceBundles">
+        <select class="form-control" id="FaceBundles" name="FaceBundles" value="@Model.Facebundles">
             <option value="Y">Y</option>
             <option value="N">N</option>
         </select>
     </div>
     <div class="form-group">
         <label for="SouthToHead">South To Head</label>
-        <input type="number" class="form-control" id="SouthToHead" name="SouthToHead" min="-10" max="10" step="0.01" value="@Model.SouthToHead" />
+        <input type="number" class="form-control" id="SouthToHead" name="SouthToHead" min="-10" max="10" step="0.01" value="@Model.Southtohead" />
     </div>
     <div class="form-group">
         <label for="Preservation">Preservation</label>
@@ -63,11 +66,11 @@
     </div>
     <div class="form-group">
         <label for="FieldBookPage">Field Book Page</label>
-        <input type="text" class="form-control" id="FieldBookPage" name="FieldBookPage" value="@Model.FieldBookPage" />
+        <input type="text" class="form-control" id="FieldBookPage" name="FieldBookPage" value="@Model.Fieldbookpage" />
     </div>
     <div class="form-group">
         <label for="SquareEastWest">Square East West</label>
-        <input type="number" class="form-control" id="SquareEastWest" name="SquareEastWest" min="0" max="100" step="0.01" value="@Model.SquareEastWest" />
+        <input type="number" class="form-control" id="SquareEastWest" name="SquareEastWest" min="0" max="100" step="0.01" value="@Model.Squareeastwest" />
     </div>
     <div class="form-group">
         <label for="Goods">Goods</label>
@@ -91,7 +94,7 @@
     </div>
     <div class="form-group">
         <label for="HairColor">HairColor</label>
-        <select class="form-control" id="HairColor" name="HairColor" value="@Model.HairColor">
+        <select class="form-control" id="HairColor" name="HairColor" value="@Model.Haircolor">
             <option value="B">Brown</option>
             <option value="K">Black</option>
             <option value="A">Brown-Red</option>
@@ -102,18 +105,14 @@
     </div>
     <div class="form-group">
         <label for="WestToHead">WestToHead</label>
-        <input type="text" class="form-control" id="WestToHead" name="WestToHead" value="@Model.WestToHead" />
+        <input type="text" class="form-control" id="WestToHead" name="WestToHead" value="@Model.Westtohead" />
     </div>
     <div class="form-group">
         <label for="SamplesCollected">SamplesCollected</label>
-        <select class="form-control" id="SamplesCollected" name="SamplesCollected" value="@Model.SamplesCollected">
+        <select class="form-control" id="SamplesCollected" name="SamplesCollected" value="@Model.Samplescollected">
             <option value="True">True</option>
             <option value="False">False</option>
         </select>
-    </div>
-    <div class="form-group">
-        <label for="Burialid">Burialid</label>
-        <input type="text" class="form-control" id="Burialid" name="Burialid" value="@Model.Burialid" />
     </div>
     <div class="form-group">
         <label for="Area">Area</label>
@@ -125,24 +124,28 @@
         </select>
     </div>
     <div class="form-group">
+        <label for="Burialid">Burialid</label>
+        <input type="text" class="form-control" id="Burialid" name="Burialid" value="@Model.Burialid" />
+    </div>
+    <div class="form-group">
         <label for="Length">Length</label>
         <input type="number" class="form-control" id="Length" name="Length" min="0" max="10" step="0.01" value="@Model.Length" />
     </div>
     <div class="form-group">
         <label for="BurialNumber">BurialNumber</label>
-        <input type="number" class="form-control" id="BurialNumber" name="BurialNumber" value="@Model.BurialNumber" />
+        <input type="number" class="form-control" id="BurialNumber" name="BurialNumber" value="@Model.Burialnumber" />
     </div>
     <div class="form-group">
         <label for="DataExpertInitials">DataExpertInitials</label>
-        <input type="text" class="form-control" id="DataExpertInitials" name="DataExpertInitials" value="@Model.DataExpertInitials" />
+        <input type="text" class="form-control" id="DataExpertInitials" name="DataExpertInitials" value="@Model.Dataexpertinitials" />
     </div>
     <div class="form-group">
         <label for="WestToFeet">WestToFeet</label>
-        <input type="number" class="form-control" id="WestToFeet" name="WestToFeet" min="-10" max="10" step="0.01" value="@Model.WestToFeet" />
+        <input type="number" class="form-control" id="WestToFeet" name="WestToFeet" min="-10" max="10" step="0.01" value="@Model.Westtofeet" />
     </div>
     <div class="form-group">
         <label for="AgeAtDeath">AgeAtDeath</label>
-        <select class="form-control" id="AgeAtDeath" name="AgeAtDeath" value="@Model.AgeAtDeath">
+        <select class="form-control" id="AgeAtDeath" name="AgeAtDeath" value="@Model.Ageatdeath">
             <option value="A">Adult</option>
             <option value="C">Child</option>
             <option value="I">Infant</option>
@@ -152,44 +155,44 @@
     </div>
     <div class="form-group">
         <label for="SouthToFeet">SouthToFeet</label>
-        <input type="number" class="form-control" id="SouthToFeet" name="SouthToFeet" min="-10" max="10" step="0.01" value="@Model.SouthToFeet" />
+        <input type="number" class="form-control" id="SouthToFeet" name="SouthToFeet" min="-10" max="10" step="0.01" value="@Model.Southtofeet" />
     </div>
     <div class="form-group">
         <label for="ExcavationRecorder">ExcavationRecorder</label>
-        <input type="text" class="form-control" id="ExcavationRecorder" name="ExcavationRecorder" value="@Model.ExcavationRecorder" />
-    </div>
-    <div class="form-group">
-        <label for="Hair">Hair</label>
-        <input type="text" class="form-control" id="Hair" name="Hair" value="@Model.Hair" />
+        <input type="text" class="form-control" id="ExcavationRecorder" name="ExcavationRecorder" value="@Model.Excavationrecorder" />
     </div>
     <div class="form-group">
         <label for="Photos">Photos</label>
         <input type="text" class="form-control" id="Photos" name="Photos" value="@Model.Photos" />
     </div>
     <div class="form-group">
+        <label for="Hair">Hair</label>
+        <input type="text" class="form-control" id="Hair" name="Hair" value="@Model.Hair" />
+    </div>
+    <div class="form-group">
         <label for="BurialMaterials">BurialMaterials</label>
-        <input type="text" class="form-control" id="BurialMaterials" name="BurialMaterials" value="@Model.BurialMaterials" />
+        <input type="text" class="form-control" id="BurialMaterials" name="BurialMaterials" value="@Model.Burialmaterials" />
     </div>
     <div class="form-group">
         <label for="DateOfExcavation">DateOfExcavation</label>
-        <input type="date" class="form-control" id="DateOfExcavation" name="DateOfExcavation" value="@Model.DateOfExcavation" />
+        <input type="date" class="form-control" id="DateOfExcavation" name="DateOfExcavation" value="@Model.Dateofexcavation" />
     </div>
     <div class="form-group">
         <label for="FieldBookExcavationYear">FieldBookExcavationYear</label>
-        <input type="number" class="form-control" id="FieldBookExcavationYear" name="FieldBookExcavationYear" min="2000" max="2200" value="@Model.FieldBookExcavationYear" />
+        <input type="number" class="form-control" id="FieldBookExcavationYear" name="FieldBookExcavationYear" min="1900" max="2200" value="@Model.Fieldbookexcavationyear" />
     </div>
     <div class="form-group">
         <label for="ClusterNumber">ClusterNumber</label>
-        <input type="text" class="form-control" id="ClusterNumber" name="ClusterNumber" value="@Model.ClusterNumber" />
+        <input type="text" class="form-control" id="ClusterNumber" name="ClusterNumber" value="@Model.Clusternumber" />
     </div>
     <div class="form-group">
         <label for="ShaftNumber">ShaftNumber</label>
-        <input type="text" class="form-control" id="ShaftNumber" name="ShaftNumber" value="@Model.ShaftNumber" />
+        <input type="text" class="form-control" id="ShaftNumber" name="ShaftNumber" value="@Model.Shaftnumber" />
     </div>
 
     <br />
 
-    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <button type="submit" value="save" class="btn btn-primary">Save Changes</button>
     <a asp-action="Burial_Details" asp-route-id="@Model.Id" class="btn btn-default">Cancel</a>
 
 </form>
