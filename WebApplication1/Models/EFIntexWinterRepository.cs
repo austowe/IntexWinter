@@ -16,16 +16,19 @@ namespace IntexWinter.Models
         }
 
         public IQueryable<Burialmain> Burialmains => context.Burialmain;
+        public IQueryable<BurialmainTextile> BurialmainTextiles => context.BurialmainTextile;
+        public IQueryable<Textile> Textiles => context.Textile;
+        public IQueryable<ColorTextile> ColorTextiles => context.ColorTextile;
         public Burialmain GetById(long id)
         {
             return context.Burialmain.SingleOrDefault(b => b.Id == id);
         }
-        public void Update(Burialmain burial)
+        public void Edit(Burialmain burial)
         {
             context.Entry(burial).State = EntityState.Modified;
         }
 
-        public void Add(Burialmain burial)
+        public void Add_Burial(Burialmain burial)
         {
             context.Burialmain.Add(burial);
         }

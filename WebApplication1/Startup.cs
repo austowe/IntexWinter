@@ -120,20 +120,7 @@ namespace WebApplication1
             app.UseEndpoints(endpoints =>
             {
 
-                //endpoints.MapControllerRoute(
-                //    name: "filter",
-                //    pattern: "depth={depth}&sex={sex}&headdirection={headdirection}&ageatdeath={ageatdeath}&haircolor={haircolor}&wrapping={wrapping}&PageNum={pageNum}",
-                //    defaults: new { Controller = "Home", action = "Burial_Records" });
-
-                endpoints.MapControllerRoute(
-                    name: "sexPage",
-                    pattern: "sex-{burialSex}/page-{pageNum}",
-                    defaults: new { Controller = "Home", action = "Burial_Records" });
-
-                endpoints.MapControllerRoute(
-                    name: "Paging",
-                    pattern: "page-{pageNum}",
-                    defaults: new { Controller = "Home", action = "Burial_Records", pageNum = 1 });
+                
 
                 endpoints.MapControllerRoute(
                     name: "areas",
