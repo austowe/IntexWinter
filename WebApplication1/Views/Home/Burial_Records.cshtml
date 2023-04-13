@@ -1,6 +1,13 @@
 ﻿@{
     ViewData["Title"] = "Burial Records";
 }
+
+@using IdentityManagerUI.Models
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
 @model BurialsViewModel
 
 
@@ -83,9 +90,19 @@
                  page-class-selected="btn btn-primary font-weight-bolder"
                  class="btn-group pull-right m-1b" style="padding:5px;">
             </div>
-            <div>
-                <a type="button" class="btn btn-primary btn-sm float-end" asp-area="" asp-controller="Home" asp-action="Add_Burial">Add a Record</a>
-            </div>
+
+            @{
+                if (SignInManager.IsSignedIn(User))
+                {
+                    if (User.IsInRole("Researcher"))
+                    {
+                        <div>
+                            <a type="button" class="btn btn-primary btn-sm float-end" asp-area="" asp-controller="Home" asp-action="Add_Burial">Add a Record</a>
+                        </div>
+                    }
+                }
+
+            }
 
             <main role="main" class="pb-3">
                 @foreach (Burialmain b in Model.Burialmains)
@@ -115,8 +132,7 @@
                 }
             </main>
 
-            <div 
-                 page-model="@Model.PageInfo" page-action="Burial_Records" page-classes-enabled="true"
+            <div page-model="@Model.PageInfo" page-action="Burial_Records" page-classes-enabled="true"
                  page-class="btn-outline-dark"
                  page-class-enabled="btn font-weight-bolder"
                  page-class-disabled="btn disabled font-weight-lighter"
@@ -125,7 +141,7 @@
                  depth="@Model.SelectedDepth"
                  head-direction="@Model.SelectedHeadDir"
                  age-at-death="@Model.SelectedAgeAtDeath"
-                 hair-color="@Model.SelectedHairColor" 
+                 hair-color="@Model.SelectedHairColor"
                  class="btn-group m-1b" style="padding: 4px;">
             </div>
         </div>

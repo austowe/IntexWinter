@@ -22,7 +22,8 @@ namespace IntexWinter.Models
         }
         public void Edit(Burialmain burial)
         {
-            context.Entry(burial).State = EntityState.Modified;
+            context.Burialmain.Update(burial);
+            context.SaveChanges();
         }
 
         public void Add_Burial(Burialmain burial)

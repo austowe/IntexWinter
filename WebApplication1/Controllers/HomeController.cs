@@ -157,56 +157,19 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Researcher")]
         public IActionResult Edit(long id)
         {
-            var burial = repo.GetById(id);
-            var viewModel = new BurialEditViewModel
-            {
-                Id = burial.Id,
-                SquareNorthSouth = burial.Squarenorthsouth,
-                HeadDirection = burial.Headdirection,
-                Sex = burial.Sex,
-                NorthSouth = burial.Northsouth,
-                Depth = burial.Depth,
-                EastWest = burial.Eastwest,
-                AdultSubadult = burial.Adultsubadult,
-                FaceBundles = burial.Facebundles,
-                SouthToHead = burial.Southtohead,
-                Preservation = burial.Preservation,
-                FieldBookPage = burial.Fieldbookpage,
-                SquareEastWest = burial.Squareeastwest,
-                Goods = burial.Goods,
-                Text = burial.Text,
-                Wrapping = burial.Wrapping,
-                HairColor = burial.Haircolor,
-                WestToHead = burial.Westtohead,
-                SamplesCollected = burial.Samplescollected,
-                Burialid = burial.Burialid,
-                Area = burial.Area,
-                Length = burial.Length,
-                BurialNumber = burial.Burialnumber,
-                DataExpertInitials = burial.Dataexpertinitials,
-                WestToFeet = burial.Westtofeet,
-                AgeAtDeath = burial.Ageatdeath,
-                SouthToFeet = burial.Southtofeet,
-                ExcavationRecorder = burial.Excavationrecorder,
-                Photos = burial.Photos,
-                Hair = burial.Hair,
-                BurialMaterials = burial.Burialmaterials,
-                DateOfExcavation = burial.Dateofexcavation,
-                FieldBookExcavationYear = burial.Fieldbookexcavationyear,
-                ClusterNumber = burial.Clusternumber,
-                ShaftNumber = burial.Shaftnumber
-            };
-            return View(viewModel);
+            var burial = repo.Burialmains.Single(x => x.Id == id);
+            return View("Edit", burial);
         }
 
         [HttpPost]
-        public IActionResult Edit(BurialEditViewModel viewModel)
+        [Authorize(Roles = "Researcher")]
+        public IActionResult Edit(Burialmain burial)
         {
             if (ModelState.IsValid)
             {
-                var burial = viewModel.BurialMain;
 
                 repo.Edit(burial);
                 repo.SaveChanges();
@@ -215,35 +178,39 @@ namespace WebApplication1.Controllers
             }
             else
             {
-                return View(viewModel);
+                return View(burial);
             }
         }
 
         [HttpGet]
+        [Authorize(Roles = "Researcher")]
         public IActionResult Add_Burial()
         {
-            var lastId = repo.Burialmains.OrderByDescending(x => x.Id).FirstOrDefault()?.Id ?? 0;
-            var model = new Burialmain { Id = lastId + 1 };
-            return View(model);
+            var lastId = repo.Burialmains.OrderByDescending(x => x.Id).FirstOrDefault()?.Id ?? 0L;
+            var model = new Burialmain { Id = lastId + 1};
+
+            return View("Add_Burial", model);
         }
 
         [HttpPost]
-        public IActionResult Add_Burial(Burialmain model)
+        [Authorize(Roles = "Researcher")]
+        public IActionResult Add_Burial(Burialmain burialmain)
         {
             if (ModelState.IsValid)
             {
-                repo.Add_Burial(model);
-                repo.SaveChanges();
-                return RedirectToAction("Confirmation", new { id = model.Id });
+                repo.Add_Burial(burialmain);
+                return RedirectToAction("Index");
             }
             else
             {
-                return View(model);
+                return View(burialmain);
             }
         }
 
 
+
         [HttpGet]
+        [Authorize(Roles = "Researcher")]
         public IActionResult Delete(long id)
         {
             var burial = repo.Burialmains.Single(x => x.Id == id);
@@ -252,6 +219,7 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Researcher")]
         public IActionResult Delete(Burialmain ar)
         {
             repo.Delete(ar);
