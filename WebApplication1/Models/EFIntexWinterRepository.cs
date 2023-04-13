@@ -16,6 +16,9 @@ namespace IntexWinter.Models
         }
 
         public IQueryable<Burialmain> Burialmains => context.Burialmain;
+        public IQueryable<BurialmainTextile> BurialmainTextiles => context.BurialmainTextile;
+        public IQueryable<Textile> Textiles => context.Textile;
+        public IQueryable<ColorTextile> ColorTextiles => context.ColorTextile;
         public Burialmain GetById(long id)
         {
             return context.Burialmain.SingleOrDefault(b => b.Id == id);

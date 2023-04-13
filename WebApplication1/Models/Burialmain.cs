@@ -41,6 +41,5 @@ namespace IntexWinter.Models
         public string Clusternumber { get; set; }
         public string Shaftnumber { get; set; }
 
-        public ICollection<BurialmainTextile> burialmainTextiles { get; set; } = new HashSet<BurialmainTextile>();
     }
 }
