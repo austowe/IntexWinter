@@ -240,30 +240,6 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
-        public IActionResult Add_Burial()
-        {
-            var lastId = repo.Burialmains.OrderByDescending(x => x.Id).FirstOrDefault()?.Id ?? 0;
-            var model = new Burialmain { Id = lastId + 1 };
-            return View(model);
-        }
-
-        [HttpPost]
-        public IActionResult Add_Burial(Burialmain model)
-        {
-            if (ModelState.IsValid)
-            {
-                repo.Add_Burial(model);
-                repo.SaveChanges();
-                return RedirectToAction("Confirmation", new { id = model.Id });
-            }
-            else
-            {
-                return View(model);
-            }
-        }
-
-
-        [HttpGet]
         [Authorize(Roles = "Researcher")]
         public IActionResult Delete(long id)
         {
