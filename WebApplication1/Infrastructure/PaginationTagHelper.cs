@@ -50,7 +50,8 @@ namespace IntexWinter.Infrastructure
             string HeadDirection;
             if (PageModel.PageInfo.SelectedHeadDir == "z") { HeadDirection = ""; } else { HeadDirection = PageModel.PageInfo.SelectedHeadDir; }
 
-            //string Depth
+            string Depth;
+            if (PageModel.PageInfo.SelectedDepth == "z") { Depth = ""; } else { Depth = PageModel.PageInfo.SelectedDepth; }
 
             IUrlHelper uh = uhf.GetUrlHelper(vc);
 
@@ -72,98 +73,98 @@ namespace IntexWinter.Infrastructure
             // Enabled buttons if the current page is more than 1
             if (currentPage > 1)
             {
-                first.Attributes["href"] = uh.Action(PageAction, new { pageNum = 1, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection});
+                first.Attributes["href"] = uh.Action(PageAction, new { pageNum = 1, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection, depth = Depth });
                 first.AddCssClass(PageClass); first.AddCssClass(PageClassEnabled);
                 first.InnerHtml.Append("First");
 
-                prev.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage - 1, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection });
+                prev.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage - 1, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection, depth = Depth });
                 prev.AddCssClass(PageClass); prev.AddCssClass(PageClassEnabled);
                 prev.InnerHtml.Append("Prev");
 
                 //Enabled button if the current page is more than 2
                 if (currentPage > 2)
                 {
-                    currentLess2.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage - 2, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection });
+                    currentLess2.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage - 2, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection, depth = Depth });
                     currentLess2.AddCssClass(PageClass); currentLess2.AddCssClass(PageClassEnabled);
                     currentLess2.InnerHtml.Append((currentPage - 2).ToString());
                 }
                 else // Disabled buttons if current page is 2
                 {
-                    currentLess2.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage - 2, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection });
+                    currentLess2.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage - 2, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection, depth = Depth });
                     currentLess2.AddCssClass(PageClass); currentLess2.AddCssClass(PageClassDisabled);
                     currentLess2.InnerHtml.Append("-");
                 }
 
-                currentLess1.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage - 1, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection });
+                currentLess1.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage - 1, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection, depth = Depth });
                 currentLess1.AddCssClass(PageClass); currentLess1.AddCssClass(PageClassEnabled);
                 currentLess1.InnerHtml.Append((currentPage - 1).ToString());
-            } 
+            }
             else // Disabled buttons if current page is 1
             {
-                first.Attributes["href"] = uh.Action(PageAction, new { pageNum = 1, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection });
+                first.Attributes["href"] = uh.Action(PageAction, new { pageNum = 1, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection, depth = Depth });
                 first.AddCssClass(PageClass); first.AddCssClass(PageClassDisabled);
                 first.InnerHtml.Append("First");
 
-                prev.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage - 1, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection });
+                prev.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage - 1, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection, depth = Depth });
                 prev.AddCssClass(PageClass); prev.AddCssClass(PageClassDisabled);
                 prev.InnerHtml.Append("Prev");
 
-                currentLess2.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage - 2, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection });
+                currentLess2.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage - 2, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection, depth = Depth });
                 currentLess2.AddCssClass(PageClass); currentLess2.AddCssClass(PageClassDisabled);
                 currentLess2.InnerHtml.Append("-");
 
-                currentLess1.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage - 1, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection });
+                currentLess1.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage - 1, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection, depth = Depth });
                 currentLess1.AddCssClass(PageClass); currentLess1.AddCssClass(PageClassDisabled);
                 currentLess1.InnerHtml.Append("-");
             }
-            
-            current.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection });
+
+            current.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection, depth = Depth });
             current.Attributes["style"] = "color:white;background-color:darkslateblue;";
             current.AddCssClass(PageClass); current.AddCssClass(PageClassSelected);
             current.InnerHtml.Append(currentPage.ToString());
-            
+
             if (currentPage < PageModel.PageInfo.TotalPages)
             {
-                currentPlus1.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage + 1, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection });
+                currentPlus1.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage + 1, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection, depth = Depth });
                 currentPlus1.AddCssClass(PageClass); currentPlus1.AddCssClass(PageClassEnabled);
                 currentPlus1.InnerHtml.Append((currentPage + 1).ToString());
 
                 if (currentPage < PageModel.PageInfo.TotalPages - 1)
                 {
-                    currentPlus2.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage + 2, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection });
+                    currentPlus2.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage + 2, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection, depth = Depth });
                     currentPlus2.AddCssClass(PageClass); currentPlus2.AddCssClass(PageClassEnabled);
                     currentPlus2.InnerHtml.Append((currentPage + 2).ToString());
                 }
                 else
                 {
-                    currentPlus2.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage + 2, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection });
+                    currentPlus2.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage + 2, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection, depth = Depth });
                     currentPlus2.AddCssClass(PageClass); currentPlus2.AddCssClass(PageClassDisabled);
                     currentPlus2.InnerHtml.Append("-");
                 }
 
-                next.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage + 1, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection });
+                next.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage + 1, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection, depth = Depth });
                 next.AddCssClass(PageClass); next.AddCssClass(PageClassEnabled);
                 next.InnerHtml.Append("Next");
 
-                last.Attributes["href"] = uh.Action(PageAction, new { pageNum = PageModel.PageInfo.TotalPages, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection });
+                last.Attributes["href"] = uh.Action(PageAction, new { pageNum = PageModel.PageInfo.TotalPages, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection, depth = Depth });
                 last.AddCssClass(PageClass); last.AddCssClass(PageClassEnabled);
                 last.InnerHtml.Append("Last");
             }
             else
             {
-                currentPlus1.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage + 1, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection });
+                currentPlus1.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage + 1, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection, depth = Depth });
                 currentPlus1.AddCssClass(PageClass); currentPlus1.AddCssClass(PageClassDisabled);
                 currentPlus1.InnerHtml.Append("-");
 
-                currentPlus2.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage + 2, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection });
+                currentPlus2.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage + 2, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection, depth = Depth });
                 currentPlus2.AddCssClass(PageClass); currentPlus2.AddCssClass(PageClassDisabled);
                 currentPlus2.InnerHtml.Append("-");
 
-                next.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage + 1, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection });
+                next.Attributes["href"] = uh.Action(PageAction, new { pageNum = currentPage + 1, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection, depth = Depth });
                 next.AddCssClass(PageClass); next.AddCssClass(PageClassDisabled);
                 next.InnerHtml.Append("Next");
 
-                last.Attributes["href"] = uh.Action(PageAction, new { pageNum = PageModel.PageInfo.TotalPages, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection });
+                last.Attributes["href"] = uh.Action(PageAction, new { pageNum = PageModel.PageInfo.TotalPages, sex = Sex, hairColor = HairColor, ageAtDeath = AgeAtDeath, headDirection = HeadDirection, depth = Depth });
                 last.AddCssClass(PageClass); last.AddCssClass(PageClassDisabled);
                 last.InnerHtml.Append("Last");
             }
