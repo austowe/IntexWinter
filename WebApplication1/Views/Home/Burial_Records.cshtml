@@ -13,18 +13,18 @@
         <div id="categories" class="col-4">
             <form method="get" asp-controller="Home" asp-action="Burial_Records">
 
-                <div>
-                    <label>Sex: </label>
-                    <select id="sex" name="sex">
+                <div class="row g-3 p-1">
+                    <label class="col-6">Sex: </label>
+                    <select id="sex" name="sex" class="form-select form-select-sm col-6" style="width:50%">
                         <option selected="@(Model.SelectedSex == "z" ? "selected" : null)" value="z">All</option>
                         <option selected="@(Model.SelectedSex == "M" ? "selected" : null)" value="M">Male</option>
                         <option selected="@(Model.SelectedSex == "F" ? "selected" : null)" value="F">Female</option>
                     </select>
                 </div>
 
-                <div>
-                    <label>Burial Depth: </label>
-                    <select id="depth" name="depth">
+                <div class="row g-3 p-1">
+                    <label class="col-6">Burial Depth: </label>
+                    <select id="depth" name="depth" class="form-select form-select-sm col-6" style="width:50%">
                         <option selected="@(Model.SelectedDepth == "" ? "selected" : null)" value="">All</option>
                         <option selected="@(Model.SelectedDepth == "1" ? "selected" : null)" value="1">0-1 Meters</option>
                         <option selected="@(Model.SelectedDepth == "2" ? "selected" : null)" value="2">1-2 Meters</option>
@@ -34,9 +34,9 @@
                 </div>
 
 
-                <div>
-                    <label>Head Direction: </label>
-                    <select id="headdirection" name="headdirection">
+                <div class="row g-3 p-1">
+                    <label class="col-6">Head Direction: </label>
+                    <select id="headdirection" name="headdirection" class="form-select form-select-sm col-6" style="width:50%">
                         <option selected="@(Model.SelectedHeadDir == "z" ? "selected" : null)" value="z">All</option>
                         <option selected="@(Model.SelectedHeadDir == "E" ? "selected" : null)" value="E">East</option>
                         <option selected="@(Model.SelectedHeadDir == "W" ? "selected" : null)" value="W">West</option>
@@ -45,9 +45,9 @@
                 </div>
 
 
-                <div>
-                    <label>Age at Death: </label>
-                    <select id="ageatdeath" name="ageatdeath">
+                <div class="row g-3 p-1">
+                    <label class="col-6">Age at Death: </label>
+                    <select id="ageatdeath" name="ageatdeath" class="form-select form-select-sm col-6" style="width:50%">
                         <option selected="@(Model.SelectedAgeAtDeath == "z" ? "selected" : null)" value="z">All</option>
                         <option selected="@(Model.SelectedAgeAtDeath == "A" ? "selected" : null)" value="A">Adult</option>
                         <option selected="@(Model.SelectedAgeAtDeath == "C" ? "selected" : null)" value="C">Child</option>
@@ -57,9 +57,9 @@
                 </div>
 
 
-                <div>
-                    <label>Hair Color</label>
-                    <select id="haircolor" name="haircolor">
+                <div class="row g-3 p-1">
+                    <label class="col-6">Hair Color</label>
+                    <select id="haircolor" name="haircolor" class="form-select form-select-sm col-6" style="width:50%">
                         <option selected="@(Model.SelectedHairColor == "z" ? "selected" : null)" value="z">All</option>
                         <option selected="@(Model.SelectedHairColor == "K" ? "selected" : null)" value="K">Black</option>
                         <option selected="@(Model.SelectedHairColor == "B" ? "selected" : null)" value="B">Brown</option>
@@ -69,7 +69,7 @@
                         <option selected="@(Model.SelectedHairColor == "U" ? "selected" : null)" value="U">Unknown</option>
                     </select>
                 </div>
-
+                <br />
                 <button asp-controller="Home" asp-action="Burial_Records" asp-route-pageNum="1" class="btn btn-primary">Reset</button>
                 <button type="submit" class="btn btn-primary">Update Filter</button>
             </form>
