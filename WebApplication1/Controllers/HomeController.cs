@@ -198,11 +198,11 @@ namespace WebApplication1.Controllers
             }
         }
 
-        public IActionResult Confirmation()
-        {
-            var lastBurialmain = repo.Get_Last_Burial(); 
-            return View(lastBurialmain);
-        }
+        //public IActionResult Confirmation()
+        //{
+        //    var lastBurialmain = repo.Get_Last_Burial(); 
+        //    return View(lastBurialmain);
+        //}
 
 
         [HttpGet]
