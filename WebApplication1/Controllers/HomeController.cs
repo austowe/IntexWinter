@@ -33,6 +33,9 @@ namespace WebApplication1.Controllers
             _logger = logger;
             repo = temp;
         }
+
+        public string ReturnUrl { get; set; }
+
         public IActionResult Index()
         {
             return View();
@@ -117,77 +120,10 @@ namespace WebApplication1.Controllers
                 };
                 return View(x);
             }
-
-
-            ////populate IQueryable "burials" based on filter criteria
-            //var burials = BurialsIQeryable
-            //    .Where(b => b.Sex == sex || sex == null || sex == "z")
-            //    .Where(b => b.Haircolor == hairColor || hairColor == null || hairColor == "z")
-            //    .Where(b => b.Ageatdeath == ageAtDeath || ageAtDeath == null || ageAtDeath == "z")
-            //    .Where(b => b.Headdirection == headDirection || headDirection == null || headDirection == "z")
-            //    .OrderBy(b => b.Id);
-
-            ////new list of SummaryView objects
-            //var summaryViewList = new List<SummaryView>();
-
-            ////loop through each burial in IQueryable
-            //foreach (var item in burials)
-            //{
-
-            //    var someId = item.Id;
-            //    //create a new summary view and set items
-            //    var summaryView = new SummaryView
-            //    {
-            //        id = item.Id,
-            //        sex = item.Sex,
-            //        hairColor = item.Haircolor,
-            //        age = item.Ageatdeath,
-            //        depth = item.Depth,
-            //        headDir = item.Headdirection
-            //    };
-            //    //add new summary view to list of SummaryView objects
-            //    summaryViewList.Add(summaryView);
-            //}
-
-
-
-            ////loop through each burial in list of SummaryView objects
-            //foreach (var burial in summaryViewList)
-            //{
-            //    //create new list of TextileDetails
-            //    var textileList = new List<TextileDetails>();
-
-            //    //loop through each burialTextile object in connecting table
-            //    foreach (var bt in repo.BurialmainTextiles)
-            //    {
-            //        //if current row in connecting table matches current burial id
-            //        if (bt.MainBurialmainid == burial.id)
-            //        {
-            //            //loop through each textile in textile table
-            //            foreach (var textile in repo.Textiles)
-            //            {
-            //                //if current row in connecting table matches current textile id
-            //                if (bt.MainTextileid == textile.Id)
-            //                {
-            //                    //if we arrive at this point it's because we have a burial id and a textile id that match
-
-            //                    //create a new TextileDetails object to add to the current burial's TextileDetails list
-            //                    var textileDetails = new TextileDetails
-            //                    {
-            //                        id = textile.Id
-            //                        //add more details and connecting pages here
-            //                    };
-
-            //                    burial.textileList.Add(textileDetails);
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
         }
 
 
-        public IActionResult Burial_Details(long id)
+        public IActionResult Burial_Details(long id, string returnUrl)
         {
             var burial = repo.GetById(id);
             if (burial == null)
@@ -195,7 +131,16 @@ namespace WebApplication1.Controllers
                 return NotFound();
             }
 
-            var viewModel = new BurialDetailsViewModel(burial);
+            ReturnUrl = returnUrl ?? "/";
+
+            var viewModel = new BurialsViewModel()
+            {
+                BurialDetailsViewModel = new BurialDetailsViewModel(burial),
+                PageInfo = new PageInfo
+                {
+                    ReturnUrl = returnUrl
+                }
+            };
 
             return View(viewModel);
         }
@@ -253,11 +198,11 @@ namespace WebApplication1.Controllers
             }
         }
 
-        public IActionResult Confirmation()
-        {
-            var lastBurialmain = repo.Get_Last_Burial(); 
-            return View(lastBurialmain);
-        }
+        //public IActionResult Confirmation()
+        //{
+        //    var lastBurialmain = repo.Get_Last_Burial(); 
+        //    return View(lastBurialmain);
+        //}
 
 
         [HttpGet]

@@ -19,5 +19,7 @@ namespace IntexWinter.Models.ViewModels
         public string SelectedAgeAtDeath { get; set; }
         public string SelectedHeadDir { get; set; }
         public string SelectedDepth { get; set; }
+
+        public string ReturnUrl { get; set; }
     }
 }
