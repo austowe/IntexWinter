@@ -8,7 +8,7 @@
 <h3>Are you sure you want to delete the record for @Model.Id?</h3>
 
 <form method="post" asp-controller="Home" asp-action="Delete">
-    <button type="submit">Delete</button>
+    <button type="submit" class="btn btn-primary">Delete</button>
     <a asp-controller="Home" asp-action="Burial_Records" class="btn btn-primary">Cancel</a>
 
     <input type="hidden" asp-for="Id" />
