@@ -6,7 +6,7 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-@model IntexWinter.Models.ViewModels.BurialDetailsViewModel
+@model IntexWinter.Models.ViewModels.BurialsViewModel
 
 <div class="container-fluid">
     <div class="row">
@@ -21,16 +21,16 @@
                                     {
                                         if (User.IsInRole("Researcher"))
                                         {
-                                            <a type="button" class="btn btn-danger btn-sm float-end m-1" asp-action="Delete" asp-route-id="@Model.Id">Delete Record</a>
-                                            <a type="button" class="btn btn-success btn-sm float-end m-1" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                                            <a type="button" class="btn btn-danger btn-sm float-end m-1" asp-action="Delete" asp-route-id="@Model.BurialDetailsViewModel.Id">Delete Record</a>
+                                            <a type="button" class="btn btn-success btn-sm float-end m-1" asp-action="Edit" asp-route-id="@Model.BurialDetailsViewModel.Id">Edit</a>
                                         }
                                     }
 
                                 }
-                                <a asp-action="Burial_Records" class="btn btn-outline-dark">Back to List</a>
+                                <a href="@Model.PageInfo.ReturnUrl" class="btn btn-outline-dark">Back to List</a>
                             </div>
                             <div class="col-md-6">
-                                <h1>Burial Details for record @Model.Id</h1>
+                                <h1>Burial Details for record @Model.BurialDetailsViewModel.Id</h1>
 
                                 @if (Model != null)
                                 {
@@ -39,140 +39,196 @@
                                         <table class="table table-striped">
                                             <tbody>
                                                 <tr>
-                                                    <th>Id</th>
-                                                    <td>@Model.Id</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Square North South</th>
-                                                    <td>@Model.SquareNorthSouth</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Head Direction</th>
-                                                    <td>@Model.HeadDirection</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Sex</th>
-                                                    <td>@Model.Sex</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>North South</th>
-                                                    <td>@Model.NorthSouth</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Depth</th>
-                                                    <td>@Model.Depth</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>East West</th>
-                                                    <td>@Model.EastWest</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Adult Subadult</th>
-                                                    <td>@Model.AdultSubadult</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Face Bundles</th>
-                                                    <td>@Model.FaceBundles</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>South To Head</th>
-                                                    <td>@Model.SouthToHead</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Preservation</th>
-                                                    <td>@Model.Preservation</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Fieldbookpage</th>
-                                                    <td>@Model.FieldBookPage</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Square East West</th>
-                                                    <td>@Model.SquareEastWest</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Goods</th>
-                                                    <td>@Model.Goods</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Text</th>
-                                                    <td>@Model.Text</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Wrapping</th>
-                                                    <td>@Model.Wrapping</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Hair Color</th>
-                                                    <td>@Model.HairColor</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>West To Head</th>
-                                                    <td>@Model.WestToHead</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Samples Collected</th>
-                                                    <td>@Model.SamplesCollected</td>
+                                                    <th>Burial ID</th>
+                                                    <td>@Model.BurialDetailsViewModel.SquareNorthSouth@Model.BurialDetailsViewModel.NorthSouth@Model.BurialDetailsViewModel.SquareEastWest@Model.BurialDetailsViewModel.EastWest@Model.BurialDetailsViewModel.Area@Model.BurialDetailsViewModel.BurialNumber</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Area</th>
-                                                    <td>@Model.Area</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Length</th>
-                                                    <td>@Model.Length</td>
+                                                    @{if (Model.BurialDetailsViewModel.Wrapping == "NW") { Model.BurialDetailsViewModel.Wrapping = "North West"; }
+                                                        else if (Model.BurialDetailsViewModel.Wrapping == "NE") { Model.BurialDetailsViewModel.Wrapping = "North East"; }
+                                                        else if (Model.BurialDetailsViewModel.Wrapping == "SW") { Model.BurialDetailsViewModel.Wrapping = "South West"; }
+                                                        else if (Model.BurialDetailsViewModel.Wrapping == "SE") { Model.BurialDetailsViewModel.Wrapping = "South East"; }
+                                                        else { Model.BurialDetailsViewModel.Wrapping = "N/A"; }}
+                                                    <td>@Model.BurialDetailsViewModel.Area</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Burial Number</th>
-                                                    <td>@Model.BurialNumber</td>
+                                                    @{if (Model.BurialDetailsViewModel.BurialNumber == null || Model.BurialDetailsViewModel.BurialNumber == ""
+                                                                            || Model.BurialDetailsViewModel.BurialNumber == "U") { Model.BurialDetailsViewModel.BurialNumber = "N/A"; }}
+                                                    <td>@Model.BurialDetailsViewModel.BurialNumber</td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Data Expert Initials</th>
-                                                    <td>@Model.DataExpertInitials</td>
+                                                    <th>Sex</th>
+                                                    @{if (Model.BurialDetailsViewModel.Sex == "M") { Model.BurialDetailsViewModel.Sex = "Male"; }
+                                                        else if (Model.BurialDetailsViewModel.Sex == "F") { Model.BurialDetailsViewModel.Sex = "Female"; }
+                                                        else { Model.BurialDetailsViewModel.Sex = "N/A"; }}
+                                                    <td>@Model.BurialDetailsViewModel.Sex</td>
                                                 </tr>
                                                 <tr>
-                                                    <th>West To Feet</th>
-                                                    <td>@Model.WestToFeet</td>
+                                                    <th>Adult Subadult</th>
+                                                    @{if (Model.BurialDetailsViewModel.AdultSubadult == "A") { Model.BurialDetailsViewModel.AdultSubadult = "Adult"; }
+                                                        else if (Model.BurialDetailsViewModel.AdultSubadult == "C") { Model.BurialDetailsViewModel.AdultSubadult = "Child"; }
+                                                        else { Model.BurialDetailsViewModel.AdultSubadult = "N/A"; }}
+                                                    <td>@Model.BurialDetailsViewModel.AdultSubadult</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Age At Death</th>
-                                                    <td>@Model.AgeAtDeath</td>
+                                                    @{if (Model.BurialDetailsViewModel.AgeAtDeath == "A") { Model.BurialDetailsViewModel.AgeAtDeath = "Adult"; }
+                                                        else if (Model.BurialDetailsViewModel.AgeAtDeath == "C") { Model.BurialDetailsViewModel.AgeAtDeath = "Child"; }
+                                                        else if (Model.BurialDetailsViewModel.AgeAtDeath == "I") { Model.BurialDetailsViewModel.AgeAtDeath = "Infant"; }
+                                                        else if (Model.BurialDetailsViewModel.AgeAtDeath == "N") { Model.BurialDetailsViewModel.AgeAtDeath = "Newborn"; }
+                                                        else { Model.BurialDetailsViewModel.AgeAtDeath = "N/A"; }}
+                                                    <td>@Model.BurialDetailsViewModel.AgeAtDeath</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Hair Color</th>
+                                                    @{if (Model.BurialDetailsViewModel.HairColor == "B") { Model.BurialDetailsViewModel.HairColor = "Brown"; }
+                                                        else if (Model.BurialDetailsViewModel.HairColor == "K") { Model.BurialDetailsViewModel.HairColor = "Black"; }
+                                                        else if (Model.BurialDetailsViewModel.HairColor == "A") { Model.BurialDetailsViewModel.HairColor = "Brown/Red"; }
+                                                        else if (Model.BurialDetailsViewModel.HairColor == "R") { Model.BurialDetailsViewModel.HairColor = "Red"; }
+                                                        else if (Model.BurialDetailsViewModel.HairColor == "D") { Model.BurialDetailsViewModel.HairColor = "Blonde"; }
+                                                        else if (Model.BurialDetailsViewModel.HairColor == "U") { Model.BurialDetailsViewModel.HairColor = "Unknown"; }
+                                                        else { Model.BurialDetailsViewModel.HairColor = "N/A"; }}
+                                                    <td>@Model.BurialDetailsViewModel.HairColor</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Head Direction</th>
+                                                    @{if (Model.BurialDetailsViewModel.HeadDirection == "W") { Model.BurialDetailsViewModel.HeadDirection = "West"; }
+                                                        else if (Model.BurialDetailsViewModel.HeadDirection == "E") { Model.BurialDetailsViewModel.HeadDirection = "East"; }
+                                                        else { Model.BurialDetailsViewModel.HeadDirection = "N/A"; }}
+                                                    <td>@Model.BurialDetailsViewModel.HeadDirection</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Depth</th>
+                                                    @{if (Model.BurialDetailsViewModel.Depth == null || Model.BurialDetailsViewModel.Depth == ""
+                                                                            || Model.BurialDetailsViewModel.Depth == "U") { Model.BurialDetailsViewModel.Depth = "N/A"; }}
+                                                    <td>@Model.BurialDetailsViewModel.Depth</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Length</th>
+                                                    @{if (Model.BurialDetailsViewModel.Length == null || Model.BurialDetailsViewModel.Length == ""
+                                                                            || Model.BurialDetailsViewModel.Length == "U") { Model.BurialDetailsViewModel.Length = "N/A"; }}
+                                                    <td>@Model.BurialDetailsViewModel.Length</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>South To Head</th>
+                                                    @{if (Model.BurialDetailsViewModel.SouthToHead == null || Model.BurialDetailsViewModel.SouthToHead == ""
+                                                                            || Model.BurialDetailsViewModel.SouthToHead == "U") { Model.BurialDetailsViewModel.SouthToHead = "N/A"; }
+                                                        else { Model.BurialDetailsViewModel.SouthToHead += " meters"; }}
+                                                    <td>@Model.BurialDetailsViewModel.SouthToHead</td>
                                                 </tr>
                                                 <tr>
                                                     <th>South To Feet</th>
-                                                    <td>@Model.SouthToFeet</td>
+                                                    @{if (Model.BurialDetailsViewModel.SouthToFeet == null || Model.BurialDetailsViewModel.SouthToFeet == ""
+                                                                            || Model.BurialDetailsViewModel.SouthToFeet == "U") { Model.BurialDetailsViewModel.SouthToFeet = "N/A"; }
+                                                        else { Model.BurialDetailsViewModel.SouthToFeet += " meters"; }}
+                                                    <td>@Model.BurialDetailsViewModel.SouthToFeet</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>West To Head</th>
+                                                    @{if (Model.BurialDetailsViewModel.WestToHead == null || Model.BurialDetailsViewModel.WestToHead == ""
+                                                                            || Model.BurialDetailsViewModel.WestToHead == "U") { Model.BurialDetailsViewModel.WestToHead = "N/A"; }
+                                                        else { Model.BurialDetailsViewModel.WestToHead += " meters"; }}
+                                                    <td>@Model.BurialDetailsViewModel.WestToHead</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>West To Feet</th>
+                                                    @{if (Model.BurialDetailsViewModel.WestToFeet == null || Model.BurialDetailsViewModel.WestToFeet == ""
+                                                                            || Model.BurialDetailsViewModel.WestToFeet == "U") { Model.BurialDetailsViewModel.WestToFeet = "N/A"; }
+                                                        else { Model.BurialDetailsViewModel.WestToFeet += " meters"; }}
+                                                    <td>@Model.BurialDetailsViewModel.WestToFeet</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Preservation</th>
+                                                    @{if (Model.BurialDetailsViewModel.Preservation == null || Model.BurialDetailsViewModel.Preservation == ""
+                                                                            || Model.BurialDetailsViewModel.Preservation == "U") { Model.BurialDetailsViewModel.Preservation = "N/A"; }}
+                                                    <td>@Model.BurialDetailsViewModel.Preservation</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Wrapping</th>
+                                                    @{if (Model.BurialDetailsViewModel.Wrapping == "B") { Model.BurialDetailsViewModel.Wrapping = "Bones"; }
+                                                        else if (Model.BurialDetailsViewModel.Wrapping == "W") { Model.BurialDetailsViewModel.Wrapping = "Fully Wrapped"; }
+                                                        else if (Model.BurialDetailsViewModel.Wrapping == "H") { Model.BurialDetailsViewModel.Wrapping = "Partial Wrapping"; }
+                                                        else if (Model.BurialDetailsViewModel.Wrapping == "U") { Model.BurialDetailsViewModel.Wrapping = "Unknown"; }
+                                                        else { Model.BurialDetailsViewModel.Wrapping = "N/A"; }}
+                                                    <td>@Model.BurialDetailsViewModel.Wrapping</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Fieldbookpage</th>
+                                                    @{if (Model.BurialDetailsViewModel.FieldBookPage == null || Model.BurialDetailsViewModel.FieldBookPage == ""
+                                                                            || Model.BurialDetailsViewModel.FieldBookPage == "U") { Model.BurialDetailsViewModel.FieldBookPage = "N/A"; }}
+                                                    <td>@Model.BurialDetailsViewModel.FieldBookPage</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Goods?</th>
+                                                    @{if (Model.BurialDetailsViewModel.Goods == "Y") { Model.BurialDetailsViewModel.Goods = "Yes"; }
+                                                        else if (Model.BurialDetailsViewModel.Goods == "N") { Model.BurialDetailsViewModel.Goods = "No"; }
+                                                        else { Model.BurialDetailsViewModel.Goods = "N/A"; }}
+                                                    <td>@Model.BurialDetailsViewModel.Goods</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Face Bundles?</th>
+                                                    @{if (Model.BurialDetailsViewModel.FaceBundles == "Y") { Model.BurialDetailsViewModel.FaceBundles = "Yes"; }
+                                                        else if (Model.BurialDetailsViewModel.FaceBundles == "N") { Model.BurialDetailsViewModel.FaceBundles = "No"; }
+                                                        else { Model.BurialDetailsViewModel.FaceBundles = "N/A"; }}
+                                                    <td>@Model.BurialDetailsViewModel.FaceBundles</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Samples Collected?</th>
+                                                    @{if (Model.BurialDetailsViewModel.SamplesCollected == "True") { Model.BurialDetailsViewModel.SamplesCollected = "True"; }
+                                                        else if (Model.BurialDetailsViewModel.SamplesCollected == "False") { Model.BurialDetailsViewModel.SamplesCollected = "False"; }
+                                                        else { Model.BurialDetailsViewModel.SamplesCollected = "N/A"; }}
+                                                    <td>@Model.BurialDetailsViewModel.SamplesCollected</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Text/Notes</th>
+                                                    @{if (Model.BurialDetailsViewModel.Text == null || Model.BurialDetailsViewModel.Text == ""
+                                                                            || Model.BurialDetailsViewModel.Text == "U") { Model.BurialDetailsViewModel.Text = "N/A"; }}
+                                                    <td>@Model.BurialDetailsViewModel.Text</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Data Expert Initials</th>
+                                                    @{if (Model.BurialDetailsViewModel.DataExpertInitials == null || Model.BurialDetailsViewModel.DataExpertInitials == ""
+                                                                            || Model.BurialDetailsViewModel.DataExpertInitials == "U") { Model.BurialDetailsViewModel.DataExpertInitials = "N/A"; }}
+                                                    <td>@Model.BurialDetailsViewModel.DataExpertInitials</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Excavation Recorder</th>
-                                                    <td>@Model.ExcavationRecorder</td>
+                                                    <td>N/A</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Photos</th>
-                                                    <td>@Model.Photos</td>
+                                                    <td>N/A</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Hair</th>
-                                                    <td>@Model.Hair</td>
+                                                    <td>N/A</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Burialmaterials</th>
-                                                    <td>@Model.BurialMaterials</td>
+                                                    <td>N/A</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Date Of Excavation</th>
-                                                    <td>@Model.DateOfExcavation</td>
+                                                    <td>N/A</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Field Book Excavation Year</th>
-                                                    <td>@Model.FieldBookExcavationYear</td>
+                                                    @{if (Model.BurialDetailsViewModel.FieldBookExcavationYear == null || Model.BurialDetailsViewModel.FieldBookExcavationYear == ""
+                                                                            || Model.BurialDetailsViewModel.FieldBookExcavationYear == "U") { Model.BurialDetailsViewModel.FieldBookExcavationYear = "N/A"; }}
+                                                    <td>@Model.BurialDetailsViewModel.FieldBookExcavationYear</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Cluster Number</th>
-                                                    <td>@Model.ClusterNumber</td>
+                                                    @{if (Model.BurialDetailsViewModel.ClusterNumber == null || Model.BurialDetailsViewModel.ClusterNumber == ""
+                                                                            || Model.BurialDetailsViewModel.ClusterNumber == "U") { Model.BurialDetailsViewModel.ClusterNumber = "N/A"; }}
+                                                    <td>@Model.BurialDetailsViewModel.ClusterNumber</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Shaft Number</th>
-                                                    <td>@Model.ShaftNumber</td>
+                                                    @{if (Model.BurialDetailsViewModel.ShaftNumber == null || Model.BurialDetailsViewModel.ShaftNumber == ""
+                                                                            || Model.BurialDetailsViewModel.ShaftNumber == "U") { Model.BurialDetailsViewModel.ShaftNumber = "N/A"; }}
+                                                    <td>@Model.BurialDetailsViewModel.ShaftNumber</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -184,13 +240,13 @@
                                             {
                                                 if (User.IsInRole("Researcher"))
                                                 {
-                                                    <a type="button" class="btn btn-danger btn-sm float-end m-1" asp-action="Delete" asp-route-id="@Model.Id">Delete Record</a>
-                                                    <a type="button" class="btn btn-success btn-sm float-end m-1" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                                                    <a type="button" class="btn btn-danger btn-sm float-end m-1" asp-action="Delete" asp-route-id="@Model.BurialDetailsViewModel.Id">Delete Record</a>
+                                                    <a type="button" class="btn btn-success btn-sm float-end m-1" asp-action="Edit" asp-route-id="@Model.BurialDetailsViewModel.Id">Edit</a>
                                                 }
                                             }
 
                                         }
-                                        <a asp-action="Burial_Records">Back to List</a>
+                                        <a href="@Model.PageInfo.ReturnUrl" class="btn btn-outline-dark">Back to List</a>
                                     </div>
                                 }
                                 else

@@ -10,5 +10,7 @@ namespace IntexWinter.Models.ViewModels
         public IQueryable<Burialmain> Burialmains { get; set; }
         public PageInfo PageInfo { get; set; }
 
+        public BurialDetailsViewModel BurialDetailsViewModel { get; set; }
+
     }
 }
