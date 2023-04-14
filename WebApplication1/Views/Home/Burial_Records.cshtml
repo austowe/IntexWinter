@@ -29,137 +29,154 @@
     </div>
 
     <div class="row m-1 p-1">
-        <div id="categories" class="col-4">
-            <form method="get" asp-controller="Home" asp-action="Burial_Records">
+        <div id="categories" class="col-md-4">
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Filter Options
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <form method="get" asp-controller="Home" asp-action="Burial_Records">
 
-                <div class="row g-3 p-1">
-                    <label class="col-6">Sex: </label>
-                    <select asp-for="PageInfo.SelectedSex" id="sex" name="sex" class="form-select form-select-sm col-6" style="width:50%">
-                        <option value="z">---</option>
-                        <option value="M">Male</option>
-                        <option value="F">Female</option>
-                    </select>
-                </div>
+                                <div class="row g-3 p-1">
+                                    <label class="col-6">Sex: </label>
+                                    <select asp-for="PageInfo.SelectedSex" id="sex" name="sex" class="form-select form-select-sm col-6" style="width:50%">
+                                        <option value="z">---</option>
+                                        <option value="M">Male</option>
+                                        <option value="F">Female</option>
+                                    </select>
+                                </div>
 
-                <div class="row g-3 p-1">
-                    <label class="col-6">Hair Color</label>
-                    <select asp-for="PageInfo.SelectedHairColor" id="haircolor" name="haircolor" class="form-select form-select-sm col-6" style="width:50%">
-                        <option value="z">---</option>
-                        <option value="K">Black</option>
-                        <option value="B">Brown</option>
-                        <option value="D">Blonde</option>
-                        <option value="A">Brown/Red</option>
-                        <option value="R">Red/RedBlonde</option>
-                    </select>
-                </div>
+                                <div class="row g-3 p-1">
+                                    <label class="col-6">Hair Color</label>
+                                    <select asp-for="PageInfo.SelectedHairColor" id="haircolor" name="haircolor" class="form-select form-select-sm col-6" style="width:50%">
+                                        <option value="z">---</option>
+                                        <option value="K">Black</option>
+                                        <option value="B">Brown</option>
+                                        <option value="D">Blonde</option>
+                                        <option value="A">Brown/Red</option>
+                                        <option value="R">Red/RedBlonde</option>
+                                    </select>
+                                </div>
 
-                <div class="row g-3 p-1">
-                    <label class="col-6">Age at Death: </label>
-                    <select asp-for="PageInfo.SelectedAgeAtDeath" id="ageatdeath" name="ageatdeath" class="form-select form-select-sm col-6" style="width:50%">
-                        <option value="z">---</option>
-                        <option value="A">Adult</option>
-                        <option value="C">Child</option>
-                        <option value="I">Infant</option>
-                        <option value="N">Newborn</option>
-                    </select>
-                </div>
+                                <div class="row g-3 p-1">
+                                    <label class="col-6">Age at Death: </label>
+                                    <select asp-for="PageInfo.SelectedAgeAtDeath" id="ageatdeath" name="ageatdeath" class="form-select form-select-sm col-6" style="width:50%">
+                                        <option value="z">---</option>
+                                        <option value="A">Adult</option>
+                                        <option value="C">Child</option>
+                                        <option value="I">Infant</option>
+                                        <option value="N">Newborn</option>
+                                    </select>
+                                </div>
 
-                <div class="row g-3 p-1">
-                    <label class="col-6">Head Direction: </label>
-                    <select asp-for="PageInfo.SelectedHeadDir" id="headdirection" name="headdirection" class="form-select form-select-sm col-6" style="width:50%">
-                        <option value="z">---</option>
-                        <option value="E">East</option>
-                        <option value="W">West</option>
-                    </select>
-                </div>
+                                <div class="row g-3 p-1">
+                                    <label class="col-6">Head Direction: </label>
+                                    <select asp-for="PageInfo.SelectedHeadDir" id="headdirection" name="headdirection" class="form-select form-select-sm col-6" style="width:50%">
+                                        <option value="z">---</option>
+                                        <option value="E">East</option>
+                                        <option value="W">West</option>
+                                    </select>
+                                </div>
 
-                <div class="row g-3 p-1">
-                    <label class="col-6">Burial Depth: </label>
-                    <select asp-for="PageInfo.SelectedDepth" id="depth" name="depth" class="form-select form-select-sm col-6" style="width:50%">
-                        <option value="">---</option>
-                        <option value="1">0-1 Meters</option>
-                        <option value="2">1-2 Meters</option>
-                        <option value="3">2-3 Meters</option>
-                        <option value="4">3-4 Meters</option>
-                    </select>
-                </div>
+                                <div class="row g-3 p-1">
+                                    <label class="col-6">Burial Depth: </label>
+                                    <select asp-for="PageInfo.SelectedDepth" id="depth" name="depth" class="form-select form-select-sm col-6" style="width:50%">
+                                        <option value="">---</option>
+                                        <option value="1">0-1 Meters</option>
+                                        <option value="2">1-2 Meters</option>
+                                        <option value="3">2-3 Meters</option>
+                                        <option value="4">3-4 Meters</option>
+                                    </select>
+                                </div>
 
-                <a class=" btn btn-outline-dark btn-sm m-3" asp-controller="Home" asp-action="Burial_Records">Reset</a>
-                <button class="btn btn-primary btn-sm m-1" type="submit">Apply Filter</button>
-            </form>
-
-        </div>
-
-
-        <div class="container col-8">
-
-            <!--Pagination div that connects to PaginationTagHelper-->
-            <div page-model="@Model" page-action="Burial_Records" page-classes-enabled="true"
-                 page-class="btn-outline-dark"
-                 page-class-enabled="btn font-weight-bolder"
-                 page-class-disabled="btn disabled font-weight-lighter"
-                 page-class-selected="btn btn-primary font-weight-bolder"
-                 class="btn-group pull-right m-1b" style="padding:5px;">
-            </div>
-
-            <main role="main" class="pb-3">
-
-                @foreach (Burialmain b in Model.Burialmains)
-                {
-                    <div class="card card-outline-primary m-1 p-1">
-                        <div class="card-text p-1">
-
-                            <h3>Burial id: @b.Squarenorthsouth@b.Northsouth@b.Squareeastwest@b.Eastwest@b.Area@b.Burialnumber</h3>
-                            <ul>
-
-                                @{if (b.Sex == "M") { b.Sex = "Male"; } else if (b.Sex == "F") { b.Sex = "Female"; } else { b.Sex = "N/A"; }}
-                                <li>Sex: <a class="@((b.Sex == "N/A") ? "font-weight-lighter" : "font-weight-bold")">@b.Sex</a></li>
-
-                                @{if (b.Depth == null || b.Depth == "" || b.Depth == "U") { b.Depth = "N/A"; }}
-                                <li>Depth: <a class="@((b.Depth == "N/A") ? "font-weight-lighter" : "font-weight-bold")">@b.Depth @((b.Depth == "N/A") ? "" : "meters")</a></li>
-
-                                @{if (b.Ageatdeath == "A") { b.Ageatdeath = "Adult"; } else if (b.Ageatdeath == "C") { b.Ageatdeath = "Child"; }
-                                    else if (b.Ageatdeath == "I") { b.Ageatdeath = "Infant"; } else if (b.Ageatdeath == "N") { b.Ageatdeath = "Newborn"; } else { b.Ageatdeath = "N/A"; } }
-                                <li>Age at death: <a class="@((b.Ageatdeath == "N/A") ? "font-weight-lighter" : "font-weight-bold")">@b.Ageatdeath</a></li>
-
-
-                                @{if (b.Headdirection == "E") { b.Headdirection = "East"; } else if (b.Headdirection == "W") { b.Headdirection = "West"; } else { b.Headdirection = "N/A"; }}
-                                <li>Head direction: <a class="@((b.Headdirection == "N/A") ? "font-weight-lighter" : "font-weight-bold")">@b.Headdirection</a></li>
-
-                                @{if (b.Haircolor == "K") { b.Haircolor = "Black"; } else if (b.Haircolor == "B") { b.Haircolor = "Brown"; }
-                                    else if (b.Haircolor == "D") { b.Haircolor = "Blonde"; } else if (b.Haircolor == "A") { b.Haircolor = "Brown/Red"; }
-                                    else if (b.Haircolor == "R") { b.Haircolor = "Red/Redblonde"; } else { b.Haircolor = "N/A"; } }
-                                <li>Hair color: <a class="@((b.Haircolor == "N/A") ? "font-weight-lighter" : "font-weight-bold")">@b.Haircolor</a></li>
-                                
-                                <li>Database id: <a class="font-weight-bold">@b.Id</a></li>
-                            </ul>
-
-
-
-                            <form method="post" asp-action="Burial_Details" asp-route-id="@b.Id">
-                                <input type="hidden" asp-for="@b.Id" />
-                                <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-                                <span class="card-text">
-                                    <button type="submit" class="btn btn-primary btn-sm m-1 float-end">Details</button>
-                                </span>
+                                <a class=" btn btn-outline-dark btn-sm m-3" asp-controller="Home" asp-action="Burial_Records">Reset</a>
+                                <button class="btn btn-primary btn-sm m-1" type="submit">Apply Filter</button>
                             </form>
 
                         </div>
                     </div>
-                }
-            </main>
-
-            <!--Pagination div that connects to PaginationTagHelper-->
-            <div page-model="@Model" page-action="Burial_Records" page-classes-enabled="true"
-                 page-class="btn-outline-dark"
-                 page-class-enabled="btn font-weight-bolder"
-                 page-class-disabled="btn disabled font-weight-lighter"
-                 page-class-selected="btn btn-primary font-weight-bolder"
-                 class="btn-group m-1b" style="padding: 4px;">
+                    </div>
+                </div>
             </div>
-        </div>
+                
 
-    </div>
+
+            <div class="container col-md-8">
+
+                <!--Pagination div that connects to PaginationTagHelper-->
+                <div page-model="@Model" page-action="Burial_Records" page-classes-enabled="true"
+                     page-class="btn-outline-dark"
+                     page-class-enabled="btn font-weight-bolder"
+                     page-class-disabled="btn disabled font-weight-lighter"
+                     page-class-selected="btn btn-primary font-weight-bolder"
+                     class="btn-group pull-right m-1b" style="padding:5px;">
+                </div>
+
+                <main role="main" class="pb-3">
+
+                    @foreach (Burialmain b in Model.Burialmains)
+                    {
+                        <div class="card card-outline-primary m-1 p-1">
+                            <div class="card-text p-1">
+
+                                <h3>Burial id: @b.Squarenorthsouth@b.Northsouth@b.Squareeastwest@b.Eastwest@b.Area@b.Burialnumber</h3>
+                                <ul>
+
+                                    @{if (b.Sex == "M") { b.Sex = "Male"; } else if (b.Sex == "F") { b.Sex = "Female"; } else { b.Sex = "N/A"; }}
+                                    <li>Sex: <a class="@((b.Sex == "N/A") ? "font-weight-lighter" : "font-weight-bold")">@b.Sex</a></li>
+
+                                    @{if (b.Depth == null || b.Depth == "" || b.Depth == "U") { b.Depth = "N/A"; }}
+                                    <li>Depth: <a class="@((b.Depth == "N/A") ? "font-weight-lighter" : "font-weight-bold")">@b.Depth @((b.Depth == "N/A") ? "" : "meters")</a></li>
+
+                                    @{if (b.Ageatdeath == "A") { b.Ageatdeath = "Adult"; }
+                                        else if (b.Ageatdeath == "C") { b.Ageatdeath = "Child"; }
+                                        else if (b.Ageatdeath == "I") { b.Ageatdeath = "Infant"; } else if (b.Ageatdeath == "N") { b.Ageatdeath = "Newborn"; } else { b.Ageatdeath = "N/A"; } }
+                                    <li>Age at death: <a class="@((b.Ageatdeath == "N/A") ? "font-weight-lighter" : "font-weight-bold")">@b.Ageatdeath</a></li>
+
+
+                                    @{if (b.Headdirection == "E") { b.Headdirection = "East"; } else if (b.Headdirection == "W") { b.Headdirection = "West"; } else { b.Headdirection = "N/A"; }}
+                                    <li>Head direction: <a class="@((b.Headdirection == "N/A") ? "font-weight-lighter" : "font-weight-bold")">@b.Headdirection</a></li>
+
+                                    @{if (b.Haircolor == "K") { b.Haircolor = "Black"; }
+                                        else if (b.Haircolor == "B") { b.Haircolor = "Brown"; }
+                                        else if (b.Haircolor == "D") { b.Haircolor = "Blonde"; }
+                                        else if (b.Haircolor == "A") { b.Haircolor = "Brown/Red"; }
+                                        else if (b.Haircolor == "R") { b.Haircolor = "Red/Redblonde"; } else { b.Haircolor = "N/A"; } }
+                                    <li>Hair color: <a class="@((b.Haircolor == "N/A") ? "font-weight-lighter" : "font-weight-bold")">@b.Haircolor</a></li>
+
+                                    <li>Database id: <a class="font-weight-bold">@b.Id</a></li>
+                                </ul>
+
+
+
+                                <form method="post" asp-action="Burial_Details" asp-route-id="@b.Id">
+                                    <input type="hidden" asp-for="@b.Id" />
+                                    <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                                    <span class="card-text">
+                                        <button type="submit" class="btn btn-primary btn-sm m-1 float-end">Details</button>
+                                    </span>
+                                </form>
+
+                            </div>
+                        </div>
+                    }
+                </main>
+
+                <!--Pagination div that connects to PaginationTagHelper-->
+                <div page-model="@Model" page-action="Burial_Records" page-classes-enabled="true"
+                     page-class="btn-outline-dark"
+                     page-class-enabled="btn font-weight-bolder"
+                     page-class-disabled="btn disabled font-weight-lighter"
+                     page-class-selected="btn btn-primary font-weight-bolder"
+                     class="btn-group m-1b" style="padding: 4px;">
+                </div>
+            </div>
+
+        </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </div>
