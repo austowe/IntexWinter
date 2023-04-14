@@ -1,47 +1,66 @@
 ﻿@{
-    ViewData["Title"] = "Unsupervised";
+    ViewData["Title"] = "Analysis";
 }
 
 <div>
     <h1>Hierarchal Clustering</h1> <br />
 </div>
 
-<h6> The unsupervised model uses the Gower distance metric alongside hierarchal clustering to further analyze the data. This method was tested with features found most impactful from the Random Forest feature selection.</h6>
+
+<h6> The unsupervised model uses the Gower distance metric alongside hierarchal clustering to further analyze the data. This method was tested with features found most impactful from the Random Forest feature selection. Click on the tabs below to see more!</h6>
+
 <br />
 
 <div id="carouselExampleIndicators" class="carousel slide">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="~/img/Dendrogram.png" class="d-block w-100" alt="Dendrogram">
-            <br />
-            <p style="color: black;">The dendrogram shows the different clusters that were formed at each level of the hierarchy, with the height of the branches indicating the distance between the clusters. The closer two branches are to each other, the more similar the clusters are.</p>
-            <p style="color: black;"> What inferences can be made from the dendrogram: </p>
-            <ul>
-                <li>The data can be divided into 5 distinct clusters, based on similarities and differences between the observations</li>
-                <li>The degree of separation between these clusters is moderate, with a silhouette score of .338, meaning there is still overlap between the clusters</li>
-                <li>Futher analysis is necessary to determine the impact of each feature in assigning clusters</li>
-            </ul>
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="~/img/Dendrogram.png" class="img-fluid p-3" alt="Dendrogram">
+                </div>
+                <br />
+                <div class="col-md-6">
+                    <p style="color: black;">The dendrogram shows the different clusters that were formed at each level of the hierarchy, with the height of the branches indicating the distance between the clusters. The closer two branches are to each other, the more similar the clusters are.</p>
+                    <p style="color: black;"> What inferences can be made from the dendrogram: </p>
+                    <ul>
+                        <li>The data can be divided into 5 distinct clusters, based on similarities and differences between the observations</li>
+                        <li>The degree of separation between these clusters is moderate, with a silhouette score of .338, meaning there is still overlap between the clusters</li>
+                        <li>Futher analysis is necessary to determine the impact of each feature in assigning clusters</li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <div class="carousel-item">
-            <img src="~/img/Heatmap.png" class="d-block w-100" alt="Heatmap">
-            <br />
-            <p style="color: black;">The heatmap visualizes the similarites and dissimilarities between each feature in the dataset. It displays a matrix of pairwise distances based on the Gower distance metric. Darker colors indicate a higher similarity between features.</p>
-            <p style="color: black;"> What inferences can be made from the heatmap: </p>
-            <ul>
-                <li>The majority of cells in the heatmap are dark, meaning the features are highly correlated and potentially measuring similar components</li>
-                <li>The features with the most dissimilarity (lighter squares in the heatmap) in comparison with others are hair color and wrapping </li>
-            </ul>
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="~/img/Heatmap.png" class="img-fluid p-3" alt="Heatmap">
+                </div>
+                <br />
+                <div class="col-md-6">
+                    <p style="color: black;">The heatmap visualizes the similarites and dissimilarities between each feature in the dataset. It displays a matrix of pairwise distances based on the Gower distance metric. Darker colors indicate a higher similarity between features.</p>
+                    <p style="color: black;"> What inferences can be made from the heatmap: </p>
+                    <ul>
+                        <li>The majority of cells in the heatmap are dark, meaning the features are highly correlated and potentially measuring similar components</li>
+                        <li>The features with the most dissimilarity (lighter squares in the heatmap) in comparison with others are hair color and wrapping </li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <div class="carousel-item">
-            <img src="~/img/3dScatter.png" class="d-block w-100" alt="Scatterplot">
-            <br />
-            <p style="color: black;">The three dimensional scatterplot displays the relationship between three specified variables, in this case head direction, depth, and wrapping. Each point on the plot represents a data point from the dataset. The color is determined by the cluster assignment generated by the clustering algorithm.</p>
-            <p style="color: black;"> What inferences can be made from the 3D scatterplot: </p>
-            <ul>
-                <li>There are two clusters within depth, headdirection, and wrapping - the blue and yellow points on the plot</li>
-                <li>The data is noisy and complex, all combinations of features never displayed distint and separate clusters, proof towards the silhouette score </li>
-            </ul>
-
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="~/img/3dScatter.png" class="img-fluid p-3" alt="Scatterplot">
+                </div>
+                <br />
+                <div class="col-md-6">
+                    <p style="color: black;">The three dimensional scatterplot displays the relationship between three specified variables, in this case head direction, depth, and wrapping. Each point on the plot represents a data point from the dataset. The color is determined by the cluster assignment generated by the clustering algorithm.</p>
+                    <p style="color: black;"> What inferences can be made from the 3D scatterplot: </p>
+                    <ul>
+                        <li>There are two clusters within depth, headdirection, and wrapping - the blue and yellow points on the plot</li>
+                        <li>The data is noisy and complex, all combinations of features never displayed distint and separate clusters, proof towards the silhouette score </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
@@ -53,11 +72,13 @@
         <span class="visually-hidden" style="color: grey;">Next</span>
     </a>
 </div>
+<nav class="d-flex align-items-center justify-content-center">
+    <ul class="pagination pagination-lg">
+        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="page-item"><a class="page-link font-weight-bolder btn-outline-dark">1</a></li>
+        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" class="page-item"><a class="page-link font-weight-bolder btn-outline-dark">2</a></li>
+        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" class="page-item"><a class="page-link font-weight-bolder btn-outline-dark">3</a></li>
+    </ul>
+</nav>
 
-<ol class="carousel-indicators" style="position: relative; bottom: 0; left: 0; right: 0; margin-bottom: 20px;">
-    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" style="background-color: grey;"></li>
-    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" style="background-color: grey;"></li>
-    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" style="background-color: grey;"></li>
-</ol>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
