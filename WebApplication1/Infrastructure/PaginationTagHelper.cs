@@ -36,10 +36,10 @@ namespace IntexWinter.Infrastructure
 
 
 
-        public override void Process (TagHelperContext thc, TagHelperOutput tho)
+        public override void Process(TagHelperContext thc, TagHelperOutput tho)
         {
             string Sex;
-            if (PageModel.PageInfo.SelectedSex == "z") {Sex = "";} else {Sex = PageModel.PageInfo.SelectedSex;}
+            if (PageModel.PageInfo.SelectedSex == "z") { Sex = ""; } else { Sex = PageModel.PageInfo.SelectedSex; }
 
             string HairColor;
             if (PageModel.PageInfo.SelectedHairColor == "z") { HairColor = ""; } else { HairColor = PageModel.PageInfo.SelectedHairColor; }
@@ -168,9 +168,9 @@ namespace IntexWinter.Infrastructure
                 last.InnerHtml.Append("Last");
             }
 
-            TagBuilder count = new TagBuilder("a");
-            count.AddCssClass(PageClass); count.AddCssClass(PageClassDisabled);
-            count.InnerHtml.Append(PageModel.PageInfo.TotalPages.ToString() + " pages - " + PageModel.PageInfo.TotalNumBurials.ToString() + " results");
+            //TagBuilder count = new TagBuilder("a");
+            //count.AddCssClass(PageClass); count.AddCssClass(PageClassDisabled);
+            //count.InnerHtml.Append("Page " + currentPage.ToString() + " of " + PageModel.PageInfo.TotalPages.ToString());
 
 
             final.InnerHtml.AppendHtml(first);
@@ -182,7 +182,7 @@ namespace IntexWinter.Infrastructure
             final.InnerHtml.AppendHtml(currentPlus2);
             final.InnerHtml.AppendHtml(next);
             final.InnerHtml.AppendHtml(last);
-            final.InnerHtml.AppendHtml(count);
+            //final.InnerHtml.AppendHtml(count);
 
             tho.Content.AppendHtml(final.InnerHtml);
         }

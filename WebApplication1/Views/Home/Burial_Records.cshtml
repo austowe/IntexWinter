@@ -115,8 +115,12 @@
                      page-class-selected="btn btn-primary font-weight-bolder"
                      class="btn-group pull-right m-1b" style="padding:5px;">
                 </div>
+                
 
                 <main role="main" class="pb-3">
+                <div style="padding:6px;">
+                    <a style="color:dimgrey">@Model.PageInfo.TotalNumBurials Results &nbsp;&nbsp;|&nbsp;&nbsp; Page @Model.PageInfo.CurrentPage of @Model.PageInfo.TotalPages</a>
+                </div>
 
                     @foreach (Burialmain b in Model.Burialmains)
                     {
@@ -164,6 +168,9 @@
                             </div>
                         </div>
                     }
+                <div style="padding:6px;">
+                    <a style="color:dimgrey">@Model.PageInfo.TotalNumBurials Results &nbsp;&nbsp;|&nbsp;&nbsp; Page @Model.PageInfo.CurrentPage of @Model.PageInfo.TotalPages</a>
+                </div>
                 </main>
 
                 <!--Pagination div that connects to PaginationTagHelper-->
