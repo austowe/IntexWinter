@@ -72,6 +72,7 @@ namespace WebApplication1
                 // cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
+                options.ConsentCookie.SecurePolicy = CookieSecurePolicy.Always;
             });
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
